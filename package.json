@@ -1,0 +1,58 @@
+{
+  "name": "watcha_clone_coding",
+  "version": "1.0.0",
+  "description": "\"# watcha_clone_coding\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development APP_PHASE=local webpack serve --config webpack.dev.js",
+    "build:staging": "cross-env NODE_ENV=production APP_PHASE=staging webpack --config webpack.prod.js",
+    "build:production": "cross-env NODE_ENV=production APP_PHASE=production webpack --config webpack.prod.js",
+    "dev": "webpack serve --open",
+    "type-check": "tsc -p ./tsconfig.build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/f-lab-edu/watcha_clone_coding.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/f-lab-edu/watcha_clone_coding/issues"
+  },
+  "homepage": "https://github.com/f-lab-edu/watcha_clone_coding#readme",
+  "dependencies": {
+    "core-js": "^3.45.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.3",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@babel/runtime-corejs3": "^7.28.3",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@types/webpack-env": "^1.18.8",
+    "@webpack-cli/generators": "^3.0.7",
+    "babel-loader": "^10.0.0",
+    "cross-env": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "dotenv-webpack": "^8.1.1",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-webpack-plugin": "^5.6.4",
+    "mini-css-extract-plugin": "^2.9.4",
+    "react-refresh": "^0.17.0",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.2",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^4.15.2",
+    "webpack-merge": "^6.0.1"
+  }
+}
