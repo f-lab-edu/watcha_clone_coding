@@ -1,33 +1,36 @@
 import { useEffect, useState } from "react";
 import Slider from "../components/Slider";
+import { config } from "../config/env";
 import "../styles/Page.css";
 
 const ListPage = () => {
   const [sliderData, setSliderData] = useState([]);
-  const getDate = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NDQwZDgyNjkyODQyZDJkNGExNGU0ZjY0N2E5NDhlOSIsIm5iZiI6MTc1NTY1MTczMS45NzcsInN1YiI6IjY4YTUxZTkzNGFkYTEyY2IzZmQ1NDliZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tK4jtfTlU3u3RME7szR5e6TA-mhoWLhAP9sq_Ctu6pI",
-      },
-    };
 
-    const url = "https://image.tmdb.org/t/p/w500";
-    const response = fetch("https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1", options).then((res) =>
-      res.json(),
-    );
-    const data = await response;
-    setSliderData(
-      data.results.map((item: any, index: number) => ({
-        id: item.id,
-        rank: index + 1,
-        image: url + item.backdrop_path,
-        title: item.title,
-        description: item.overview,
-      })),
-    );
+  const getDate = async () => {
+    try {
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${config.tmdbApiKey}`,
+        },
+      };
+
+      const response = await fetch(`${config.tmdbBaseUrl}/movie/popular?language=ko-KR&page=1`, options);
+      const data = await response.json();
+
+      setSliderData(
+        data.results.map((item: any, index: number) => ({
+          id: item.id,
+          rank: index + 1,
+          image: config.tmdbImageUrl + item.backdrop_path,
+          title: item.title,
+          description: item.overview,
+        })),
+      );
+    } catch (error) {
+      console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
+    }
   };
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const ListPage = () => {
               <button>추천</button>
             </li>
             <li className="tab-item">
-              <button>#왓챠의 발견</button>
+              <button>#완전한 발견</button>
             </li>
             <li className="tab-item">
               <button>#한국</button>
