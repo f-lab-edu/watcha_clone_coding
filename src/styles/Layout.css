@@ -12,6 +12,11 @@
   padding-top: 72px; /* header 높이만큼 여백 */
 }
 
+.main-content {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
 /* 공통 텍스트 스타일 */
 .text-base {
   letter-spacing: 0;
