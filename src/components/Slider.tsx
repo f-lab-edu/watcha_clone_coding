@@ -86,15 +86,6 @@ const Slider: React.FC<SliderProps> = ({ slides, height, articleWidth = 280, lay
     }
   }, [transitionEnabled, isInitialized]);
 
-  const handleSlideClick = (slide: Slide) => {
-    if (slide.href) {
-      window.open(slide.href, "_blank");
-    }
-    if (slide.onClick) {
-      slide.onClick();
-    }
-  };
-
   return (
     <div
       ref={containerRef}
@@ -119,7 +110,6 @@ const Slider: React.FC<SliderProps> = ({ slides, height, articleWidth = 280, lay
             style={{
               width: `${articleWidth}px`,
             }}
-            onClick={() => handleSlideClick(slide)}
           >
             <div className={`slider-card slider-card-${layout}`}>
               <div className="slider-image-container">
