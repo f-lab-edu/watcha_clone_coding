@@ -147,17 +147,21 @@ const DetailPage = () => {
 
       <div>
         {/* 컬렉션 섹션 */}
-        {movieData.collection && (
-          <section>
-            <div className="section-title">컬렉션</div>
-            <ul></ul>
-          </section>
-        )}
+        <section>
+          <div className="section-title">관련 콘텐츠</div>
+          {movieData.collection && (
+            <ul className="collection-list">
+              <li className="collection-item">
+                <img src={getImageUrl(movieData.collection.poster_path)} />
+              </li>
+            </ul>
+          )}
+        </section>
 
         {/* 관련 동영상 섹션 */}
-        {movieData.videos.length > 0 && (
-          <section className="related-video">
-            <div className="section-title">관련 동영상</div>
+        <section className="related-video">
+          <div className="section-title">관련 동영상</div>
+          {movieData.videos.length > 0 && (
             <div className="video-section">
               {movieData.videos.slice(0, 4).map((video) => (
                 <div key={video.id} className="video-item">
@@ -173,8 +177,8 @@ const DetailPage = () => {
                 </div>
               ))}
             </div>
-          </section>
-        )}
+          )}
+        </section>
 
         {/* 감독/출연 섹션 */}
         <section className="director-cast">
@@ -185,7 +189,7 @@ const DetailPage = () => {
                 <div key={person.id} className="member-item">
                   <div className="profile">
                     <div className="profile-image">
-                      <img src={config.tmdbImageUrl + person.profile_path} alt={person.name} />
+                      <img src={getImageUrl(person.profile_path)} alt={person.name} />
                     </div>
                     <div className="profile-info">
                       <div className="profile-name">{person.name}</div>
@@ -201,12 +205,33 @@ const DetailPage = () => {
         </section>
 
         {/* 리뷰 섹션 */}
-        {movieData.reviews.length > 0 && (
-          <section>
-            <div className="section-title">왓챠피디아 사용자 평</div>
-            <div></div>
-          </section>
-        )}
+        <section className="reviews-section">
+          <div className="section-title">왓챠피디아 사용자 평</div>
+          {movieData.reviews.length > 0 && (
+            <ul>
+              {movieData.reviews.map((review) => (
+                <li key={review.id}>
+                  <article className="reviews-item">
+                    <div className="reviewer-icon">
+                      {review.author_details.avatar_path ? (
+                        <img src={getImageUrl(review.author_details.avatar_path)} />
+                      ) : (
+                        <div>{""}</div>
+                      )}
+                    </div>
+                    <div className="review-data">
+                      <div className="reviewer-detail">
+                        <div className="reviewer-name">{review.author}</div>
+                        <div>{review.author_details.rating}</div>
+                      </div>
+                      <div className="review">{review.content}</div>
+                    </div>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       </div>
     </div>
   );
