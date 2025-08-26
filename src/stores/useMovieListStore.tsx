@@ -13,6 +13,7 @@ const useMovieListStore = create<MovieListState>((set) => ({
   setMovieList: (rawMovies) =>
     set(() => ({
       movieList: rawMovies.map((movie, index) => ({
+        ...movie,
         id: movie.id,
         rank: index + 1,
         image: `${config.tmdbImageUrl}${movie.backdrop_path}`,
