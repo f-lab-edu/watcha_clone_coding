@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 const Header = () => {
   return (
@@ -49,46 +50,59 @@ const Header = () => {
         </div>
 
         <div className="header-actions">
-          <button className="header-search-button button-base interactive-element" aria-label="검색">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                d="M16.17 16.43a7.5 7.5 0 1 1 .26-.26 1 1 0 0 0-.26.26m.64 1.44a9 9 0 1 1 1.06-1.06l3.88 3.88a.75.75 0 1 1-1.06 1.06z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="text-base text-large"></span>
-          </button>
+          <Button
+            className="header-search-button button-base interactive-element"
+            aria-label="검색"
+            to={"/search"}
+            value={
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    d="M16.17 16.43a7.5 7.5 0 1 1 .26-.26 1 1 0 0 0-.26.26m.64 1.44a9 9 0 1 1 1.06-1.06l3.88 3.88a.75.75 0 1 1-1.06 1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="text-base text-large">콘텐츠, 태그, 인물, 리스트 검색</span>
+              </>
+            }
+          />
+          <Button
+            className="header-notification-button button-base interactive-element"
+            aria-label="알림"
+            value={
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    d="M19.87 9c.13 1 .26 2.5.26 2.5l.25 3.35q.02.15.09.29l1.45 2.76c.26.5-.1 1.1-.67 1.1H16.4a4.4 4.4 0 0 1-4.4 3.75A4.4 4.4 0 0 1 7.61 19H2.76a.75.75 0 0 1-.67-1.1l1.45-2.76q.08-.15.08-.3l.26-3.34S4 10 4.14 9C4.65 5.27 8.07 2 12 2s7.39 3.27 7.87 7M9.13 19A2.9 2.9 0 0 0 12 21.25c1.46 0 2.63-1 2.88-2.25zm-3.76-7.4v.02l-.25 3.34q-.03.46-.25.87L4 17.5H20l-.87-1.67a2 2 0 0 1-.25-.87l-.25-3.34v-.05l-.02-.18-.24-2.2A6.7 6.7 0 0 0 12 3.5c-3.13 0-5.96 2.66-6.38 5.7a43 43 0 0 0-.24 2.36z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </>
+            }
+          />
 
-          <button className="header-notification-button button-base interactive-element" aria-label="알림">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                d="M19.87 9c.13 1 .26 2.5.26 2.5l.25 3.35q.02.15.09.29l1.45 2.76c.26.5-.1 1.1-.67 1.1H16.4a4.4 4.4 0 0 1-4.4 3.75A4.4 4.4 0 0 1 7.61 19H2.76a.75.75 0 0 1-.67-1.1l1.45-2.76q.08-.15.08-.3l.26-3.34S4 10 4.14 9C4.65 5.27 8.07 2 12 2s7.39 3.27 7.87 7M9.13 19A2.9 2.9 0 0 0 12 21.25c1.46 0 2.63-1 2.88-2.25zm-3.76-7.4v.02l-.25 3.34q-.03.46-.25.87L4 17.5H20l-.87-1.67a2 2 0 0 1-.25-.87l-.25-3.34v-.05l-.02-.18-.24-2.2A6.7 6.7 0 0 0 12 3.5c-3.13 0-5.96 2.66-6.38 5.7a43 43 0 0 0-.24 2.36z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-
-          <button className="header-login-button button-base interactive-element text-base text-regular">
-            로그인/회원가입
-          </button>
+          <Button
+            className="header-login-button button-base interactive-element text-base text-regular"
+            value="로그인/회원가입"
+          />
         </div>
       </nav>
     </header>

@@ -8,7 +8,7 @@ import { MovieData } from "../types/Movie";
 
 const useMovieDetail = () => {
   const location = useLocation();
-  const { setMovieDetail, setReviews } = useMovieDetailStore();
+  const { movieDetail, reviews, setMovieDetail, setReviews } = useMovieDetailStore();
 
   const transformMovieData = (response: any): MovieData => {
     const director = response.credits.crew.find((member: any) => member.job === "Director") || null;
@@ -70,8 +70,6 @@ const useMovieDetail = () => {
     if (!path) return "";
     return `${config.tmdbImageUrl}${path}`;
   };
-
-  const { movieDetail, reviews } = useMovieDetailStore();
 
   return {
     movieData: movieDetail,
