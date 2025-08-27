@@ -1,7 +1,7 @@
 // useMovieListStore.tsx
 import { create } from "zustand";
 import { config } from "../../config/env";
-import { TransformedMovie, RawMovie } from "../types/movie";
+import { TransformedMovie, RawMovie } from "../types/Movie";
 
 interface MovieListState {
   movieList: TransformedMovie[];

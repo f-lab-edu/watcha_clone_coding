@@ -1,25 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import SliderCard from "./SliderCard";
-import "../styles/Slider.css";
+import useMovieListStore from "../stores/useMovieListStore";
 
-type Slide = {
-  id: number;
-  rank: number;
-  image: string;
-  title: string;
-  description?: string;
-  href?: string;
-  onClick?: () => void;
-};
-
-type SliderProps = {
-  slides: Slide[];
-  height: string;
-  articleWidth?: number;
-  layout?: "overlay" | "top" | "left" | "none"; // side를 left로 변경
-};
-
-const Slider: React.FC<SliderProps> = ({ slides, height, articleWidth = 280, layout = "overlay" }) => {
+const useCarousel = ({ slider, articleWidth, layout }: { slider: any[]; articleWidth: number; layout: string }) => {
+  const { movieList } = useMovieListStore();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [visibleCount, setVisibleCount] = useState(1);
@@ -55,7 +38,7 @@ const Slider: React.FC<SliderProps> = ({ slides, height, articleWidth = 280, lay
     return () => window.removeEventListener("resize", handleResize);
   }, [calculateVisibleCount]);
 
-  const clonedSlides = [...slides.slice(-visibleCount), ...slides, ...slides.slice(0, visibleCount)];
+  const clonedSlides = [...movieList.slice(-visibleCount), ...movieList, ...movieList.slice(0, visibleCount)];
   const displayIndex = currentIndex + visibleCount;
 
   const handleNext = () => {
@@ -69,12 +52,12 @@ const Slider: React.FC<SliderProps> = ({ slides, height, articleWidth = 280, lay
   };
 
   const handleTransitionEnd = () => {
-    if (currentIndex >= slides.length) {
+    if (currentIndex >= movieList.length) {
       setTransitionEnabled(false);
       setCurrentIndex(0);
     } else if (currentIndex < 0) {
       setTransitionEnabled(false);
-      setCurrentIndex(slides.length - 1);
+      setCurrentIndex(movieList.length - 1);
     }
   };
 
@@ -87,44 +70,16 @@ const Slider: React.FC<SliderProps> = ({ slides, height, articleWidth = 280, lay
     }
   }, [transitionEnabled, isInitialized]);
 
-  return (
-    <div
-      ref={containerRef}
-      className="slider-container"
-      style={{
-        height,
-      }}
-    >
-      <div
-        ref={trackRef}
-        className={`slider-track ${!transitionEnabled ? "no-transition" : ""}`}
-        style={{
-          transform: `translateX(-${displayIndex * articleWidth}px)`,
-          width: `${clonedSlides.length * articleWidth}px`,
-        }}
-        onTransitionEnd={handleTransitionEnd}
-      >
-        {clonedSlides.map((slide, index) => (
-          <article
-            key={`${slide.id}-${index}`}
-            className={`slider-article slider-article-${layout}`}
-            style={{
-              width: `${articleWidth}px`,
-            }}
-          >
-            <SliderCard slide={slide} layout={layout} />
-          </article>
-        ))}
-      </div>
-
-      <button onClick={handlePrev} className="slider-button slider-button-prev" aria-label="이전 슬라이드">
-        &#8249;
-      </button>
-      <button onClick={handleNext} className="slider-button slider-button-next" aria-label="다음 슬라이드">
-        &#8250;
-      </button>
-    </div>
-  );
+  return {
+    containerRef,
+    trackRef,
+    transitionEnabled,
+    displayIndex,
+    clonedSlides,
+    handleTransitionEnd,
+    handlePrev,
+    handleNext,
+  };
 };
 
-export default Slider;
+export default useCarousel;
