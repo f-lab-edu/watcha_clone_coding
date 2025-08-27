@@ -1,21 +1,7 @@
 import { Link } from "react-router-dom";
+import { MovieCardProps } from "../types/Carousel";
 
-type Slide = {
-  id: number;
-  rank: number;
-  image: string;
-  title: string;
-  description?: string;
-  href?: string;
-  onClick?: () => void;
-};
-
-type SliderCardProps = {
-  slide: Slide;
-  layout: "overlay" | "top" | "left" | "none";
-};
-
-const SliderCard: React.FC<SliderCardProps> = ({ slide, layout }) => {
+const MovieCard = ({ slide, layout }: MovieCardProps) => {
   return (
     <Link to={`/movie/${slide.id}`}>
       <div className={`slider-card slider-card-${layout}`}>
@@ -38,4 +24,4 @@ const SliderCard: React.FC<SliderCardProps> = ({ slide, layout }) => {
   );
 };
 
-export default SliderCard;
+export default MovieCard;
