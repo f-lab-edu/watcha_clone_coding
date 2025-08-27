@@ -189,6 +189,10 @@
   color: #84868d;
 }
 
+.header-search-button > span {
+  color: #84868d;
+}
+
 .header-notification-button {
   position: relative;
   background-color: transparent;

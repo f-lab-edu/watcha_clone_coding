@@ -82,3 +82,35 @@ export const fetchMovieReviews = async (movieId: string) => {
 
   return response.json();
 };
+
+export const fetchTodayTrendingMovie = async () => {
+  const response = await fetch(`${config.tmdbBaseUrl}/trending/movie/day?language=ko-KR`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${config.tmdbApiKey}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch movies");
+  }
+
+  return response.json();
+};
+
+export const fetchMovieGenres = async () => {
+  const response = await fetch(`${config.tmdbBaseUrl}/genre/movie/list?language=ko`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${config.tmdbApiKey}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch movies");
+  }
+
+  return response.json();
+};
