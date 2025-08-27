@@ -4,7 +4,7 @@ const Button = ({
   onClick,
   ariaLabel,
 }: {
-  value: string;
+  value: any;
   className?: string;
   onClick?: () => void;
   ariaLabel?: string;
