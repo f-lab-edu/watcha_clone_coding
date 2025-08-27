@@ -23,7 +23,7 @@ const useMovieList = () => {
 
   useEffect(() => {
     if (popularQuery.data) {
-      setMovies("popular", (popularQuery.data as any).results);
+      setMovies("popular", popularQuery.data.results);
     }
   }, [popularQuery.data, setMovies]);
 
