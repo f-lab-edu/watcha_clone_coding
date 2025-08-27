@@ -12,6 +12,7 @@ export type CarouselProps = {
   height: number;
   articleWidth: number;
   layout?: "overlay" | "top" | "left" | "none"; // side를 left로 변경
+  category: "popular" | "top20" | "now";
 };
 
 export type MovieCardProps = {

@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import useMovieListStore from "../stores/useMovieListStore";
 
-const useCarousel = ({ slider, articleWidth, layout }: { slider: any[]; articleWidth: number; layout: string }) => {
-  const { movieList } = useMovieListStore();
+const useCarousel = ({ category, articleWidth }: { category: "popular" | "top20" | "now"; articleWidth: number }) => {
+  const { getMoviesByCategory } = useMovieListStore();
+  const movieList = getMoviesByCategory(category);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [visibleCount, setVisibleCount] = useState(1);
   const [isInitialized, setIsInitialized] = useState(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -71,6 +74,7 @@ const useCarousel = ({ slider, articleWidth, layout }: { slider: any[]; articleW
   }, [transitionEnabled, isInitialized]);
 
   return {
+    movieList,
     containerRef,
     trackRef,
     transitionEnabled,

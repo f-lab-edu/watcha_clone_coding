@@ -27,19 +27,19 @@ const ListPage = () => {
       </section>
       {/* 메인 슬라이드 */}
       <section style={{ marginBottom: "40px" }}>
-        <Carousel height={642} articleWidth={1140} layout="overlay" />
+        <Carousel height={642} articleWidth={1140} layout="overlay" category="popular" />
       </section>
       {/* 추천1 */}
       <section style={{ marginBottom: "40px" }}>
-        <Carousel height={289} articleWidth={421} layout="top" />
+        <Carousel height={289} articleWidth={421} layout="top" category="popular" />
       </section>
       <section style={{ marginBottom: "40px" }}>
         <h2>개별 구매 Top 20</h2>
-        <Carousel height={200} articleWidth={400} layout="left" />
+        <Carousel height={200} articleWidth={400} layout="left" category="top20" />
       </section>
       <section style={{ marginBottom: "40px" }}>
         <h2>새로 올라온 콘텐츠</h2>
-        <Carousel height={164} articleWidth={290} layout="none" />
+        <Carousel height={164} articleWidth={290} layout="none" category="now" />
       </section>
     </div>
   );

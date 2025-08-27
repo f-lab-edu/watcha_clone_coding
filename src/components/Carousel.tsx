@@ -5,10 +5,11 @@ import useCarousel from "../hooks/useCarousel";
 import "../styles/Carousel.css";
 import useMovieList from "../hooks/useMovieList";
 
-const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay" }) => {
-  const { movieList, isLoading, error } = useMovieList();
+const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay", category }) => {
+  const { isLoading, error } = useMovieList();
 
   const {
+    movieList,
     containerRef,
     trackRef,
     transitionEnabled,
@@ -17,10 +18,11 @@ const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "ove
     handleTransitionEnd,
     handlePrev,
     handleNext,
-  } = useCarousel({ slider: movieList, articleWidth, layout });
+  } = useCarousel({ category, articleWidth });
 
   if (isLoading) return <div>로딩중...</div>;
   if (error) return <div>에러: {error.message}</div>;
+  if (movieList.length === 0) return <div>데이터가 없습니다.</div>;
 
   return (
     <div
