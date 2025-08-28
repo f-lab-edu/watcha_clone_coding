@@ -21,8 +21,16 @@ const MovieCard = (props: MovieCardProps) => {
       "#85C1E9",
       "#D7BDE2",
     ];
-    const color1 = colors[Math.floor(Math.random() * colors.length)];
-    const color2 = colors[Math.floor(Math.random() * colors.length)];
+
+    // slide의 id나 name을 기반으로 결정적 색상 선택
+    const seed = props.type === "genres" ? props.slide.name : props.slide.title;
+    const hash = seed.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const color1Index = hash % colors.length;
+    const color2Index = (hash * 2) % colors.length;
+
+    const color1 = colors[color1Index];
+    const color2 = colors[color2Index];
+
     return `linear-gradient(135deg, ${color1}, ${color2})`;
   }, [props.type === "genres" ? props.slide.name : props.slide.title]);
 
