@@ -4,9 +4,28 @@ import Button from "../components/Button";
 import Carousel from "../components/Carousel";
 import useSearchMovies from "../hooks/useSearchMovies";
 import "../styles/Search.css";
+import ThemeTab from "../components/ThemeTab";
 
 const SearchPage = () => {
   const { trendingList, genresList, highlightedIndex, handleMouseEnter } = useSearchMovies();
+
+  const tabButtons = [
+    {
+      name: "전체",
+    },
+    {
+      name: "액션",
+    },
+    {
+      name: "로맨스",
+    },
+    {
+      name: "코미디",
+    },
+    {
+      name: "다른 장르 보기 V",
+    },
+  ];
 
   return (
     <div>
@@ -15,25 +34,7 @@ const SearchPage = () => {
           <h2>인기 검색어 TOP 10</h2>
           <div className="popular-keyword-content">
             <div className="popular-keyword-list">
-              <section className="theme-tab">
-                <ul className="tab-list">
-                  <li className="tab-item tab-item-active">
-                    <Button value={"전체"} />
-                  </li>
-                  <li className="tab-item">
-                    <Button value={"액션"} />
-                  </li>
-                  <li className="tab-item">
-                    <Button value={"로맨스"} />
-                  </li>
-                  <li className="tab-item">
-                    <Button value={"코미디"} />
-                  </li>
-                  <li className="tab-item">
-                    <Button value={"다른 장르 보기 ▽"} />
-                  </li>
-                </ul>
-              </section>
+              <ThemeTab list={tabButtons} />
               <ul className="trending-list">
                 {trendingList.slice(0, 10).map((movie, index) => (
                   <li
