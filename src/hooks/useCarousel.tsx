@@ -1,9 +1,22 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import useMovieListStore from "../stores/useMovieListStore";
+import { Genre } from "../types/Movie";
+import { Carousel as CarouselSlide } from "../types/Carousel";
 
-const useCarousel = ({ category, articleWidth }: { category: "popular" | "top20" | "now"; articleWidth: number }) => {
+type Slide = CarouselSlide | Genre;
+
+const useCarousel = ({
+  category,
+  articleWidth,
+  slides,
+}: {
+  category?: "popular" | "top20" | "now";
+  articleWidth: number;
+  slides?: Slide[];
+}) => {
   const { getMoviesByCategory } = useMovieListStore();
-  const movieList = getMoviesByCategory(category);
+  const storeList = category ? (getMoviesByCategory(category) as CarouselSlide[]) : [];
+  const movieList: Slide[] = slides && slides.length > 0 ? slides : storeList;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);

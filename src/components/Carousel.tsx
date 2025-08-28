@@ -1,11 +1,12 @@
 import MovieCard from "./MovieCard";
-import { CarouselProps } from "../types/Carousel";
+import { CarouselProps, Carousel as CarouselSlide } from "../types/Carousel";
 import Button from "./Button";
 import useCarousel from "../hooks/useCarousel";
 import "../styles/Carousel.css";
 import useMovieList from "../hooks/useMovieList";
+import { Genre } from "../types/Movie";
 
-const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay", category }) => {
+const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay", category, slides }) => {
   const { isLoading, error } = useMovieList();
 
   const {
@@ -18,11 +19,13 @@ const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "ove
     handleTransitionEnd,
     handlePrev,
     handleNext,
-  } = useCarousel({ category, articleWidth });
+  } = useCarousel({ category, articleWidth, slides });
 
   if (isLoading) return <div>로딩중...</div>;
   if (error) return <div>에러: {error.message}</div>;
   if (movieList.length === 0) return <div>데이터가 없습니다.</div>;
+
+  const isGenres = Boolean(slides && slides.length > 0);
 
   return (
     <div
@@ -49,7 +52,11 @@ const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "ove
               width: `${articleWidth}px`,
             }}
           >
-            <MovieCard slide={slide} layout={layout} />
+            {isGenres ? (
+              <MovieCard slide={slide as Genre} layout={layout} type="genres" />
+            ) : (
+              <MovieCard slide={slide as CarouselSlide} layout={layout} type="movie" />
+            )}
           </article>
         ))}
       </div>

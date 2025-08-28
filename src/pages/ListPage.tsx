@@ -2,29 +2,29 @@ import Carousel from "../components/Carousel";
 import Button from "../components/Button";
 
 import "../styles/Page.css";
+import ThemeTab from "../components/ThemeTab";
 
 const ListPage = () => {
+  const tabButtons = [
+    {
+      name: "추천",
+    },
+    {
+      name: "#완전한 발견",
+    },
+    {
+      name: "#한국",
+    },
+    {
+      name: "#애니메이션",
+    },
+    {
+      name: "성인+",
+    },
+  ];
   return (
     <div>
-      <section className="theme-tab">
-        <ul className="tab-list">
-          <li className="tab-item tab-item-active">
-            <Button value={"추천"} />
-          </li>
-          <li className="tab-item">
-            <Button value={"#완전한 발견"} />
-          </li>
-          <li className="tab-item">
-            <Button value={"#한국"} />
-          </li>
-          <li className="tab-item">
-            <Button value={"#애니메이션"} />
-          </li>
-          <li className="tab-item">
-            <Button value={"성인+"} />
-          </li>
-        </ul>
-      </section>
+      <ThemeTab list={tabButtons} />
       {/* 메인 슬라이드 */}
       <section style={{ marginBottom: "40px" }}>
         <Carousel height={642} articleWidth={1140} layout="overlay" category="popular" />
