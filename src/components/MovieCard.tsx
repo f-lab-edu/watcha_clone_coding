@@ -3,29 +3,30 @@ import { MovieCardProps } from "../types/Carousel";
 import { useMemo } from "react";
 
 const MovieCard = (props: MovieCardProps) => {
+  const generateRandomGradient = useMemo(() => {
+    const colors = [
+      "#FF6B6B",
+      "#4ECDC4",
+      "#45B7D1",
+      "#96CEB4",
+      "#FFEAA7",
+      "#DDA0DD",
+      "#98D8C8",
+      "#F7DC6F",
+      "#BB8FCE",
+      "#85C1E9",
+      "#F8C471",
+      "#82E0AA",
+      "#F1948A",
+      "#85C1E9",
+      "#D7BDE2",
+    ];
+    const color1 = colors[Math.floor(Math.random() * colors.length)];
+    const color2 = colors[Math.floor(Math.random() * colors.length)];
+    return `linear-gradient(135deg, ${color1}, ${color2})`;
+  }, [props.type === "genres" ? props.slide.name : props.slide.title]);
+
   if (props.type === "genres") {
-    const generateRandomGradient = useMemo(() => {
-      const colors = [
-        "#FF6B6B",
-        "#4ECDC4",
-        "#45B7D1",
-        "#96CEB4",
-        "#FFEAA7",
-        "#DDA0DD",
-        "#98D8C8",
-        "#F7DC6F",
-        "#BB8FCE",
-        "#85C1E9",
-        "#F8C471",
-        "#82E0AA",
-        "#F1948A",
-        "#85C1E9",
-        "#D7BDE2",
-      ];
-      const color1 = colors[Math.floor(Math.random() * colors.length)];
-      const color2 = colors[Math.floor(Math.random() * colors.length)];
-      return `linear-gradient(135deg, ${color1}, ${color2})`;
-    }, [props.slide.name]);
     return (
       // <Link to={}>
       <div className={`slider-card slider-card-${props.layout}`}>
