@@ -8,7 +8,7 @@ const useSearchMovie = () => {
   const location = useLocation();
   const { query, setQuery, reset, searchList, setSearchList } = useSearchKeywordStore();
   const [searchQuery, setSearchQuery] = useState("");
-  const [genreId, setGenreId] = useState<string | null>(null);
+  const [genreId, setGenreId] = useState<string>("");
 
   const searchMovieQuery = useQuery({
     queryKey: ["searchMovie", searchQuery],
@@ -18,7 +18,7 @@ const useSearchMovie = () => {
 
   const searchGenresQuery = useQuery({
     queryKey: ["searchGenres", genreId],
-    queryFn: () => fetchSearchGenres(genreId!),
+    queryFn: () => fetchSearchGenres(genreId),
     enabled: Boolean(genreId),
   });
 
@@ -31,7 +31,7 @@ const useSearchMovie = () => {
     if (currentPath !== "search") {
       reset();
       setSearchQuery("");
-      setGenreId(null);
+      setGenreId("");
     }
   }, [location.pathname, reset]);
 
@@ -53,7 +53,7 @@ const useSearchMovie = () => {
     if (!trimmed) return;
 
     setSearchQuery(trimmed);
-    setGenreId(null); // 장르 검색 초기화
+    setGenreId(""); // 장르 검색 초기화
   };
 
   const searchByGenre = (genreId: string) => {

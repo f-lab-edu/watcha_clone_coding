@@ -10,6 +10,9 @@ const MovieCard = (props: MovieCardProps) => {
       <div
         className={`slider-card slider-card-${props.layout}`}
         onClick={handleGenreClick}
+        role="button"
+        tabIndex={0}
+        aria-label={`${props.slide.name} 장르 선택`}
         style={{ cursor: "pointer" }}
       >
         <div

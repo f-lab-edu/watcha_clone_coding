@@ -9,7 +9,7 @@ import useSearchMovie from "../hooks/useSearchMovie";
 
 const SearchPage = () => {
   const { trendingList, genresList, highlightedIndex, handleMouseEnter, isLoading, isError } = useSearchMovies();
-  const { searchList, searchQuery, isLoading: isSearchLoading, genreId, searchByGenre } = useSearchMovie();
+  const { searchList, searchQuery, isLoading: isSearchLoading } = useSearchMovie();
 
   const tabButtons = [
     {
