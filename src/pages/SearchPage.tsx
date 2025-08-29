@@ -9,7 +9,7 @@ import useSearchMovie from "../hooks/useSearchMovie";
 
 const SearchPage = () => {
   const { trendingList, genresList, highlightedIndex, handleMouseEnter, isLoading, isError } = useSearchMovies();
-  const { searchList, searchQuery, isLoading: isSearchLoading } = useSearchMovie();
+  const { searchList, searchQuery, isLoading: isSearchLoading, genreId } = useSearchMovie();
 
   const tabButtons = [
     {
@@ -41,7 +41,7 @@ const SearchPage = () => {
   if (searchList.length > 0) {
     return (
       <div>
-        <ThemeTab list={genresList} />
+        {genreId && <ThemeTab list={genresList} />}
         <section className="search-result">
           <ul>
             {searchList.map((movie) => (

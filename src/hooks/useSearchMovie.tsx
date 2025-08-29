@@ -6,9 +6,8 @@ import { fetchSearchKeywords, fetchSearchGenres } from "../utils/api";
 
 const useSearchMovie = () => {
   const location = useLocation();
-  const { query, setQuery, reset, searchList, setSearchList } = useSearchKeywordStore();
+  const { query, setQuery, genreId, setGenreId, reset, searchList, setSearchList } = useSearchKeywordStore();
   const [searchQuery, setSearchQuery] = useState("");
-  const [genreId, setGenreId] = useState<string>("");
 
   const searchMovieQuery = useQuery({
     queryKey: ["searchMovie", searchQuery],
