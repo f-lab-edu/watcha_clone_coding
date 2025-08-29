@@ -14,12 +14,8 @@ const ThemeTab = ({ list }: ThemeTabProps) => {
         {list.map((item) => {
           const isActive = activeName === item.name;
           return (
-            <li
-              key={item.name}
-              className={`tab-item${isActive ? " tab-item-active" : ""}`}
-              onClick={() => setActiveName(item.name)}
-            >
-              <Button value={item.name} />
+            <li key={item.name} className={`tab-item${isActive ? " tab-item-active" : ""}`}>
+              <Button value={item.name} onClick={() => setActiveName(item.name)} />
             </li>
           );
         })}
