@@ -9,7 +9,7 @@ import useSearchMovie from "../hooks/useSearchMovie";
 
 const SearchPage = () => {
   const { trendingList, genresList, highlightedIndex, handleMouseEnter, isLoading, isError } = useSearchMovies();
-  const { searchList, searchQuery } = useSearchMovie();
+  const { searchList, searchQuery, isLoading: isSearchLoading } = useSearchMovie();
 
   const tabButtons = [
     {
@@ -31,26 +31,36 @@ const SearchPage = () => {
 
   if (isLoading) return <div>로딩중...</div>;
   if (isError) return <div>에러: {isError}</div>;
-  if (searchQuery && searchList.length <= 0) {
-    return <div>검색하신 작품이 현재 왓챠에 없어요.</div>;
+
+  // 검색 중일 때
+  if (isSearchLoading) {
+    return <div>검색 중...</div>;
   }
+
+  // 검색 결과가 있을 때 (키워드 검색 또는 장르 검색)
   if (searchList.length > 0) {
     return (
       <div>
+        <ThemeTab list={genresList} />
         <section className="search-result">
           <ul>
             {searchList.map((movie) => (
-              <Link to={`/movie/${movie.id}`}>
-                <li className="search-result-item" key={movie.id}>
+              <li className="search-result-item" key={movie.id}>
+                <Link to={`/movie/${movie.id}`}>
                   <img src={`${config.tmdbImageUrl}${movie.image}`} alt={movie.title} />
                   <div>{movie.title}</div>
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
           </ul>
         </section>
       </div>
     );
+  }
+
+  // 검색을 했지만 결과가 없을 때
+  if (searchQuery && searchList.length === 0) {
+    return <div>검색하신 작품이 현재 왓챠에 없어요.</div>;
   }
 
   return (

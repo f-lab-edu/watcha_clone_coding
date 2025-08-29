@@ -7,6 +7,7 @@ type SearchState = {
   setQuery: (value: string) => void;
   searchList: TransformedMovie[];
   setSearchList: (searchList: RawMovie[]) => void;
+  reset: () => void;
 };
 
 const useSearchKeywordStore = create<SearchState>((set) => ({
@@ -24,6 +25,11 @@ const useSearchKeywordStore = create<SearchState>((set) => ({
         description: movie.overview,
       })),
     })),
+  reset: () =>
+    set({
+      query: "",
+      searchList: [],
+    }),
 }));
 
 export default useSearchKeywordStore;

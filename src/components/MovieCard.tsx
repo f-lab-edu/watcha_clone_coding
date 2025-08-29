@@ -1,57 +1,40 @@
 import { Link } from "react-router-dom";
 import { MovieCardProps } from "../types/Carousel";
-import { useMemo } from "react";
+import useMovieCard from "../hooks/useMovieCard";
+import Button from "./Button";
 
 const MovieCard = (props: MovieCardProps) => {
-  const generateRandomGradient = useMemo(() => {
-    const colors = [
-      "#FF6B6B",
-      "#4ECDC4",
-      "#45B7D1",
-      "#96CEB4",
-      "#FFEAA7",
-      "#DDA0DD",
-      "#98D8C8",
-      "#F7DC6F",
-      "#BB8FCE",
-      "#85C1E9",
-      "#F8C471",
-      "#82E0AA",
-      "#F1948A",
-      "#85C1E9",
-      "#D7BDE2",
-    ];
-
-    // slide의 id나 name을 기반으로 결정적 색상 선택
-    const seed = props.type === "genres" ? props.slide.name : props.slide.title;
-    const hash = seed.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const color1Index = hash % colors.length;
-    const color2Index = (hash * 2) % colors.length;
-
-    const color1 = colors[color1Index];
-    const color2 = colors[color2Index];
-
-    return `linear-gradient(135deg, ${color1}, ${color2})`;
-  }, [props.type === "genres" ? props.slide.name : props.slide.title]);
+  const { handleGenreClick, generateRandomGradient } = useMovieCard(props);
 
   if (props.type === "genres") {
     return (
-      // <Link to={}>
-      <div className={`slider-card slider-card-${props.layout}`}>
-        <div
-          className="slider-image-container"
-          style={{
-            background: generateRandomGradient,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        ></div>
-        <div className={`slider-content slider-content-${props.layout}`}>
-          <h3 className="slider-title">{props.slide.name}</h3>
-        </div>
-      </div>
-      // </Link>
+      <Button
+        className={`slider-card slider-card-${props.layout}`}
+        onClick={handleGenreClick}
+        value={
+          <>
+            <div
+              className="slider-image-container"
+              style={{
+                background: generateRandomGradient,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                outline: 0,
+                border: 0,
+              }}
+            ></div>
+            <div className={`slider-content slider-content-${props.layout}`}>
+              <h3 className="slider-title">{props.slide.name}</h3>
+            </div>
+          </>
+        }
+      />
     );
   } else {
     return (

@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useRef, useEffect } from "react";
 import Button from "./Button";
 import useSearchMovie from "../hooks/useSearchMovie";
 
@@ -7,6 +8,13 @@ const Header = () => {
   const pathSegments = location.pathname.split("/");
   const pathName = pathSegments[1];
   const { query, setQuery, handleSubmit, reset } = useSearchMovie();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (pathName === "search" && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [pathName]);
 
   return (
     <header className="header">
@@ -102,6 +110,7 @@ const Header = () => {
                 />
               </svg>
               <input
+                ref={searchInputRef}
                 className="search-input"
                 placeholder="영화 검색"
                 type="search"
