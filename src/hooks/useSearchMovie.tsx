@@ -1,19 +1,39 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect, type FormEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { config } from "../../config/env";
+import { useLocation } from "react-router-dom";
 import useSearchKeywordStore from "../stores/useSearchKeywordStore";
-import { fetchKeywords } from "../utils/api";
+import { fetchSearchKeywords, fetchSearchGenres } from "../utils/api";
 
 const useSearchMovie = () => {
-  const { query, setQuery, searchList, setSearchList } = useSearchKeywordStore();
+  const location = useLocation();
+  const { query, setQuery, reset, searchList, setSearchList } = useSearchKeywordStore();
   const [searchQuery, setSearchQuery] = useState("");
+  const [genreId, setGenreId] = useState<string | null>(null);
 
   const searchMovieQuery = useQuery({
     queryKey: ["searchMovie", searchQuery],
-    queryFn: () => fetchKeywords(searchQuery),
+    queryFn: () => fetchSearchKeywords(searchQuery),
     enabled: Boolean(searchQuery && searchQuery.trim().length > 0),
   });
+
+  const searchGenresQuery = useQuery({
+    queryKey: ["searchGenres", genreId],
+    queryFn: () => fetchSearchGenres(genreId!),
+    enabled: Boolean(genreId),
+  });
+
+  // 검색 페이지에서 벗어날 때 초기화
+  useEffect(() => {
+    const pathSegments = location.pathname.split("/");
+    const currentPath = pathSegments[1];
+
+    // 검색 페이지가 아닐 때 초기화
+    if (currentPath !== "search") {
+      reset();
+      setSearchQuery("");
+      setGenreId(null);
+    }
+  }, [location.pathname, reset]);
 
   useEffect(() => {
     if (searchMovieQuery.data?.results) {
@@ -21,17 +41,24 @@ const useSearchMovie = () => {
     }
   }, [searchMovieQuery.data, setSearchList]);
 
+  useEffect(() => {
+    if (searchGenresQuery.data?.results) {
+      setSearchList(searchGenresQuery.data.results);
+    }
+  }, [searchGenresQuery.data, setSearchList]);
+
   const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
     const trimmed = query.trim();
     if (!trimmed) return;
 
     setSearchQuery(trimmed);
+    setGenreId(null); // 장르 검색 초기화
   };
 
-  const reset = () => {
-    setQuery("");
-    setSearchList([]);
+  const searchByGenre = (genreId: string) => {
+    setGenreId(genreId);
+    setSearchQuery(""); // 키워드 검색 초기화
   };
 
   return {
@@ -39,10 +66,12 @@ const useSearchMovie = () => {
     setQuery,
     reset,
     handleSubmit,
-    isLoading: searchMovieQuery.isLoading,
-    isError: searchMovieQuery.isError,
+    searchByGenre,
+    isLoading: searchMovieQuery.isLoading || searchGenresQuery.isLoading,
+    isError: searchMovieQuery.isError || searchGenresQuery.isError,
     searchList,
     searchQuery,
+    genreId,
   };
 };
 

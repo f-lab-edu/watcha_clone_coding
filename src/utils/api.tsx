@@ -115,7 +115,7 @@ export const fetchMovieGenres = async () => {
   return response.json();
 };
 
-export const fetchKeywords = async (query: string) => {
+export const fetchSearchKeywords = async (query: string) => {
   const response = await fetch(
     `${config.tmdbBaseUrl}/search/movie?query=${query}&include_adult=false&language=ko-KR&page=1`,
     {
@@ -126,6 +126,22 @@ export const fetchKeywords = async (query: string) => {
       },
     },
   );
+
+  if (!response.ok) {
+    throw new Error("영화 검색 결과를 가져오는데 실패했습니다.");
+  }
+
+  return response.json();
+};
+
+export const fetchSearchGenres = async (genreId: string) => {
+  const response = await fetch(`${config.tmdbBaseUrl}/discover/movie?with_genres=${genreId}&page=1&language=ko-KR`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${config.tmdbApiKey}`,
+    },
+  });
 
   if (!response.ok) {
     throw new Error("영화 검색 결과를 가져오는데 실패했습니다.");
