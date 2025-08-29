@@ -5,24 +5,16 @@ const Button = ({
   className,
   onClick,
   ariaLabel,
-  to,
+  disabled,
 }: {
   value: any;
   className?: string;
   onClick?: () => void;
   ariaLabel?: string;
-  to?: string;
+  disabled?: boolean;
 }) => {
-  if (to) {
-    return (
-      <Link to={to} className={className} aria-label={ariaLabel}>
-        {value}
-      </Link>
-    );
-  }
-
   return (
-    <button className={className} onClick={onClick} aria-label={ariaLabel}>
+    <button type="button" className={className} onClick={onClick} aria-label={ariaLabel} disabled={disabled}>
       {value}
     </button>
   );

@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
+import useSearchMovie from "../hooks/useSearchMovie";
 
 const Header = () => {
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const pathName = pathSegments[1];
+  const { query, setQuery, handleSubmit, reset } = useSearchMovie();
+
   return (
     <header className="header">
       <nav className="header-nav">
@@ -50,34 +56,67 @@ const Header = () => {
         </div>
 
         <div className="header-actions">
-          <Button
-            className="header-search-button button-base interactive-element"
-            aria-label="검색"
-            to={"/search"}
-            value={
-              <>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill="currentColor"
-                    fillRule="evenodd"
-                    d="M16.17 16.43a7.5 7.5 0 1 1 .26-.26 1 1 0 0 0-.26.26m.64 1.44a9 9 0 1 1 1.06-1.06l3.88 3.88a.75.75 0 1 1-1.06 1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-base text-large">콘텐츠, 태그, 인물, 리스트 검색</span>
-              </>
-            }
-          />
+          {pathName !== "search" ? (
+            <Link to={"/search"}>
+              <Button
+                className="header-search-button button-base interactive-element"
+                ariaLabel="검색"
+                value={
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        fillRule="evenodd"
+                        d="M16.17 16.43a7.5 7.5 0 1 1 .26-.26 1 1 0 0 0-.26.26m.64 1.44a9 9 0 1 1 1.06-1.06l3.88 3.88a.75.75 0 1 1-1.06 1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <span className="text-base text-large">영화 검색</span>
+                  </>
+                }
+              />
+            </Link>
+          ) : (
+            <form className="header-search-button button-base interactive-element" onSubmit={handleSubmit}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="M16.17 16.43a7.5 7.5 0 1 1 .26-.26 1 1 0 0 0-.26.26m.64 1.44a9 9 0 1 1 1.06-1.06l3.88 3.88a.75.75 0 1 1-1.06 1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <input
+                className="search-input"
+                placeholder="영화 검색"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                name="query"
+              />
+              {query ? (
+                <Button className="search-reset" ariaLabel="검색어 지우기" onClick={() => reset()} value={""} />
+              ) : null}
+            </form>
+          )}
           <Button
             className="header-notification-button button-base interactive-element"
-            aria-label="알림"
+            ariaLabel="알림"
             value={
               <>
                 <svg

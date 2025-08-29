@@ -10,7 +10,7 @@ export const fetchPopularMovieList = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies");
+    throw new Error("영화 목록을 가져오는데 실패했습니다.");
   }
 
   return response.json();
@@ -26,7 +26,7 @@ export const fetchTopRatedMovieList = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies");
+    throw new Error("영화 목록을 가져오는데 실패했습니다.");
   }
 
   return response.json();
@@ -42,7 +42,7 @@ export const fetchNowPlayingMovieList = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies");
+    throw new Error("영화 목록을 가져오는데 실패했습니다.");
   }
 
   return response.json();
@@ -61,7 +61,7 @@ export const fetchMovieDetail = async (movieId: number) => {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies");
+    throw new Error("영화 정보를 가져오는데 실패했습니다.");
   }
 
   return response.json();
@@ -77,7 +77,7 @@ export const fetchMovieReviews = async (movieId: string) => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies");
+    throw new Error("영화 리뷰를 가져오는데 실패했습니다.");
   }
 
   return response.json();
@@ -93,7 +93,7 @@ export const fetchTodayTrendingMovie = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies");
+    throw new Error("오늘의 인기 영화를 가져오는데 실패했습니다.");
   }
 
   return response.json();
@@ -109,7 +109,26 @@ export const fetchMovieGenres = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies");
+    throw new Error("영화 장르 목록을 가져오는데 실패했습니다.");
+  }
+
+  return response.json();
+};
+
+export const fetchKeywords = async (query: string) => {
+  const response = await fetch(
+    `${config.tmdbBaseUrl}/search/movie?query=${query}&include_adult=false&language=ko-KR&page=1`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${config.tmdbApiKey}`,
+      },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("영화 검색 결과를 가져오는데 실패했습니다.");
   }
 
   return response.json();
