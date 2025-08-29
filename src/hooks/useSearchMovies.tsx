@@ -47,6 +47,8 @@ const useSearchMovies = () => {
     genresList,
     highlightedIndex,
     handleMouseEnter,
+    isLoading: movieTrandingQuery.isLoading || movieGenresQuery.isLoading,
+    isError: movieTrandingQuery.isError || movieGenresQuery.isError,
   };
 };
 
