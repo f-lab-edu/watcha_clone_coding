@@ -3,8 +3,13 @@ import Button from "../components/Button";
 
 import "../styles/Page.css";
 import ThemeTab from "../components/ThemeTab";
+import useMovieList from "../hooks/useMovieList";
+import useMovieListStore from "../stores/useMovieListStore";
 
 const ListPage = () => {
+  const { isLoading, error } = useMovieList();
+  const { getMoviesByCategory } = useMovieListStore();
+
   const tabButtons = [
     {
       name: "추천",
@@ -22,24 +27,28 @@ const ListPage = () => {
       name: "성인+",
     },
   ];
+
+  if (isLoading) return <div>로딩중...</div>;
+  if (error) return <div>에러: {error.message}</div>;
+
   return (
     <div>
       <ThemeTab list={tabButtons} />
       {/* 메인 슬라이드 */}
       <section style={{ marginBottom: "40px" }}>
-        <Carousel height={642} articleWidth={1140} layout="overlay" category="popular" />
+        <Carousel height={642} articleWidth={1140} layout="overlay" slides={getMoviesByCategory("popular")} />
       </section>
       {/* 추천1 */}
       <section style={{ marginBottom: "40px" }}>
-        <Carousel height={289} articleWidth={421} layout="top" category="popular" />
+        <Carousel height={289} articleWidth={421} layout="top" slides={getMoviesByCategory("popular")} />
       </section>
       <section style={{ marginBottom: "40px" }}>
         <h2>개별 구매 Top 20</h2>
-        <Carousel height={200} articleWidth={400} layout="left" category="top20" />
+        <Carousel height={200} articleWidth={400} layout="left" slides={getMoviesByCategory("top20")} />
       </section>
       <section style={{ marginBottom: "40px" }}>
         <h2>새로 올라온 콘텐츠</h2>
-        <Carousel height={164} articleWidth={290} layout="none" category="now" />
+        <Carousel height={164} articleWidth={290} layout="none" slides={getMoviesByCategory("now")} />
       </section>
     </div>
   );

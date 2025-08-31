@@ -3,14 +3,10 @@ import { CarouselProps, Carousel as CarouselSlide } from "../types/Carousel";
 import Button from "./Button";
 import useCarousel from "../hooks/useCarousel";
 import "../styles/Carousel.css";
-import useMovieList from "../hooks/useMovieList";
 import { Genre } from "../types/Movie";
 
-const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay", category, slides }) => {
-  const { isLoading, error } = useMovieList();
-
+const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay", slides }) => {
   const {
-    movieList,
     containerRef,
     trackRef,
     transitionEnabled,
@@ -19,13 +15,11 @@ const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "ove
     handleTransitionEnd,
     handlePrev,
     handleNext,
-  } = useCarousel({ category, articleWidth, slides });
+  } = useCarousel({ articleWidth, slides: slides ?? [] });
 
-  if (isLoading) return <div>로딩중...</div>;
-  if (error) return <div>에러: {error.message}</div>;
-  if (movieList.length === 0) return <div>데이터가 없습니다.</div>;
+  if (!slides || slides.length === 0) return <div>데이터가 없습니다.</div>;
 
-  const isGenres = Boolean(slides && slides.length > 0);
+  const isGenres = slides.length > 0 && !("image" in slides[0]);
 
   return (
     <div
