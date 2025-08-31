@@ -5,19 +5,7 @@ import { Carousel as CarouselSlide } from "../types/Carousel";
 
 type Slide = CarouselSlide | Genre;
 
-const useCarousel = ({
-  category,
-  articleWidth,
-  slides,
-}: {
-  category?: "popular" | "top20" | "now";
-  articleWidth: number;
-  slides?: Slide[];
-}) => {
-  const { getMoviesByCategory } = useMovieListStore();
-  const storeList = category ? (getMoviesByCategory(category) as CarouselSlide[]) : [];
-  const movieList: Slide[] = slides && slides.length > 0 ? slides : storeList;
-
+const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: Slide[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [visibleCount, setVisibleCount] = useState(1);
@@ -54,7 +42,7 @@ const useCarousel = ({
     return () => window.removeEventListener("resize", handleResize);
   }, [calculateVisibleCount]);
 
-  const clonedSlides = [...movieList.slice(-visibleCount), ...movieList, ...movieList.slice(0, visibleCount)];
+  const clonedSlides = [...slides.slice(-visibleCount), ...slides, ...slides.slice(0, visibleCount)];
   const displayIndex = currentIndex + visibleCount;
 
   const handleNext = () => {
@@ -68,12 +56,12 @@ const useCarousel = ({
   };
 
   const handleTransitionEnd = () => {
-    if (currentIndex >= movieList.length) {
+    if (currentIndex >= slides.length) {
       setTransitionEnabled(false);
       setCurrentIndex(0);
     } else if (currentIndex < 0) {
       setTransitionEnabled(false);
-      setCurrentIndex(movieList.length - 1);
+      setCurrentIndex(slides.length - 1);
     }
   };
 
@@ -87,7 +75,6 @@ const useCarousel = ({
   }, [transitionEnabled, isInitialized]);
 
   return {
-    movieList,
     containerRef,
     trackRef,
     transitionEnabled,
