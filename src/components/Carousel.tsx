@@ -1,9 +1,9 @@
-import MovieCard from "./MovieCard";
-import { CarouselProps, Carousel as CarouselSlide } from "../types/Carousel";
-import Button from "./Button";
-import useCarousel from "../hooks/useCarousel";
-import "../styles/Carousel.css";
-import { Genre } from "../types/Movie";
+import MovieCard from "@/components/MovieCard";
+import { CarouselProps, Carousel as CarouselSlide } from "@/types/Carousel";
+import Button from "@/components/Button";
+import useCarousel from "@/hooks/useCarousel";
+import "@/styles/Carousel.css";
+import { Genre } from "@/types/Movie";
 
 const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay", slides }) => {
   const {

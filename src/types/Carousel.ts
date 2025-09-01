@@ -1,4 +1,4 @@
-import { Genre } from "./Movie";
+import { Genre } from "@/types/Movie";
 
 export type Carousel = {
   id: number;

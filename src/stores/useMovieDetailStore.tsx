@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { MovieData, Review } from "../types/Movie";
+import { MovieData, Review } from "@/types/Movie";
 
 interface MovieDetailState {
   movieDetail: MovieData;

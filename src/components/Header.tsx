@@ -1,20 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import { useRef, useEffect } from "react";
-import Button from "./Button";
-import useSearchMovie from "../hooks/useSearchMovie";
+import Button from "@/components/Button";
+import useSearchMovie from "@/hooks/useSearchMovie";
 
 const Header = () => {
   const location = useLocation();
-  const pathSegments = location.pathname.split("/");
-  const pathName = pathSegments[1];
+  const pathName = location.pathname;
   const { query, setQuery, handleSubmit, reset } = useSearchMovie();
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (pathName === "search" && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [pathName]);
 
   return (
     <header className="header">
@@ -64,7 +55,7 @@ const Header = () => {
         </div>
 
         <div className="header-actions">
-          {pathName !== "search" ? (
+          {pathName !== "/search" ? (
             <Link to={"/search"}>
               <Button
                 className="header-search-button button-base interactive-element"
@@ -110,7 +101,11 @@ const Header = () => {
                 />
               </svg>
               <input
-                ref={searchInputRef}
+                ref={(node) => {
+                  if (pathName === "/search" && node) {
+                    node.focus();
+                  }
+                }}
                 className="search-input"
                 placeholder="영화 검색"
                 type="search"
@@ -119,7 +114,7 @@ const Header = () => {
                 name="query"
               />
               {query ? (
-                <Button className="search-reset" ariaLabel="검색어 지우기" onClick={() => reset()} value={""} />
+                <Button className="search-reset" ariaLabel="검색어 지우기" onClick={() => reset()} value="" />
               ) : null}
             </form>
           )}

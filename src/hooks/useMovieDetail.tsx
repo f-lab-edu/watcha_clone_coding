@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { config } from "../../config/env";
+import { useParams } from "react-router-dom";
+import { config } from "@/../config/env";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMovieDetail, fetchMovieReviews } from "../utils/api";
-import useMovieDetailStore from "../stores/useMovieDetailStore";
-import { MovieData } from "../types/Movie";
+import { fetchMovieDetail, fetchMovieReviews } from "@/utils/api";
+import useMovieDetailStore from "@/stores/useMovieDetailStore";
+import { MovieData } from "@/types/Movie";
 
 const useMovieDetail = () => {
-  const location = useLocation();
+  let params = useParams();
   const { movieDetail, reviews, setMovieDetail, setReviews } = useMovieDetailStore();
 
   const transformMovieData = (response: any): MovieData => {
@@ -29,19 +29,16 @@ const useMovieDetail = () => {
   };
 
   // URL에서 movieId 추출
-  const pathSegments = location.pathname.split("/");
-  const movieId = pathSegments[2];
+  const movieId = params.id!;
 
   const movieDetailQuery = useQuery({
     queryKey: ["movie", movieId],
-    queryFn: () => fetchMovieDetail(Number(movieId)),
-    enabled: !!movieId,
+    queryFn: () => fetchMovieDetail(movieId),
   });
 
   const reviewsQuery = useQuery({
     queryKey: ["reviews", movieId],
     queryFn: () => fetchMovieReviews(movieId),
-    enabled: !!movieId,
   });
 
   useEffect(() => {

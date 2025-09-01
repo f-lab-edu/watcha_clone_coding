@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { MovieCardProps } from "../types/Carousel";
-import useSearchMovie from "./useSearchMovie";
+import { MovieCardProps } from "@/types/Carousel";
+import useSearchMovie from "@/hooks/useSearchMovie";
 
 const useMovieCard = (props: MovieCardProps) => {
   const { searchByGenre } = useSearchMovie();

@@ -1,8 +1,8 @@
 import { useState, useEffect, type FormEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
-import useSearchKeywordStore from "../stores/useSearchKeywordStore";
-import { fetchSearchKeywords, fetchSearchGenres } from "../utils/api";
+import useSearchKeywordStore from "@/stores/useSearchKeywordStore";
+import { fetchSearchKeywords, fetchSearchGenres } from "@/utils/api";
 
 const useSearchMovie = () => {
   const location = useLocation();
@@ -23,11 +23,10 @@ const useSearchMovie = () => {
 
   // 검색 페이지에서 벗어날 때 초기화
   useEffect(() => {
-    const pathSegments = location.pathname.split("/");
-    const currentPath = pathSegments[1];
+    const currentPath = location.pathname;
 
     // 검색 페이지가 아닐 때 초기화
-    if (currentPath !== "search") {
+    if (currentPath !== "/search") {
       reset();
       setSearchQuery("");
       setGenreId("");

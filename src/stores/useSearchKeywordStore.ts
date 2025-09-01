@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { RawMovie, TransformedMovie } from "../types/Movie";
-import { config } from "../../config/env";
+import { RawMovie, TransformedMovie } from "@/types/Movie";
+import { config } from "@/../config/env";
 
 type SearchState = {
   query: string;
