@@ -48,7 +48,7 @@ export const fetchNowPlayingMovieList = async () => {
   return response.json();
 };
 
-export const fetchMovieDetail = async (movieId: number) => {
+export const fetchMovieDetail = async (movieId: string) => {
   const response = await fetch(
     `${config.tmdbBaseUrl}/movie/${movieId}?append_to_response=credits,videos,belongs_to_collection&language=ko-KR`,
     {

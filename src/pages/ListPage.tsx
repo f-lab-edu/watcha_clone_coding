@@ -1,10 +1,9 @@
-import Carousel from "../components/Carousel";
-import Button from "../components/Button";
+import Carousel from "@/components/Carousel";
 
-import "../styles/Page.css";
-import ThemeTab from "../components/ThemeTab";
-import useMovieList from "../hooks/useMovieList";
-import useMovieListStore from "../stores/useMovieListStore";
+import ThemeTab from "@/components/ThemeTab";
+import useMovieList from "@/hooks/useMovieList";
+import useMovieListStore from "@/stores/useMovieListStore";
+import "@/styles/Page.css";
 
 const ListPage = () => {
   const { isLoading, error } = useMovieList();

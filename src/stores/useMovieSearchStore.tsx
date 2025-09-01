@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { RawMovie, Genre } from "../types/Movie";
+import { RawMovie, Genre } from "@/types/Movie";
 
 interface MovieSearchState {
   trendingList: RawMovie[];

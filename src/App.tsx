@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import Layout from "./layouts/Layout";
-import ListPage from "./pages/ListPage";
-import DetailPage from "./pages/DetailPage";
-import SearchPage from "./pages/SearchPage";
+import Layout from "@/layouts/Layout";
+import ListPage from "@/pages/ListPage";
+import DetailPage from "@/pages/DetailPage";
+import SearchPage from "@/pages/SearchPage";
 
-import "./styles/App.css";
+import "@/styles/App.css";
 
 const queryClient = new QueryClient();
 

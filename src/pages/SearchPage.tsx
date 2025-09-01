@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { config } from "../../config/env";
-import Button from "../components/Button";
-import Carousel from "../components/Carousel";
-import useSearchMovies from "../hooks/useSearchMovies";
-import "../styles/Search.css";
-import ThemeTab from "../components/ThemeTab";
-import useSearchMovie from "../hooks/useSearchMovie";
+import { config } from "@/../config/env";
+import Carousel from "@/components/Carousel";
+import useSearchMovies from "@/hooks/useSearchMovies";
+import ThemeTab from "@/components/ThemeTab";
+import useSearchMovie from "@/hooks/useSearchMovie";
+import "@/styles/Search.css";
 
 const SearchPage = () => {
   const { trendingList, genresList, highlightedIndex, handleMouseEnter, isLoading, isError } = useSearchMovies();

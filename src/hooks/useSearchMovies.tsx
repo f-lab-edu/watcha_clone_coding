@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchMovieGenres, fetchTodayTrendingMovie } from "../utils/api";
 import { useEffect, useState } from "react";
-import useMovieSearchStore from "../stores/useMovieSearchStore";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMovieGenres, fetchTodayTrendingMovie } from "@/utils/api";
+import useMovieSearchStore from "@/stores/useMovieSearchStore";
 
 const useSearchMovies = () => {
   const { trendingList, genresList, setTrendingList, setGenresList } = useMovieSearchStore();

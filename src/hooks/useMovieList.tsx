@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchNowPlayingMovieList, fetchPopularMovieList, fetchTopRatedMovieList } from "../utils/api";
-import useMovieListStore from "../stores/useMovieListStore";
+import { fetchNowPlayingMovieList, fetchPopularMovieList, fetchTopRatedMovieList } from "@/utils/api";
+import useMovieListStore from "@/stores/useMovieListStore";
 
 const useMovieList = () => {
   const { setMovies } = useMovieListStore();

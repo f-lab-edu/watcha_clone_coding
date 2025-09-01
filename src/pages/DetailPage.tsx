@@ -1,7 +1,7 @@
-import useMovieDetail from "../hooks/useMovieDetail";
-import { Genre, Member, Review, Video } from "../types/Movie";
-import "../styles/Detail.css";
-import Button from "../components/Button";
+import useMovieDetail from "@/hooks/useMovieDetail";
+import { Genre, Member, Review, Video } from "@/types/Movie";
+import Button from "@/components/Button";
+import "@/styles/Detail.css";
 
 const DetailPage = () => {
   const { movieData, reviews, isLoading, error, getReleaseYear, changeTimeFormat, getImageUrl } = useMovieDetail();
@@ -161,7 +161,7 @@ const DetailPage = () => {
               <>
                 <img src={getImageUrl(movieData.backdrop)} alt="Detail Image" />
                 <div className="preview-overlay">
-                  <Button className="preview-button" value={"미리보기 >"} />
+                  <Button className="preview-button" value="미리보기 >" />
                 </div>
               </>
             )}
