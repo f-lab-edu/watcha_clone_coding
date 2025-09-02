@@ -28,7 +28,7 @@ module.exports = {
         exclude: /node_modules/, // node_modules 제외
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i, // 이미지 파일 처리
+        test: /\.(png|jpg|jpeg|gif)$/i, // 이미지 파일 처리
         type: "asset", // 파일을 개별 파일로 내보냄
       },
       {
@@ -38,6 +38,10 @@ module.exports = {
       {
         test: /\.css$/, // .css 파일에 대해
         use: [process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"], // 로더는 배열의 역순으로 적용됩니다.
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
       },
     ],
   },
