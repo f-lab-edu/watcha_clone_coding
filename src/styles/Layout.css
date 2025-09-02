@@ -182,11 +182,24 @@
   white-space: nowrap;
 }
 
-.header-search-button > svg {
+.header-search-button > svg,
+.header-search-button .button-icon > svg {
   width: 20px;
   height: 20px;
   margin-right: 8px;
   color: #84868d;
+  overflow: visible; /* 뷰박스 밖 도형이 잘리지 않도록 */
+  display: block; /* 베이스라인 이슈 방지 */
+  flex: 0 0 20px; /* 수축 방지로 클리핑 가능성 낮춤 */
+}
+
+/* Button 컴포넌트에서 아이콘이 span.button-icon으로 감싸질 때도 동일하게 정렬/간격 적용 */
+.header-search-button .button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
 .header-search-button > span {

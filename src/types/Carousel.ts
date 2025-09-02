@@ -18,6 +18,6 @@ export type CarouselProps = {
   slides?: any[]; // 외부에서 직접 주입 (e.g., genresList)
 };
 
-export type MovieCardProps =
-  | { type: "genres"; slide: Genre; layout: "overlay" | "top" | "left" | "none" }
-  | { type: "movie"; slide: Carousel; layout: "overlay" | "top" | "left" | "none" };
+export type MovieCardProps = { type: "movie"; slide: Carousel; layout: "overlay" | "top" | "left" | "none" };
+
+export type GenredCardProps = { type: "genres"; slide: Genre; layout: "overlay" | "top" | "left" | "none" };

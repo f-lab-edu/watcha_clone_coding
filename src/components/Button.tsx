@@ -1,19 +1,15 @@
-const Button = ({
-  value,
-  className,
-  onClick,
-  ariaLabel,
-  disabled,
-}: {
-  value: any;
-  className?: string;
-  onClick?: () => void;
-  ariaLabel?: string;
-  disabled?: boolean;
-}) => {
+import { ButtonHTMLAttributes, createContext } from "react";
+
+type ButtonProps = {
+  icon?: any;
+  children?: any;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
+
+const Button = ({ icon, children, ...props }: ButtonProps) => {
   return (
-    <button type="button" className={className} onClick={onClick} aria-label={ariaLabel} disabled={disabled}>
-      {value}
+    <button type="button" {...props}>
+      {icon && <span className="button-icon">{icon}</span>}
+      {children}
     </button>
   );
 };

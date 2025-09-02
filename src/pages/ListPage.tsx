@@ -5,34 +5,34 @@ import useMovieList from "@/hooks/useMovieList";
 import useMovieListStore from "@/stores/useMovieListStore";
 import "@/styles/Page.css";
 
+const TAB_BUTTONS = [
+  {
+    name: "추천",
+  },
+  {
+    name: "#완전한 발견",
+  },
+  {
+    name: "#한국",
+  },
+  {
+    name: "#애니메이션",
+  },
+  {
+    name: "성인+",
+  },
+];
+
 const ListPage = () => {
   const { isLoading, error } = useMovieList();
   const { getMoviesByCategory } = useMovieListStore();
-
-  const tabButtons = [
-    {
-      name: "추천",
-    },
-    {
-      name: "#완전한 발견",
-    },
-    {
-      name: "#한국",
-    },
-    {
-      name: "#애니메이션",
-    },
-    {
-      name: "성인+",
-    },
-  ];
 
   if (isLoading) return <div>로딩중...</div>;
   if (error) return <div>에러: {error.message}</div>;
 
   return (
     <div>
-      <ThemeTab list={tabButtons} />
+      <ThemeTab list={TAB_BUTTONS} />
       {/* 메인 슬라이드 */}
       <section style={{ marginBottom: "40px" }}>
         <Carousel height={642} articleWidth={1140} layout="overlay" slides={getMoviesByCategory("popular")} />

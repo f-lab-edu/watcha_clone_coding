@@ -40,7 +40,7 @@ const ThemeTab = ({ list }: ThemeTabProps) => {
           const isActive = activeName === item.name;
           return (
             <li key={item.name} className={`tab-item${isActive ? " tab-item-active" : ""}`}>
-              <Button value={item.name} onClick={() => handleTabClick(item.name)} />
+              <Button onClick={() => handleTabClick(item.name)}>{item.name} </Button>
             </li>
           );
         })}

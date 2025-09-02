@@ -55,7 +55,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-auto-flow: column;
   grid-template-rows: repeat(5, 1fr);
-  gap: 16px;
+  gap: 4px;
   max-width: 720px;
   position: relative;
   z-index: 1;
@@ -67,6 +67,7 @@
   align-items: center;
   transition: all 0.3s ease;
   cursor: pointer;
+  min-height: 32px;
 }
 
 .trending-item.highlighted {
@@ -170,4 +171,28 @@
   -webkit-box-orient: vertical;
   word-break: break-word;
   flex: 1;
+}
+
+/* a를 블록/플렉스 컨테이너로 만들어 카드 높이를 확실히 채우게 함 */
+.search-result-item a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 텍스트 박스 클램프 안정화: 이미 설정되어 있지만 함께 쓰면 더 안전 */
+.search-result-item div {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  /* 필요 시 줄 높이에 맞춘 최대 높이 지정 (선택) */
+  /* line-height: 1.4; max-height: calc(1.4em * 2); */
+}
+
+/* 카드 자체는 고정 높이 + 넘침 차단 유지 */
+.search-result-item {
+  overflow: hidden;
+  height: 350px;
 }

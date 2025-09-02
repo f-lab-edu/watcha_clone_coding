@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import useCarousel from "@/hooks/useCarousel";
 import "@/styles/Carousel.css";
 import { Genre } from "@/types/Movie";
+import GenresCard from "./GenresCard";
 
 const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "overlay", slides }) => {
   const {
@@ -47,7 +48,7 @@ const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "ove
             }}
           >
             {isGenres ? (
-              <MovieCard slide={slide as Genre} layout={layout} type="genres" />
+              <GenresCard slide={slide as Genre} layout={layout} type="genres" />
             ) : (
               <MovieCard slide={slide as CarouselSlide} layout={layout} type="movie" />
             )}
@@ -55,18 +56,12 @@ const Carousel: React.FC<CarouselProps> = ({ height, articleWidth, layout = "ove
         ))}
       </div>
 
-      <Button
-        value="&#8249;"
-        onClick={handlePrev}
-        className="slider-button slider-button-prev"
-        ariaLabel={"이전 슬라이드"}
-      />
-      <Button
-        value="&#8250;"
-        onClick={handleNext}
-        className="slider-button slider-button-next"
-        ariaLabel={"다음 슬라이드"}
-      />
+      <Button onClick={handlePrev} className="slider-button slider-button-prev" aria-label={"이전 슬라이드"}>
+        &#8249;
+      </Button>
+      <Button onClick={handleNext} className="slider-button slider-button-next" aria-label={"다음 슬라이드"}>
+        &#8250;
+      </Button>
     </div>
   );
 };

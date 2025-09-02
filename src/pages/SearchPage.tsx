@@ -6,27 +6,27 @@ import ThemeTab from "@/components/ThemeTab";
 import useSearchMovie from "@/hooks/useSearchMovie";
 import "@/styles/Search.css";
 
+const TAB_BUTTONS = [
+  {
+    name: "전체",
+  },
+  {
+    name: "액션",
+  },
+  {
+    name: "로맨스",
+  },
+  {
+    name: "코미디",
+  },
+  {
+    name: "다른 장르 보기 V",
+  },
+];
+
 const SearchPage = () => {
   const { trendingList, genresList, highlightedIndex, handleMouseEnter, isLoading, isError } = useSearchMovies();
   const { searchList, searchQuery, isLoading: isSearchLoading, genreId } = useSearchMovie();
-
-  const tabButtons = [
-    {
-      name: "전체",
-    },
-    {
-      name: "액션",
-    },
-    {
-      name: "로맨스",
-    },
-    {
-      name: "코미디",
-    },
-    {
-      name: "다른 장르 보기 V",
-    },
-  ];
 
   if (isLoading) return <div>로딩중...</div>;
   if (isError) return <div>에러: {isError}</div>;
@@ -69,7 +69,7 @@ const SearchPage = () => {
           <h2>인기 검색어 TOP 10</h2>
           <div className="popular-keyword-content">
             <div className="popular-keyword-list">
-              <ThemeTab list={tabButtons} />
+              <ThemeTab list={TAB_BUTTONS} />
               <ul className="trending-list">
                 {trendingList.slice(0, 10).map((movie, index) => (
                   <li

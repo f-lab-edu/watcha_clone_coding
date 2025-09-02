@@ -38,6 +38,7 @@
     "@babel/preset-typescript": "^7.27.1",
     "@babel/runtime-corejs3": "^7.28.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@svgr/webpack": "^8.1.0",
     "@tanstack/eslint-plugin-query": "^5.83.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",

@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { MovieCardProps } from "@/types/Carousel";
+import { GenredCardProps, MovieCardProps } from "@/types/Carousel";
 import useSearchMovie from "@/hooks/useSearchMovie";
 
-const useMovieCard = (props: MovieCardProps) => {
+const useMovieCard = (props: MovieCardProps | GenredCardProps) => {
   const { searchByGenre } = useSearchMovie();
 
   const generateRandomGradient = useMemo(() => {
