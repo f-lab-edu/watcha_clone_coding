@@ -5,8 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMovieDetail, fetchMovieReviews } from "@/utils/api";
 import useMovieDetailStore from "@/stores/useMovieDetailStore";
 import { MovieData } from "@/types/Movie";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 
 const useMovieDetail = () => {
+  dayjs.extend(duration);
   let params = useParams();
   const { movieDetail, reviews, setMovieDetail, setReviews } = useMovieDetailStore();
 
@@ -54,13 +57,13 @@ const useMovieDetail = () => {
   }, [reviewsQuery.data, setReviews]);
 
   const getReleaseYear = (date: string): number => {
-    return new Date(date).getFullYear();
+    const newDay = dayjs(date);
+    return newDay.year();
   };
 
   const changeTimeFormat = (time: number): string => {
-    const hours = Math.floor(time / 60);
-    const minutes = time % 60;
-    return `${hours}시간 ${minutes}분`;
+    const formattedTime = dayjs.duration(time, "minute").format("HH시간 mm분");
+    return formattedTime;
   };
 
   const getImageUrl = (path: string | null): string => {
