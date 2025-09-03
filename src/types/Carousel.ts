@@ -1,6 +1,7 @@
 import { Genre } from "@/types/Movie";
+import { ReactNode } from "react";
 
-export type Carousel = {
+export type CarouselProps = {
   id: number;
   rank?: number;
   image: string;
@@ -10,14 +11,35 @@ export type Carousel = {
   onClick?: () => void;
 };
 
-export type CarouselProps = {
+export interface CarouselContextType {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  trackRef: React.RefObject<HTMLDivElement | null>;
+  transitionEnabled: boolean;
+  displayIndex: number;
+  clonedSlides: (CarouselProps | Genre)[];
+  handleTransitionEnd: () => void;
+  handlePrev: () => void;
+  handleNext: () => void;
+}
+
+export interface RootProps {
   height: number;
   articleWidth: number;
-  layout?: "overlay" | "top" | "left" | "none"; // side를 left로 변경
-  category?: "popular" | "top20" | "now";
-  slides?: any[]; // 외부에서 직접 주입 (e.g., genresList)
-};
+  slides: (CarouselProps | Genre)[];
+  children: ReactNode;
+}
 
-export type MovieCardProps = { type: "movie"; slide: Carousel; layout: "overlay" | "top" | "left" | "none" };
+export interface TrackProps {
+  children: ReactNode;
+  articleWidth: number;
+}
+
+export interface ArticleProps {
+  articleWidth: number;
+  layout?: "overlay" | "top" | "left" | "none";
+  children: (slide: CarouselProps | Genre, index: number) => ReactNode;
+}
+
+export type MovieCardProps = { type: "movie"; slide: CarouselProps; layout: "overlay" | "top" | "left" | "none" };
 
 export type GenredCardProps = { type: "genres"; slide: Genre; layout: "overlay" | "top" | "left" | "none" };

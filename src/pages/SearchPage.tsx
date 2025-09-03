@@ -4,6 +4,8 @@ import Carousel from "@/components/Carousel";
 import useSearchMovies from "@/hooks/useSearchMovies";
 import ThemeTab from "@/components/ThemeTab";
 import useSearchMovie from "@/hooks/useSearchMovie";
+import { Genre } from "@/types/Movie";
+import GenresCard from "@/components/GenresCard";
 import "@/styles/Search.css";
 
 const TAB_BUTTONS = [
@@ -99,15 +101,45 @@ const SearchPage = () => {
       <section className="category-type">
         <div className="category-container">
           <h2>장르</h2>
-          <Carousel height={180} articleWidth={319} layout="overlay" slides={genresList} />
+          <Carousel.Root height={180} articleWidth={319} slides={genresList}>
+            <Carousel.LeftButton />
+            <Carousel.Track articleWidth={319}>
+              <Carousel.Article articleWidth={319} layout="overlay">
+                {(slide) => {
+                  return <GenresCard slide={slide as Genre} layout="overlay" type="genres" />;
+                }}
+              </Carousel.Article>
+            </Carousel.Track>
+            <Carousel.RightButton />
+          </Carousel.Root>
         </div>
         <div className="category-container">
           <h2>장르</h2>
-          <Carousel height={180} articleWidth={319} layout="overlay" slides={genresList} />
+          <Carousel.Root height={180} articleWidth={319} slides={genresList}>
+            <Carousel.LeftButton />
+            <Carousel.Track articleWidth={319}>
+              <Carousel.Article articleWidth={319} layout="overlay">
+                {(slide) => {
+                  return <GenresCard slide={slide as Genre} layout="overlay" type="genres" />;
+                }}
+              </Carousel.Article>
+            </Carousel.Track>
+            <Carousel.RightButton />
+          </Carousel.Root>
         </div>
         <div className="category-container">
           <h2>장르</h2>
-          <Carousel height={180} articleWidth={319} layout="overlay" slides={genresList} />
+          <Carousel.Root height={180} articleWidth={319} slides={genresList}>
+            <Carousel.LeftButton />
+            <Carousel.Track articleWidth={319}>
+              <Carousel.Article articleWidth={319} layout="overlay">
+                {(slide) => {
+                  return <GenresCard slide={slide as Genre} layout="overlay" type="genres" />;
+                }}
+              </Carousel.Article>
+            </Carousel.Track>
+            <Carousel.RightButton />
+          </Carousel.Root>
         </div>
       </section>
     </div>
