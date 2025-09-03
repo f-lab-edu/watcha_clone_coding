@@ -113,34 +113,6 @@ const SearchPage = () => {
             <Carousel.RightButton />
           </Carousel.Root>
         </div>
-        <div className="category-container">
-          <h2>장르</h2>
-          <Carousel.Root height={180} articleWidth={319} slides={genresList}>
-            <Carousel.LeftButton />
-            <Carousel.Track articleWidth={319}>
-              <Carousel.Article articleWidth={319} layout="overlay">
-                {(slide) => {
-                  return <GenresCard slide={slide as Genre} layout="overlay" type="genres" />;
-                }}
-              </Carousel.Article>
-            </Carousel.Track>
-            <Carousel.RightButton />
-          </Carousel.Root>
-        </div>
-        <div className="category-container">
-          <h2>장르</h2>
-          <Carousel.Root height={180} articleWidth={319} slides={genresList}>
-            <Carousel.LeftButton />
-            <Carousel.Track articleWidth={319}>
-              <Carousel.Article articleWidth={319} layout="overlay">
-                {(slide) => {
-                  return <GenresCard slide={slide as Genre} layout="overlay" type="genres" />;
-                }}
-              </Carousel.Article>
-            </Carousel.Track>
-            <Carousel.RightButton />
-          </Carousel.Root>
-        </div>
       </section>
     </div>
   );
