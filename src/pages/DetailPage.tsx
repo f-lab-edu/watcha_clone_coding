@@ -1,18 +1,20 @@
 import useMovieDetail from "@/hooks/useMovieDetail";
 import { Genre, Member, Review, Video } from "@/types/Movie";
 import Button from "@/components/Button";
+import Status from "@/components/Status";
 import "@/styles/Detail.css";
 
 import Interest from "@/assets/interest.svg";
 import Assessment from "@/assets/assessment.svg";
 import Party from "@/assets/party.svg";
 import More from "@/assets/more.svg";
+import { buildImageUrl } from "@/utils/transform";
 
 const DetailPage = () => {
-  const { movieData, reviews, isLoading, error, getReleaseYear, changeTimeFormat, getImageUrl } = useMovieDetail();
+  const { movieData, reviews, isLoading, error, getReleaseYear, changeTimeFormat } = useMovieDetail();
 
-  if (isLoading) return <div>로딩중...</div>;
-  if (error) return <div>에러: {error.message}</div>;
+  if (isLoading) return <Status.Loading />;
+  if (error) return <Status.ErrorState message={error.message} />;
   if (!movieData) {
     return (
       <div className="detail-page">
@@ -77,7 +79,7 @@ const DetailPage = () => {
           <div className="detail-image">
             {movieData.backdrop && (
               <>
-                <img src={getImageUrl(movieData.backdrop)} alt="Detail Image" />
+                <img src={buildImageUrl(movieData.backdrop)} alt="Detail Image" />
                 <div className="preview-overlay">
                   <Button className="preview-button">{"미리보기 >"}</Button>
                 </div>
@@ -94,7 +96,7 @@ const DetailPage = () => {
           {movieData.collection && (
             <ul className="collection-list">
               <li className="collection-item">
-                <img src={getImageUrl(movieData.collection.poster_path)} />
+                <img src={buildImageUrl(movieData.collection.poster_path)} />
               </li>
             </ul>
           )}
@@ -131,7 +133,7 @@ const DetailPage = () => {
                 <div key={person.id} className="member-item">
                   <div className="profile">
                     <div className="profile-image">
-                      <img src={getImageUrl(person.profile_path)} alt={person.name} />
+                      <img src={buildImageUrl(person.profile_path)} alt={person.name} />
                     </div>
                     <div className="profile-info">
                       <div className="profile-name">{person.name}</div>
@@ -156,7 +158,7 @@ const DetailPage = () => {
                   <article className="reviews-item">
                     <div className="reviewer-icon">
                       {review.author_details.avatar_path ? (
-                        <img src={getImageUrl(review.author_details.avatar_path)} />
+                        <img src={buildImageUrl(review.author_details.avatar_path)} />
                       ) : (
                         <div>{""}</div>
                       )}

@@ -1,35 +1,17 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { config } from "@/../config/env";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovieDetail, fetchMovieReviews } from "@/utils/api";
 import useMovieDetailStore from "@/stores/useMovieDetailStore";
 import { MovieData } from "@/types/Movie";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
+import { buildImageUrl } from "@/utils/transform";
 
 const useMovieDetail = () => {
   dayjs.extend(duration);
   let params = useParams();
   const { movieDetail, reviews, setMovieDetail, setReviews } = useMovieDetailStore();
-
-  const transformMovieData = (response: any): MovieData => {
-    const director = response.credits.crew.find((member: any) => member.job === "Director") || null;
-
-    return {
-      title: response.title,
-      releaseDate: response.release_date,
-      runtime: response.runtime,
-      voteAverage: response.vote_average,
-      voteCount: response.vote_count,
-      overview: response.overview,
-      backdrop: response.backdrop_path,
-      genres: response.genres,
-      collection: response.belongs_to_collection,
-      videos: response.videos.results,
-      member: director ? [director, ...response.credits.cast] : response.credits.cast,
-    };
-  };
 
   // URL에서 movieId 추출
   const movieId = params.id!;
@@ -46,7 +28,7 @@ const useMovieDetail = () => {
 
   useEffect(() => {
     if (movieDetailQuery.data) {
-      setMovieDetail(transformMovieData(movieDetailQuery.data));
+      setMovieDetail(movieDetailQuery.data as MovieData);
     }
   }, [movieDetailQuery.data, setMovieDetail]);
 
@@ -66,11 +48,6 @@ const useMovieDetail = () => {
     return formattedTime;
   };
 
-  const getImageUrl = (path: string | null): string => {
-    if (!path) return "";
-    return `${config.tmdbImageUrl}${path}`;
-  };
-
   return {
     movieData: movieDetail,
     reviews: reviews,
@@ -78,7 +55,6 @@ const useMovieDetail = () => {
     error: movieDetailQuery.error || reviewsQuery.error,
     getReleaseYear,
     changeTimeFormat,
-    getImageUrl,
   };
 };
 

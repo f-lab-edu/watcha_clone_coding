@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { RawMovie, TransformedMovie } from "@/types/Movie";
-import { config } from "@/../config/env";
+import { transformMovieList } from "@/utils/transform";
 
 type SearchState = {
   query: string;
@@ -18,17 +18,7 @@ const useSearchKeywordStore = create<SearchState>((set) => ({
   genreId: "",
   setGenreId: (value: string) => set({ genreId: value }),
   searchList: [],
-  setSearchList: (searchList) =>
-    set(() => ({
-      searchList: searchList.map((movie, index) => ({
-        ...movie,
-        id: movie.id,
-        rank: index + 1,
-        image: `${config.tmdbImageUrl}${movie.poster_path}`,
-        title: movie.title,
-        description: movie.overview,
-      })),
-    })),
+  setSearchList: (searchList) => set(() => ({ searchList: transformMovieList(searchList, { usePoster: true }) })),
   reset: () =>
     set({
       query: "",
