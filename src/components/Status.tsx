@@ -15,7 +15,7 @@ const Loading: React.FC = () => {
   );
 };
 
-const Error: React.FC<ErrorProps> = ({ message, retry }) => {
+const ErrorState: React.FC<ErrorProps> = ({ message, retry }) => {
   return (
     <div className="status status-error" role="alert" aria-live="assertive">
       <div className="status-title">문제가 발생했어요</div>
@@ -29,7 +29,7 @@ const Error: React.FC<ErrorProps> = ({ message, retry }) => {
   );
 };
 
-const Status = { Loading, Error } as const;
+const Status = { Loading, ErrorState } as const;
 
 export default Status;
-export { Loading, Error };
+export { Loading, ErrorState };

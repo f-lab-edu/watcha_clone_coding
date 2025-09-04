@@ -29,7 +29,7 @@ const ListPage = () => {
   const { popularQuery, topRatedQuery, nowPlayingQuery, isLoading, error } = movieListQuery();
 
   if (isLoading) return <Status.Loading />;
-  if (error) return <Status.Error message={error.message} />;
+  if (error) return <Status.ErrorState message={error.message} />;
 
   return (
     <div>
