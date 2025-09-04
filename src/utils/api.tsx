@@ -12,20 +12,17 @@ const transformMovie = (movie: RawMovie, index: number): TransformedMovie => ({
 
 export const fetchPopularMovieList = async () => {
   const response = await instance.get("/movie/popular?language=ko-KR&page=1");
-  const data = response.data.results.map(transformMovie);
-  return data;
+  return response.data.results.map(transformMovie);
 };
 
 export const fetchTopRatedMovieList = async () => {
   const response = await instance.get("/movie/top_rated?language=ko-KR&page=1");
-  const data = response.data.results.map(transformMovie);
-  return data;
+  return response.data.results.map(transformMovie);
 };
 
 export const fetchNowPlayingMovieList = async () => {
   const response = await instance.get("/movie/now_playing?language=ko-KR&page=1");
-  const data = response.data.results.map(transformMovie);
-  return data;
+  return response.data.results.map(transformMovie);
 };
 
 const transformMovieData = (response: any): MovieData => {
@@ -50,8 +47,7 @@ export const fetchMovieDetail = async (movieId: string) => {
   const response = await instance.get(
     `/movie/${movieId}?append_to_response=credits,videos,belongs_to_collection&language=ko-KR`,
   );
-  const data = response.data.results.map(transformMovieData);
-  return data;
+  return response.data.results.map(transformMovieData);
 };
 
 export const fetchMovieReviews = async (movieId: string) => {
