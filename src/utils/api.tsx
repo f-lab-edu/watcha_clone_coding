@@ -1,25 +1,27 @@
+import { MovieData } from "@/types/Movie";
 import { instance } from "./axios";
+import { transformMovieList, transformMovieData } from "@/utils/transform";
 
 export const fetchPopularMovieList = async () => {
   const response = await instance.get("/movie/popular?language=ko-KR&page=1");
-  return response.data;
+  return transformMovieList(response.data.results);
 };
 
 export const fetchTopRatedMovieList = async () => {
   const response = await instance.get("/movie/top_rated?language=ko-KR&page=1");
-  return response.data;
+  return transformMovieList(response.data.results);
 };
 
 export const fetchNowPlayingMovieList = async () => {
   const response = await instance.get("/movie/now_playing?language=ko-KR&page=1");
-  return response.data;
+  return transformMovieList(response.data.results);
 };
 
 export const fetchMovieDetail = async (movieId: string) => {
   const response = await instance.get(
     `/movie/${movieId}?append_to_response=credits,videos,belongs_to_collection&language=ko-KR`,
   );
-  return response.data;
+  return transformMovieData(response.data) as MovieData;
 };
 
 export const fetchMovieReviews = async (movieId: string) => {

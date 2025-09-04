@@ -6,6 +6,7 @@ import ThemeTab from "@/components/ThemeTab";
 import useSearchMovie from "@/hooks/useSearchMovie";
 import { Genre } from "@/types/Movie";
 import GenresCard from "@/components/GenresCard";
+import Status from "@/components/Status";
 import "@/styles/Search.css";
 
 const TAB_BUTTONS = [
@@ -30,13 +31,11 @@ const SearchPage = () => {
   const { trendingList, genresList, highlightedIndex, handleMouseEnter, isLoading, isError } = useSearchMovies();
   const { searchList, searchQuery, isLoading: isSearchLoading, genreId } = useSearchMovie();
 
-  if (isLoading) return <div>로딩중...</div>;
-  if (isError) return <div>에러: {isError}</div>;
+  if (isLoading) return <Status.Loading />;
+  if (isError) return <Status.ErrorState message={String(isError)} />;
 
   // 검색 중일 때
-  if (isSearchLoading) {
-    return <div>검색 중...</div>;
-  }
+  if (isSearchLoading) return <Status.Loading />;
 
   // 검색 결과가 있을 때 (키워드 검색 또는 장르 검색)
   if (searchList.length > 0) {
