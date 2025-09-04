@@ -1,0 +1,38 @@
+import axios from "axios";
+import { config as apiConfig } from "@/../config/env";
+
+// Axios 인스턴스 생성
+export const instance = axios.create({
+  baseURL: apiConfig.tmdbBaseUrl,
+  timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+});
+
+instance.interceptors.request.use(
+  // 요청이 전달되기 전에 헤더에 토큰 넣기
+  (config) => {
+    const newConfig = { ...config };
+    newConfig.headers.Authorization = `Bearer ${apiConfig.tmdbApiKey}`;
+    return newConfig;
+  },
+  (error) => {
+    // 요청 오류가 있는 작업 수행
+    return Promise.reject(error);
+  },
+);
+
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const statusCode = error.response?.status;
+    if (statusCode === 401) {
+      console.error("인증 오류: API 키가 유효하지 않습니다.");
+    }
+    return Promise.reject(error);
+  },
+);
