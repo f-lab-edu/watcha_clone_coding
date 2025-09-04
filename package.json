@@ -23,6 +23,7 @@
   "homepage": "https://github.com/f-lab-edu/watcha_clone_coding#readme",
   "dependencies": {
     "@tanstack/react-query": "^5.85.5",
+    "axios": "^1.11.0",
     "core-js": "^3.45.0",
     "dayjs": "^1.11.18",
     "react": "^19.1.1",
