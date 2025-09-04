@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/f-lab-edu/watcha_clone_coding#readme",
   "dependencies": {
+    "@lukemorales/query-key-factory": "^1.3.4",
     "@tanstack/react-query": "^5.85.5",
     "axios": "^1.11.0",
     "core-js": "^3.45.0",
