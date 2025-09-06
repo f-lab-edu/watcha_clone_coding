@@ -9,7 +9,7 @@ import Alarm from "@/assets/alarm.svg";
 const Header = () => {
   const location = useLocation();
   const pathName = location.pathname;
-  const { query, setQuery, handleSubmit, reset } = useSearchMovie();
+  const { query, setQuery, handleSubmit } = useSearchMovie();
 
   return (
     <header className="header">
@@ -57,7 +57,7 @@ const Header = () => {
               </Button>
             </Link>
           ) : (
-            <form className="header-search-button button-base interactive-element" onSubmit={handleSubmit}>
+            <div className="header-search-button button-base interactive-element">
               <Search />
               <input
                 ref={(node) => {
@@ -70,12 +70,18 @@ const Header = () => {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleSubmit(e);
+                  }
+                }}
                 name="query"
               />
               {query ? (
-                <Button className="search-reset" aria-label="검색어 지우기" onClick={() => reset()}></Button>
+                <Button className="search-reset" aria-label="검색어 지우기" onClick={() => setQuery("")}></Button>
               ) : null}
-            </form>
+            </div>
           )}
           <Button
             className="header-notification-button button-base interactive-element"

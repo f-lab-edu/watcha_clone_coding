@@ -1,33 +1,6 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { fetchMovieGenres, fetchTodayTrendingMovie } from "@/utils/api";
-import useMovieSearchStore from "@/stores/useMovieSearchStore";
 
 const useSearchMovies = () => {
-  const { trendingList, genresList, setTrendingList, setGenresList } = useMovieSearchStore();
-
-  const movieTrandingQuery = useQuery({
-    queryKey: ["trending-movies"],
-    queryFn: () => fetchTodayTrendingMovie(),
-  });
-
-  useEffect(() => {
-    if (movieTrandingQuery.data) {
-      setTrendingList(movieTrandingQuery.data.results);
-    }
-  }, [movieTrandingQuery.data, setTrendingList]);
-
-  const movieGenresQuery = useQuery({
-    queryKey: ["movie-genres"],
-    queryFn: () => fetchMovieGenres(),
-  });
-
-  useEffect(() => {
-    if (movieGenresQuery.data) {
-      setGenresList(movieGenresQuery.data.genres);
-    }
-  }, [movieGenresQuery.data, setGenresList]);
-
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   useEffect(() => {
@@ -43,12 +16,8 @@ const useSearchMovies = () => {
   };
 
   return {
-    trendingList,
-    genresList,
     highlightedIndex,
     handleMouseEnter,
-    isLoading: movieTrandingQuery.isLoading || movieGenresQuery.isLoading,
-    isError: movieTrandingQuery.isError || movieGenresQuery.isError,
   };
 };
 

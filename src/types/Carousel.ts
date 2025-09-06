@@ -1,4 +1,4 @@
-import { Genre } from "@/types/Movie";
+import { Genre, TransformedMovie } from "@/types/Movie";
 import { ReactNode } from "react";
 
 export type CarouselProps = {
