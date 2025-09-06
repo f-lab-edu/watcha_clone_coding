@@ -1,10 +1,7 @@
-import MovieCard from "@/components/MovieCard";
-import { CarouselProps, CarouselContextType, RootProps, TrackProps, ArticleProps } from "@/types/Carousel";
+import { CarouselContextType, RootProps, TrackProps, ArticleProps } from "@/types/Carousel";
 import Button from "@/components/Button";
 import useCarousel from "@/hooks/useCarousel";
 import "@/styles/Carousel.css";
-import { Genre } from "@/types/Movie";
-import GenresCard from "./GenresCard";
 import { createContext, useContext, ReactNode } from "react";
 
 const CarouselContext = createContext<CarouselContextType | undefined>(undefined);

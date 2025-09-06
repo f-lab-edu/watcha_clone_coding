@@ -36,7 +36,7 @@ const ListPage = () => {
       <ThemeTab list={TAB_BUTTONS} />
       {/* 메인 슬라이드 */}
       <section style={{ marginBottom: "40px" }}>
-        <Carousel.Root height={642} articleWidth={1140} slides={popularQuery.data}>
+        <Carousel.Root height={642} articleWidth={1140} slides={popularQuery.data ?? []}>
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={1140}>
             <Carousel.Article articleWidth={1140} layout="overlay">
@@ -50,7 +50,7 @@ const ListPage = () => {
       </section>
       {/* 추천1 */}
       <section style={{ marginBottom: "40px" }}>
-        <Carousel.Root height={289} articleWidth={421} slides={popularQuery.data}>
+        <Carousel.Root height={289} articleWidth={421} slides={popularQuery.data ?? []}>
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={421}>
             <Carousel.Article articleWidth={421} layout="top">
@@ -64,7 +64,7 @@ const ListPage = () => {
       </section>
       <section style={{ marginBottom: "40px" }}>
         <h2>개별 구매 Top 20</h2>
-        <Carousel.Root height={200} articleWidth={400} slides={topRatedQuery.data}>
+        <Carousel.Root height={200} articleWidth={400} slides={topRatedQuery.data ?? []}>
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={400}>
             <Carousel.Article articleWidth={400} layout="left">
@@ -78,7 +78,7 @@ const ListPage = () => {
       </section>
       <section style={{ marginBottom: "40px" }}>
         <h2>새로 올라온 콘텐츠</h2>
-        <Carousel.Root height={164} articleWidth={290} slides={nowPlayingQuery.data}>
+        <Carousel.Root height={164} articleWidth={290} slides={nowPlayingQuery.data ?? []}>
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={290}>
             <Carousel.Article articleWidth={290} layout="none">

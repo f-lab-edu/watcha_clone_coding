@@ -7,9 +7,6 @@ type SearchState = {
   setQuery: (value: string) => void;
   genreId: string;
   setGenreId: (value: string) => void;
-  searchList: TransformedMovie[];
-  setSearchList: (searchList: RawMovie[]) => void;
-  reset: () => void;
 };
 
 const useSearchKeywordStore = create<SearchState>((set) => ({
@@ -17,13 +14,6 @@ const useSearchKeywordStore = create<SearchState>((set) => ({
   setQuery: (value: string) => set({ query: value }),
   genreId: "",
   setGenreId: (value: string) => set({ genreId: value }),
-  searchList: [],
-  setSearchList: (searchList) => set(() => ({ searchList: transformMovieList(searchList, { usePoster: true }) })),
-  reset: () =>
-    set({
-      query: "",
-      searchList: [],
-    }),
 }));
 
 export default useSearchKeywordStore;
