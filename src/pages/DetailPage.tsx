@@ -13,6 +13,9 @@ import { buildImageUrl } from "@/utils/transform";
 const DetailPage = () => {
   const { movieData, reviews, isLoading, error, getReleaseYear, changeTimeFormat } = useMovieDetail();
 
+  console.log(movieData);
+  
+
   if (isLoading) return <Status.Loading />;
   if (error) return <Status.ErrorState message={error.message} />;
   if (!movieData) {

@@ -1,43 +1,18 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { fetchMovieDetail, fetchMovieReviews } from "@/utils/api";
-import useMovieDetailStore from "@/stores/useMovieDetailStore";
-import { MovieData } from "@/types/Movie";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import { buildImageUrl } from "@/utils/transform";
+import { movieDetailQuery } from "@/queries/detail/movieDetailQuery";
 
 const useMovieDetail = () => {
   dayjs.extend(duration);
   let params = useParams();
-  const { movieDetail, reviews, setMovieDetail, setReviews } = useMovieDetailStore();
 
   // URL에서 movieId 추출
   const movieId = params.id!;
 
-  const movieDetailQuery = useQuery({
-    queryKey: ["movie", movieId],
-    queryFn: () => fetchMovieDetail(movieId),
-  });
+  const  { detailQuery,  reviewsQuery, isLoading,  error } = movieDetailQuery(movieId)
 
-  const reviewsQuery = useQuery({
-    queryKey: ["reviews", movieId],
-    queryFn: () => fetchMovieReviews(movieId),
-  });
-
-  useEffect(() => {
-    if (movieDetailQuery.data) {
-      setMovieDetail(movieDetailQuery.data as MovieData);
-    }
-  }, [movieDetailQuery.data, setMovieDetail]);
-
-  useEffect(() => {
-    if (reviewsQuery.data) {
-      setReviews(reviewsQuery.data.results);
-    }
-  }, [reviewsQuery.data, setReviews]);
-
+  
   const getReleaseYear = (date: string): number => {
     const newDay = dayjs(date);
     return newDay.year();
@@ -49,10 +24,10 @@ const useMovieDetail = () => {
   };
 
   return {
-    movieData: movieDetail,
-    reviews: reviews,
-    isLoading: movieDetailQuery.isLoading || reviewsQuery.isLoading,
-    error: movieDetailQuery.error || reviewsQuery.error,
+    movieData: detailQuery.data,
+    reviews: reviewsQuery.data,
+    isLoading: isLoading,
+    error:error,
     getReleaseYear,
     changeTimeFormat,
   };
