@@ -10,7 +10,7 @@ const useMovieDetail = () => {
   // URL에서 movieId 추출
   const movieId = params.id!;
 
-  const  { detailQuery,  reviewsQuery, isLoading,  error } = movieDetailQuery(movieId)
+  const  { detailQuery,  reviewsQuery} = movieDetailQuery(movieId)
 
   
   const getReleaseYear = (date: string): number => {
@@ -26,8 +26,6 @@ const useMovieDetail = () => {
   return {
     movieData: detailQuery.data,
     reviews: reviewsQuery.data,
-    isLoading: isLoading,
-    error:error,
     getReleaseYear,
     changeTimeFormat,
   };

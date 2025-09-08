@@ -1,21 +1,21 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import ThemeTab from "@/components/ThemeTab";
 import Status from "@/components/Status";
 import useSearchMovie from "@/hooks/useSearchMovie";
 import { searchListQuery } from "@/queries/search/searchListQuery";
 import { searchGenresQuery, searchMovieQuery } from "@/queries/search/searchQuery";
-import "@/styles/Search.css";
 import { buildImageUrl } from "@/utils/transform";
 import { TransformedMovie, Genre } from "@/types/Movie";
+import AppErrorBoundary from "@/components/AppErrorBoundary";
+import "@/styles/Search.css";
 
-const SearchResultPage = () => {
+const SearchResultPageContent = () => {
   const { query, genreId } = useSearchMovie();
-  const { genresQuery, isLoading, isError } = searchListQuery();
-  const { data: keywordData, isLoading: isKeywordLoading, isError: isKeywordError } = searchMovieQuery(query);
-  const { data: genresData, isLoading: isGenresLoading, isError: isGenresError } = searchGenresQuery(genreId);
+  const { genresQuery } = searchListQuery();
+  const { data: keywordData} = searchMovieQuery(query);
+  const { data: genresData } = searchGenresQuery(genreId);
 
-  if (isKeywordLoading || isGenresLoading) return <Status.Loading />;
-  if (isKeywordError || isGenresError) return <Status.ErrorState message={String(isError)} />;
 
   const resultList = (resultData: TransformedMovie[], type: string) => {
     return (
@@ -83,6 +83,17 @@ const SearchResultPage = () => {
   }
 
   return <Status.Loading />;
+};
+
+
+const SearchResultPage = () => {
+  return (
+    <AppErrorBoundary>
+      <React.Suspense fallback={<Status.Loading />}>
+        <SearchResultPageContent />
+      </React.Suspense>
+    </AppErrorBoundary>
+  );
 };
 
 export default SearchResultPage;

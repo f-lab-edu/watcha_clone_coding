@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Carousel from "@/components/Carousel";
 import ThemeTab from "@/components/ThemeTab";
@@ -6,8 +7,9 @@ import Status from "@/components/Status";
 import useSearchMovies from "@/hooks/useSearchMovies";
 import { Genre } from "@/types/Movie";
 import { searchListQuery } from "@/queries/search/searchListQuery";
-import "@/styles/Search.css";
 import { buildImageUrl } from "@/utils/transform";
+import AppErrorBoundary from "@/components/AppErrorBoundary";
+import "@/styles/Search.css";
 
 const TAB_BUTTONS = [
   {
@@ -27,12 +29,10 @@ const TAB_BUTTONS = [
   },
 ];
 
-const SearchHomePage = () => {
+const SearchHomePageContent = () => {
   const { highlightedIndex, handleMouseEnter } = useSearchMovies();
-  const { trendingQuery, genresQuery, isLoading, isError } = searchListQuery();
+  const { trendingQuery, genresQuery} = searchListQuery();
 
-  if (isLoading) return <Status.Loading />;
-  if (isError) return <Status.ErrorState message={String(isError)} />;
 
   return (
     <div>
@@ -88,6 +88,16 @@ const SearchHomePage = () => {
         </div>
       </section>
     </div>
+  );
+};
+
+const SearchHomePage = () => {
+  return (
+    <AppErrorBoundary>
+      <React.Suspense fallback={<Status.Loading />}>
+        <SearchHomePageContent />
+      </React.Suspense>
+    </AppErrorBoundary>
   );
 };
 

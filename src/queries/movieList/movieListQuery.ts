@@ -1,9 +1,9 @@
 import { fetchNowPlayingMovieList, fetchPopularMovieList, fetchTopRatedMovieList } from "@/utils/api";
-import { useQueries } from "@tanstack/react-query";
+import { useSuspenseQueries } from "@tanstack/react-query";
 import { movieListKeys } from "./queryKeys";
 
 export const movieListQuery = () => {
-  const results = useQueries({
+  const results = useSuspenseQueries({
     queries: [
       {
         queryKey: movieListKeys.popular(),
@@ -21,10 +21,6 @@ export const movieListQuery = () => {
   });
 
   const [popularQuery, topRatedQuery, nowPlayingQuery] = results;
-  const isLoading = results.some((q) => q.isLoading || q.isPending);
-  const isError = results.some((q) => q.isError);
-  const error = results.find((q) => q.error)?.error ?? null;
-  const isSuccess = results.every((q) => q.isSuccess);
 
-  return { popularQuery, topRatedQuery, nowPlayingQuery, isLoading, isError, isSuccess, error };
+  return { popularQuery, topRatedQuery, nowPlayingQuery };
 };
