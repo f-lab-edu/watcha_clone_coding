@@ -1,23 +1,21 @@
+import React from "react";
 import useMovieDetail from "@/hooks/useMovieDetail";
-import { Genre, Member, Review, Video } from "@/types/Movie";
 import Button from "@/components/Button";
 import Status from "@/components/Status";
-import "@/styles/Detail.css";
+import AppErrorBoundary from "@/components/AppErrorBoundary";
+import { Genre, Member, Review, Video } from "@/types/Movie";
+import { buildImageUrl } from "@/utils/transform";
 
 import Interest from "@/assets/interest.svg";
 import Assessment from "@/assets/assessment.svg";
 import Party from "@/assets/party.svg";
 import More from "@/assets/more.svg";
-import { buildImageUrl } from "@/utils/transform";
+import "@/styles/Detail.css";
 
-const DetailPage = () => {
-  const { movieData, reviews, isLoading, error, getReleaseYear, changeTimeFormat } = useMovieDetail();
 
-  console.log(movieData);
-  
+const DetailPageContent = () => {
+  const { movieData, reviews,  getReleaseYear, changeTimeFormat } = useMovieDetail();
 
-  if (isLoading) return <Status.Loading />;
-  if (error) return <Status.ErrorState message={error.message} />;
   if (!movieData) {
     return (
       <div className="detail-page">
@@ -183,5 +181,16 @@ const DetailPage = () => {
     </div>
   );
 };
+
+const DetailPage = () => {
+  return (
+    <AppErrorBoundary>
+      <React.Suspense fallback={<Status.Loading />}>
+        <DetailPageContent />
+      </React.Suspense>
+    </AppErrorBoundary>
+  );
+}
+
 
 export default DetailPage;

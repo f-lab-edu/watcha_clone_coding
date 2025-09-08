@@ -1,6 +1,7 @@
+import React from "react";
 import Carousel from "@/components/Carousel";
 import MovieCard from "@/components/MovieCard";
-
+import AppErrorBoundary from "@/components/AppErrorBoundary";
 import ThemeTab from "@/components/ThemeTab";
 import { movieListQuery } from "@/queries/movieList/movieListQuery";
 import { CarouselProps } from "@/types/Carousel";
@@ -25,11 +26,8 @@ const TAB_BUTTONS = [
   },
 ];
 
-const ListPage = () => {
-  const { popularQuery, topRatedQuery, nowPlayingQuery, isLoading, error } = movieListQuery();
-
-  if (isLoading) return <Status.Loading />;
-  if (error) return <Status.ErrorState message={error.message} />;
+const ListPageContent = () => {
+  const { popularQuery, topRatedQuery, nowPlayingQuery } = movieListQuery();
 
   return (
     <div>
@@ -91,6 +89,16 @@ const ListPage = () => {
         </Carousel.Root>
       </section>
     </div>
+  );
+};
+
+const ListPage = () => {
+  return (
+    <AppErrorBoundary>
+      <React.Suspense fallback={<Status.Loading />}>
+        <ListPageContent />
+      </React.Suspense>
+    </AppErrorBoundary>
   );
 };
 

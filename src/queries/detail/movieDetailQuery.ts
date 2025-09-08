@@ -1,9 +1,9 @@
-import { useQueries } from "@tanstack/react-query"
+import {  useSuspenseQueries } from "@tanstack/react-query"
 import { movieDetailKeys } from "./queryKeys"
 import { fetchMovieDetail, fetchMovieReviews } from "@/utils/api"
 
 export const movieDetailQuery = (movidId: string) => {
-    const results = useQueries({
+    const results = useSuspenseQueries({
         queries: [
             {
                 queryKey: movieDetailKeys.detail(movidId),
@@ -16,10 +16,6 @@ export const movieDetailQuery = (movidId: string) => {
         ]
     })
     const [detailQuery, reviewsQuery] = results;
-  const isLoading = results.some((q) => q.isLoading || q.isPending);
-  const isError = results.some((q) => q.isError);
-  const error = results.find((q) => q.error)?.error ?? null;
-  const isSuccess = results.every((q) => q.isSuccess);
 
-  return {  detailQuery,  reviewsQuery, isLoading, isError, isSuccess, error };
+  return {  detailQuery,  reviewsQuery };
 }
