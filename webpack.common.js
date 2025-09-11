@@ -11,7 +11,7 @@ module.exports = {
   entry: "./src/index.tsx", // 엔트리 파일 설정
   output: {
     path: path.resolve(__dirname, "dist"), // 출력 디렉토리
-    filename: "bundle.js", // 번들 파일 이름
+    filename: "[name].[contenthash].js", // contenthash를 사용하여 번들 파일 이름 생성
     clean: true, // 빌드 시 기존 파일 제거 (Webpack 5 기능)
   },
   resolve: {
