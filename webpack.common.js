@@ -50,6 +50,11 @@ module.exports = {
       template: "./public/index.html", // 템플릿 파일 경로
       filename: "index.html", // 생성될 HTML 파일 이름
       inject: "body", // 스크립트를 body 태그 끝에 삽입
+      meta: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      }// index.html은 캐시 안되게
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
