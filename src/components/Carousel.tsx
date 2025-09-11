@@ -14,8 +14,8 @@ const useCarouselContext = () => {
   return context;
 };
 
-const Root: React.FC<RootProps> = ({ height, articleWidth, slides, children }) => {
-  const carouselHooks = useCarousel({ articleWidth, slides: slides ?? [] });
+const Root: React.FC<RootProps> = ({ height, articleWidth, slides = [], children }) => {
+  const carouselHooks = useCarousel({ articleWidth, slides: slides });
 
   if (!slides || slides.length === 0) {
     return <div>데이터가 없습니다.</div>;
