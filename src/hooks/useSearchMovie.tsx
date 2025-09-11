@@ -17,13 +17,19 @@ const useSearchMovie = () => {
     }
   }, [location.pathname]);
 
-  const handleSubmit = (e?: FormEvent<HTMLFormElement> | KeyboardEvent<HTMLInputElement>) => {
-    if (e) e.preventDefault();
+  const handleSubmit = () => {
     const trimmed = query.trim();
     if (!trimmed) return;
 
     setQuery(trimmed); // 검색 실행
     setGenreId(""); // 장르 검색 초기화
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
   };
 
   const searchByGenre = (genreId: string) => {
@@ -35,6 +41,7 @@ const useSearchMovie = () => {
     query,
     setQuery,
     handleSubmit,
+    handleKeyDown,
     searchByGenre,
     genreId,
   };
