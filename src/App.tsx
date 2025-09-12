@@ -12,7 +12,18 @@ const ListPage = lazy(() => import("@/pages/ListPage"));
 const DetailPage = lazy(() => import("@/pages/DetailPage"));
 const SearchPage = lazy(() => import("@/pages/SearchPage"));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5분간 데이터를 fresh로 간주
+      gcTime: 10 * 60 * 1000, // 10분간 캐시 유지
+      retry: 2, // 실패 시 2번 재시도
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // 지수 백오프
+      refetchOnWindowFocus: false, // 윈도우 포커스 시 자동 리페치 비활성화
+      refetchOnReconnect: true, // 네트워크 재연결 시 리페치
+    },
+  },
+});
 
 const App: React.FC = () => {
   return (

@@ -13,6 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"), // 출력 디렉토리
     filename: "[name].[contenthash].js", // contenthash를 사용하여 번들 파일 이름 생성
     clean: true, // 빌드 시 기존 파일 제거 (Webpack 5 기능)
+    publicPath: "/", // 정적 자산의 기본 경로
   },
   resolve: {
     alias: {
