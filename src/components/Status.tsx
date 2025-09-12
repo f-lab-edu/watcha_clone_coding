@@ -1,5 +1,6 @@
 import "@/styles/Status.css";
 import React from "react";
+import { PageSkeleton, DetailPageSkeleton, SearchHomePageSkeleton, SearchResultPageSkeleton } from "./Skeleton";
 
 type ErrorProps = {
   message?: string;
@@ -13,6 +14,22 @@ const Loading: React.FC = () => {
       <div className="status-text">로딩중...</div>
     </div>
   );
+};
+
+const PageLoading: React.FC = () => {
+  return <PageSkeleton />;
+};
+
+const DetailPageLoading: React.FC = () => {
+  return <DetailPageSkeleton />;
+};
+
+const SearchHomePageLoading: React.FC = () => {
+  return <SearchHomePageSkeleton />;
+};
+
+const SearchResultPageLoading: React.FC = () => {
+  return <SearchResultPageSkeleton />;
 };
 
 const ErrorState: React.FC<ErrorProps> = ({ message, retry }) => {
@@ -29,7 +46,21 @@ const ErrorState: React.FC<ErrorProps> = ({ message, retry }) => {
   );
 };
 
-const Status = { Loading, ErrorState } as const;
+const Status = { 
+  Loading, 
+  PageLoading, 
+  DetailPageLoading, 
+  SearchHomePageLoading,
+  SearchResultPageLoading,
+  ErrorState 
+} as const;
 
 export default Status;
-export { Loading, ErrorState };
+export { 
+  Loading, 
+  PageLoading, 
+  DetailPageLoading, 
+  SearchHomePageLoading,
+  SearchResultPageLoading,
+  ErrorState 
+};

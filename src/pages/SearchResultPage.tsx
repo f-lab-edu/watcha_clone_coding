@@ -89,7 +89,7 @@ const SearchResultPageContent = () => {
 const SearchResultPage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.Loading />}>
+      <React.Suspense fallback={<Status.SearchResultPageLoading />}>
         <SearchResultPageContent />
       </React.Suspense>
     </AppErrorBoundary>

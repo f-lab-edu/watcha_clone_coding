@@ -14,12 +14,29 @@ import "@/styles/Detail.css";
 
 
 const DetailPageContent = () => {
-  const { movieData, reviews,  getReleaseYear, changeTimeFormat } = useMovieDetail();
+  const { movieData, reviews, getReleaseYear, changeTimeFormat } = useMovieDetail();
 
+  // 로딩 상태 처리
   if (!movieData) {
     return (
       <div className="detail-page">
-        <div className="no-data">데이터를 찾을 수 없습니다.</div>
+        <div className="no-data">
+          <h2>영화 정보를 불러오는 중...</h2>
+          <p>잠시만 기다려주세요.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // 에러 상태 처리
+  if (movieData && !movieData.id) {
+    return (
+      <div className="detail-page">
+        <div className="no-data">
+          <h2>영화 정보를 찾을 수 없습니다</h2>
+          <p>요청하신 영화의 정보가 존재하지 않습니다.</p>
+          <button onClick={() => window.history.back()}>이전 페이지로</button>
+        </div>
       </div>
     );
   }
@@ -185,7 +202,7 @@ const DetailPageContent = () => {
 const DetailPage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.Loading />}>
+      <React.Suspense fallback={<Status.DetailPageLoading />}>
         <DetailPageContent />
       </React.Suspense>
     </AppErrorBoundary>

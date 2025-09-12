@@ -20,12 +20,25 @@ export const fetchNowPlayingMovieList = () =>
 export const fetchMovieDetail = (movieId: string) => 
   instance
     .get(`/movie/${movieId}?append_to_response=credits,videos,belongs_to_collection&language=ko-KR`)
-    .then((response) => transformMovieData(response.data));
+    .then((response) => {
+      if (!response.data || !response.data.id) {
+        throw new Error(`영화 ID ${movieId}에 대한 데이터를 찾을 수 없습니다.`);
+      }
+      return transformMovieData(response.data);
+    })
+    .catch((error) => {
+      console.error(`영화 상세 정보 가져오기 실패 (ID: ${movieId}):`, error);
+      throw error;
+    });
 
 export const fetchMovieReviews = (movieId: string) => 
   instance
     .get(`/movie/${movieId}/reviews?language=en-US&page=1`)
-    .then((response) => response.data);
+    .then((response) => response.data || { results: [] })
+    .catch((error) => {
+      console.error(`영화 리뷰 가져오기 실패 (ID: ${movieId}):`, error);
+      return { results: [] }; // 리뷰는 필수가 아니므로 빈 배열 반환
+    });
 
 export const fetchTodayTrendingMovie = () => 
   instance

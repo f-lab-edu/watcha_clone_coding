@@ -377,3 +377,68 @@
   overflow: hidden;
   word-break: break-all;
 }
+
+/* 에러 상태 스타일 */
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  color: white;
+  padding: 40px;
+}
+
+.no-data h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.no-data p {
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: #84868d;
+  line-height: 1.5;
+}
+
+.no-data button {
+  background-color: #f82f62;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.no-data button:hover {
+  background-color: #d91e4f;
+}
+
+/* 로딩 상태 스타일 */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: white;
+}
+
+.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f82f62;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

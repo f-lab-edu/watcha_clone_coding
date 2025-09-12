@@ -132,6 +132,7 @@ export interface Reviews {
 
 // 컴포넌트에서 사용할 정리된 데이터 타입
 export interface MovieData {
+  id: number;
   title: string;
   releaseDate: string;
   runtime: number | null;
