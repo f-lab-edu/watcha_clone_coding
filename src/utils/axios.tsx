@@ -4,11 +4,13 @@ import { config as apiConfig } from "@/../config/env";
 // Axios 인스턴스 생성
 export const instance = axios.create({
   baseURL: apiConfig.tmdbBaseUrl,
-  timeout: 10000,
+  timeout: 5000, // 타임아웃을 5초로 단축
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
+    "Accept-Encoding": "gzip, deflate, br", // 압축 지원
   },
+  // 브라우저 환경에서는 Keep-Alive가 자동으로 처리됨
 });
 
 instance.interceptors.request.use(
