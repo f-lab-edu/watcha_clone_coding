@@ -95,7 +95,7 @@ const ListPageContent = () => {
 const ListPage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.Loading />}>
+      <React.Suspense fallback={<Status.PageLoading />}>
         <ListPageContent />
       </React.Suspense>
     </AppErrorBoundary>

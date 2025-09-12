@@ -21,6 +21,7 @@ export const transformMovieData = (response: any): MovieData => {
   const director = response.credits?.crew?.find((member: any) => member.job === "Director") || null;
 
   return {
+    id: response.id,
     title: response.title,
     releaseDate: response.release_date,
     runtime: response.runtime,

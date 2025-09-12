@@ -94,7 +94,7 @@ const SearchHomePageContent = () => {
 const SearchHomePage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.Loading />}>
+      <React.Suspense fallback={<Status.SearchHomePageLoading />}>
         <SearchHomePageContent />
       </React.Suspense>
     </AppErrorBoundary>
