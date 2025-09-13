@@ -1,8 +1,9 @@
 {
-  "name": "watcha_clone_coding",
+  "name": "@your-org/watcha_clone_coding",
   "version": "1.0.0",
   "description": "\"# watcha_clone_coding\"",
   "main": "index.js",
+  "packageManager": "pnpm@10.15.1",  
   "scripts": {
     "start": "cross-env NODE_ENV=development APP_PHASE=local webpack serve --config webpack.dev.js",
     "build:staging": "cross-env NODE_ENV=production APP_PHASE=staging webpack --config webpack.prod.js",
