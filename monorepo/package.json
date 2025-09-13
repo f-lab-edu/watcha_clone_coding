@@ -1,0 +1,12 @@
+{
+    "name": "monorepo",
+    "private": true,
+    "packageManager": "pnpm@10.15.1",  
+    "scripts": {
+        "build:staging": "pnpm --filter '@your-org/watcha_clone_coding' build:staging",
+        "build:production": "pnpm --filter '@your-org/watcha_clone_coding' build:production",
+        "start": "pnpm --filter '@your-org/watcha_clone_coding' start",
+        "dev": "pnpm --filter '@your-org/watcha_clone_coding' dev",
+        "type-check": "pnpm --filter '@your-org/watcha_clone_coding' type-check"
+    }
+}
