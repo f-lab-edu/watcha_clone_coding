@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "@/components/Carousel";
+import {Carousel} from "carousel";
 import MovieCard from "@/components/MovieCard";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import ThemeTab from "@/components/ThemeTab";
