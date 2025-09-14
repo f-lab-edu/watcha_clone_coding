@@ -1,8 +1,8 @@
-import { CarouselContextType, RootProps, TrackProps, ArticleProps } from "@/types/Carousel";
-import Button from "@/components/Button";
-import useCarousel from "@/hooks/useCarousel";
-import "@/styles/Carousel.css";
 import { createContext, useContext, ReactNode } from "react";
+import { CarouselContextType, RootProps, TrackProps, ArticleProps } from "../types/Carousel";
+import Button from "./Button";
+import useCarousel from "../hooks/useCarousel";
+import "../styles/Carousel.css";
 
 const CarouselContext = createContext<CarouselContextType | undefined>(undefined);
 

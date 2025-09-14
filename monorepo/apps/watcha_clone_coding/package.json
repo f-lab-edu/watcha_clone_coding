@@ -1,5 +1,5 @@
 {
-  "name": "@your-org/watcha_clone_coding",
+  "name": "watcha_clone_coding",
   "version": "1.0.0",
   "description": "\"# watcha_clone_coding\"",
   "main": "index.js",
@@ -65,6 +65,7 @@
     "webpack": "^5.101.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^4.15.2",
-    "webpack-merge": "^6.0.1"
+    "webpack-merge": "^6.0.1",
+    "carousel": "workspace:*"
   }
 }
