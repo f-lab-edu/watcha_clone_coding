@@ -1,4 +1,3 @@
-import { MovieData } from "@/types/Movie";
 import { instance } from "./axios";
 import { transformMovieList, transformMovieData } from "@/utils/transform";
 

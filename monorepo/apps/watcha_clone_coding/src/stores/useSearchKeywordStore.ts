@@ -1,7 +1,4 @@
 import { create } from "zustand";
-import { RawMovie, TransformedMovie } from "@/types/Movie";
-import { transformMovieList } from "@/utils/transform";
-
 type SearchState = {
   query: string;
   setQuery: (value: string) => void;

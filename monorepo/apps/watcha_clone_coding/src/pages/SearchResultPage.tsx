@@ -6,7 +6,7 @@ import useSearchMovie from "@/hooks/useSearchMovie";
 import { searchListQuery } from "@/queries/search/searchListQuery";
 import { searchGenresQuery, searchMovieQuery } from "@/queries/search/searchQuery";
 import { buildImageUrl } from "@/utils/transform";
-import { TransformedMovie, Genre } from "@/types/Movie";
+import { TransformedMovie } from "@/types/Movie";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import "@/styles/Search.css";
 
