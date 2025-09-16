@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import ThemeTab from "@/components/ThemeTab";
 import Status from "@/components/Status";
 import useSearchMovie from "@/hooks/useSearchMovie";
-import { searchListQuery } from "@/queries/search/searchListQuery";
-import { searchGenresQuery, searchMovieQuery } from "@/queries/search/searchQuery";
+import { useSearchListQuery } from "@/queries/search/useSearchListQuery";
+import { useSearchGenresQuery, useSearchMovieQuery } from "@/queries/search/useSearchQuery";
 import { buildImageUrl } from "@/utils/transform";
 import { TransformedMovie } from "@/types/Movie";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
@@ -12,9 +12,9 @@ import "@/styles/Search.css";
 
 const SearchResultPageContent = () => {
   const { query, genreId } = useSearchMovie();
-  const { genresQuery } = searchListQuery();
-  const { data: keywordData} = searchMovieQuery(query);
-  const { data: genresData } = searchGenresQuery(genreId);
+  const { genresQuery } = useSearchListQuery();
+  const { data: keywordData} = useSearchMovieQuery(query);
+  const { data: genresData } = useSearchGenresQuery(genreId);
 
 
   const resultList = (resultData: TransformedMovie[], type: string) => {

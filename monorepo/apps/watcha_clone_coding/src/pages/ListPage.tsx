@@ -3,7 +3,7 @@ import {Carousel} from "carousel";
 import MovieCard from "@/components/MovieCard";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import ThemeTab from "@/components/ThemeTab";
-import { movieListQuery } from "@/queries/movieList/movieListQuery";
+import { useMovieListQuery } from "@/queries/movieList/useMovieListQuery";
 import { CarouselProps } from "@/types/Carousel";
 import Status from "@/components/Status";
 import "@/styles/Page.css";
@@ -27,7 +27,7 @@ const TAB_BUTTONS = [
 ];
 
 const ListPageContent = () => {
-  const { popularQuery, topRatedQuery, nowPlayingQuery } = movieListQuery();
+  const { popularQuery, topRatedQuery, nowPlayingQuery } = useMovieListQuery();
 
   return (
     <div>
