@@ -2,7 +2,7 @@ import {  useSuspenseQueries } from "@tanstack/react-query";
 import { searchListKeys } from "./queryKeys";
 import { fetchMovieGenres,  fetchTodayTrendingMovie } from "@/utils/api";
 
-export const searchListQuery = () => {
+export const useSearchListQuery = () => {
   const results = useSuspenseQueries({
     queries: [
       { queryKey: searchListKeys.trending(), queryFn: fetchTodayTrendingMovie },

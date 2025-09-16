@@ -2,7 +2,7 @@ import { useSuspenseQueries } from "@tanstack/react-query"
 import { movieDetailKeys } from "./queryKeys"
 import { fetchMovieDetail, fetchMovieReviews } from "@/utils/api"
 
-export const movieDetailQuery = (movieId: string) => {
+export const useMovieDetailQuery = (movieId: string) => {
     const results = useSuspenseQueries({
         queries: [
             {

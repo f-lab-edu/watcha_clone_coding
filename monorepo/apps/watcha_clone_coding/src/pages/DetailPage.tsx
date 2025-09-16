@@ -11,6 +11,7 @@ import Assessment from "@/assets/assessment.svg";
 import Party from "@/assets/party.svg";
 import More from "@/assets/more.svg";
 import "@/styles/Detail.css";
+import { DetailPageSkeleton } from "@/components/Skeleton";
 
 
 const DetailPageContent = () => {
@@ -202,7 +203,7 @@ const DetailPageContent = () => {
 const DetailPage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.DetailPageLoading />}>
+      <React.Suspense fallback={<DetailPageSkeleton />}>
         <DetailPageContent />
       </React.Suspense>
     </AppErrorBoundary>
