@@ -10,6 +10,7 @@ import { useSearchListQuery } from "@/queries/search/useSearchListQuery";
 import { buildImageUrl } from "@/utils/transform";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import "@/styles/Search.css";
+import { SearchHomePageSkeleton } from "@/components/Skeleton";
 
 const TAB_BUTTONS = [
   {
@@ -94,7 +95,7 @@ const SearchHomePageContent = () => {
 const SearchHomePage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.SearchHomePageLoading />}>
+      <React.Suspense fallback={<SearchHomePageSkeleton />}>
         <SearchHomePageContent />
       </React.Suspense>
     </AppErrorBoundary>

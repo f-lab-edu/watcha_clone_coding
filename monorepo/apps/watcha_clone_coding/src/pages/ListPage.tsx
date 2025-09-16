@@ -7,6 +7,7 @@ import { useMovieListQuery } from "@/queries/movieList/useMovieListQuery";
 import { CarouselProps } from "@/types/Carousel";
 import Status from "@/components/Status";
 import "@/styles/Page.css";
+import { PageSkeleton } from "@/components/Skeleton";
 
 const TAB_BUTTONS = [
   {
@@ -95,7 +96,7 @@ const ListPageContent = () => {
 const ListPage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.PageLoading />}>
+      <React.Suspense fallback={<PageSkeleton />}>
         <ListPageContent />
       </React.Suspense>
     </AppErrorBoundary>

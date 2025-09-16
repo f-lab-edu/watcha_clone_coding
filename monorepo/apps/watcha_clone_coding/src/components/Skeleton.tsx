@@ -31,43 +31,22 @@ const Skeleton: React.FC<SkeletonProps> = memo(({
   );
 });
 
-// 영화 카드용 스켈레톤
-const MovieCardSkeleton: React.FC<{ layout?: "overlay" | "top" | "left" | "none" }> = memo(({ 
-  layout = "top" 
-}) => {
-  if (layout === "overlay") {
-    return (
-      <div className="skeleton-movie-card skeleton-movie-card-overlay">
-        <Skeleton height="642px" borderRadius="8px" />
-        <div className="skeleton-overlay-content">
-          <Skeleton width="60%" height="32px" style={{ marginBottom: "12px" }} />
-          <Skeleton width="80%" height="20px" style={{ marginBottom: "8px" }} />
-          <Skeleton width="40%" height="16px" />
-        </div>
+// 오버레이 레이아웃 영화 카드 스켈레톤
+const OverlayMovieCardSkeleton: React.FC = memo(() => {
+  return (
+    <div className="skeleton-movie-card skeleton-movie-card-overlay">
+      <Skeleton height="642px" borderRadius="8px" />
+      <div className="skeleton-overlay-content">
+        <Skeleton width="60%" height="32px" style={{ marginBottom: "12px" }} />
+        <Skeleton width="80%" height="20px" style={{ marginBottom: "8px" }} />
+        <Skeleton width="40%" height="16px" />
       </div>
-    );
-  }
+    </div>
+  );
+});
 
-  if (layout === "left") {
-    return (
-      <div className="skeleton-movie-card skeleton-movie-card-left">
-        <Skeleton width="80px" height="120px" borderRadius="4px" />
-        <div className="skeleton-left-content">
-          <Skeleton width="24px" height="24px" borderRadius="50%" />
-        </div>
-      </div>
-    );
-  }
-
-  if (layout === "none") {
-    return (
-      <div className="skeleton-movie-card skeleton-movie-card-none">
-        <Skeleton height="164px" borderRadius="8px" />
-      </div>
-    );
-  }
-
-  // default: top layout
+// 상단 레이아웃 영화 카드 스켈레톤
+const TopMovieCardSkeleton: React.FC = memo(() => {
   return (
     <div className="skeleton-movie-card skeleton-movie-card-top">
       <Skeleton height="289px" borderRadius="8px" />
@@ -79,6 +58,27 @@ const MovieCardSkeleton: React.FC<{ layout?: "overlay" | "top" | "left" | "none"
   );
 });
 
+// 좌측 레이아웃 영화 카드 스켈레톤
+const LeftMovieCardSkeleton: React.FC = memo(() => {
+  return (
+    <div className="skeleton-movie-card skeleton-movie-card-left">
+      <Skeleton width="80px" height="120px" borderRadius="4px" />
+      <div className="skeleton-left-content">
+        <Skeleton width="24px" height="24px" borderRadius="50%" />
+      </div>
+    </div>
+  );
+});
+
+// 콘텐츠 없는 영화 카드 스켈레톤
+const NoneMovieCardSkeleton: React.FC = memo(() => {
+  return (
+    <div className="skeleton-movie-card skeleton-movie-card-none">
+      <Skeleton height="164px" borderRadius="8px" />
+    </div>
+  );
+});
+
 // 캐러셀용 스켈레톤
 const CarouselSkeleton: React.FC<{ 
   height: number; 
@@ -86,6 +86,21 @@ const CarouselSkeleton: React.FC<{
   layout?: "overlay" | "top" | "left" | "none";
   count?: number;
 }> = memo(({ height, articleWidth, layout = "top", count = 5 }) => {
+  // 레이아웃에 따라 적절한 스켈레톤 컴포넌트를 렌더링하는 함수
+  const renderMovieCardSkeleton = () => {
+    switch (layout) {
+      case "overlay":
+        return <OverlayMovieCardSkeleton />;
+      case "left":
+        return <LeftMovieCardSkeleton />;
+      case "none":
+        return <NoneMovieCardSkeleton />;
+      case "top":
+      default:
+        return <TopMovieCardSkeleton />;
+    }
+  };
+
   return (
     <div className="skeleton-carousel" style={{ height: `${height}px` }}>
       <div className="skeleton-carousel-track" style={{ width: `${articleWidth * count}px` }}>
@@ -95,7 +110,7 @@ const CarouselSkeleton: React.FC<{
             className="skeleton-carousel-article"
             style={{ width: `${articleWidth}px` }}
           >
-            <MovieCardSkeleton layout={layout} />
+            {renderMovieCardSkeleton()}
           </div>
         ))}
       </div>
@@ -319,7 +334,10 @@ const SearchResultPageSkeleton: React.FC = memo(() => {
 
 const SkeletonComponents = {
   Skeleton,
-  MovieCardSkeleton,
+  OverlayMovieCardSkeleton,
+  TopMovieCardSkeleton,
+  LeftMovieCardSkeleton,
+  NoneMovieCardSkeleton,
   CarouselSkeleton,
   PageSkeleton,
   DetailPageSkeleton,
@@ -330,7 +348,10 @@ const SkeletonComponents = {
 export default SkeletonComponents;
 export { 
   Skeleton, 
-  MovieCardSkeleton, 
+  OverlayMovieCardSkeleton,
+  TopMovieCardSkeleton,
+  LeftMovieCardSkeleton,
+  NoneMovieCardSkeleton,
   CarouselSkeleton, 
   PageSkeleton, 
   DetailPageSkeleton,

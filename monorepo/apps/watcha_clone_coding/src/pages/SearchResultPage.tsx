@@ -9,6 +9,7 @@ import { buildImageUrl } from "@/utils/transform";
 import { TransformedMovie } from "@/types/Movie";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import "@/styles/Search.css";
+import { SearchResultPageSkeleton } from "@/components/Skeleton";
 
 const SearchResultPageContent = () => {
   const { query, genreId } = useSearchMovie();
@@ -89,7 +90,7 @@ const SearchResultPageContent = () => {
 const SearchResultPage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.SearchResultPageLoading />}>
+      <React.Suspense fallback={<SearchResultPageSkeleton />}>
         <SearchResultPageContent />
       </React.Suspense>
     </AppErrorBoundary>
