@@ -25,11 +25,9 @@ const useSearchMovie = () => {
     setGenreId(""); // 장르 검색 초기화
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+  const handleEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
       e.preventDefault();
       handleSubmit();
-    }
   };
 
   const searchByGenre = (genreId: string) => {
@@ -41,7 +39,7 @@ const useSearchMovie = () => {
     query,
     setQuery,
     handleSubmit,
-    handleKeyDown,
+    handleEnterKeyDown,
     searchByGenre,
     genreId,
   };

@@ -72,7 +72,7 @@ const Header = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    handleKeyDown(e);
+                    handleEnterKeyDown(e);
                   }
                 }}
                 name="query"
