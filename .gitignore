@@ -1,0 +1,6 @@
+#폴더
+node_modules
+dist
+
+# 환경설정
+.env*
