@@ -14,10 +14,15 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  // 요청이 전달되기 전에 헤더에 토큰 넣기
+  // 요청이 전달되기 전에 쿼리 파라미터에 API 키 추가
   (config) => {
     const newConfig = { ...config };
-    newConfig.headers.Authorization = `Bearer ${apiConfig.tmdbApiKey}`;
+    // TMDB API는 api_key 쿼리 파라미터를 사용
+    if (newConfig.params) {
+      newConfig.params.api_key = apiConfig.tmdbApiKey;
+    } else {
+      newConfig.params = { api_key: apiConfig.tmdbApiKey };
+    }
     return newConfig;
   },
   (error) => {

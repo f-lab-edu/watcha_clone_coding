@@ -6,10 +6,11 @@ import GenresCard from "@/components/GenresCard";
 import Status from "@/components/Status";
 import useSearchMovies from "@/hooks/useSearchMovies";
 import { Genre } from "@/types/Movie";
-import { searchListQuery } from "@/queries/search/searchListQuery";
+import { useSearchListQuery } from "@/queries/search/useSearchListQuery";
 import { buildImageUrl } from "@/utils/transform";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import "@/styles/Search.css";
+import { SearchHomePageSkeleton } from "@/components/Skeleton";
 
 const TAB_BUTTONS = [
   {
@@ -31,7 +32,7 @@ const TAB_BUTTONS = [
 
 const SearchHomePageContent = () => {
   const { highlightedIndex, handleMouseEnter } = useSearchMovies();
-  const { trendingQuery, genresQuery} = searchListQuery();
+  const { trendingQuery, genresQuery} = useSearchListQuery();
 
 
   return (
@@ -94,7 +95,7 @@ const SearchHomePageContent = () => {
 const SearchHomePage = () => {
   return (
     <AppErrorBoundary>
-      <React.Suspense fallback={<Status.SearchHomePageLoading />}>
+      <React.Suspense fallback={<SearchHomePageSkeleton />}>
         <SearchHomePageContent />
       </React.Suspense>
     </AppErrorBoundary>
