@@ -9,7 +9,7 @@ import Alarm from "@/assets/alarm.svg";
 const Header = () => {
   const location = useLocation();
   const pathName = location.pathname;
-  const { query, setQuery, handleKeyDown } = useSearchMovie();
+  const { query, setQuery, handleEnterKeyDown } = useSearchMovie();
 
   return (
     <header className="header">
@@ -72,7 +72,7 @@ const Header = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    handleKeyDown(e);
+                    handleEnterKeyDown(e);
                   }
                 }}
                 name="query"
