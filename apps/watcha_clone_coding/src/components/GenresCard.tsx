@@ -1,6 +1,6 @@
-import { GenredCardProps } from "@/types/Carousel";
-import useMovieCard from "@/hooks/useMovieCard";
-import Button from "@/components/Button";
+import { GenredCardProps } from '@/types/Carousel';
+import useMovieCard from '@/hooks/useMovieCard';
+import Button from '@/components/Button';
 
 const GenresCard = (props: GenredCardProps) => {
   const { handleGenreClick, generateRandomGradient } = useMovieCard(props);
@@ -11,12 +11,12 @@ const GenresCard = (props: GenredCardProps) => {
         className="slider-image-container"
         style={{
           background: generateRandomGradient,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          height: "100%",
-          position: "absolute",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
           top: 0,
           left: 0,
           outline: 0,

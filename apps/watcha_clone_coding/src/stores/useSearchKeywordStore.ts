@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 type SearchState = {
   query: string;
   setQuery: (value: string) => void;
@@ -7,9 +7,9 @@ type SearchState = {
 };
 
 const useSearchKeywordStore = create<SearchState>((set) => ({
-  query: "",
+  query: '',
   setQuery: (value: string) => set({ query: value }),
-  genreId: "",
+  genreId: '',
   setGenreId: (value: string) => set({ genreId: value }),
 }));
 

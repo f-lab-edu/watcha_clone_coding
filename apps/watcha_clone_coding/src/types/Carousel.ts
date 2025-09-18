@@ -1,5 +1,5 @@
-import { Genre } from "@/types/Movie";
-import { ReactNode } from "react";
+import { Genre } from '@/types/Movie';
+import { ReactNode } from 'react';
 
 export type CarouselProps = {
   id: number;
@@ -11,6 +11,6 @@ export type CarouselProps = {
   onClick?: () => void;
 };
 
-export type MovieCardProps = { type: "movie"; slide: CarouselProps; layout: "overlay" | "top" | "left" | "none" };
+export type MovieCardProps = { type: 'movie'; slide: CarouselProps; layout: 'overlay' | 'top' | 'left' | 'none' };
 
-export type GenredCardProps = { type: "genres"; slide: Genre; layout: "overlay" | "top" | "left" | "none" };
+export type GenredCardProps = { type: 'genres'; slide: Genre; layout: 'overlay' | 'top' | 'left' | 'none' };

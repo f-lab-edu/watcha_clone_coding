@@ -1,12 +1,12 @@
 // webpack.prod.js
 
-const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
-const CompressionPlugin = require("compression-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(common, {
-  mode: "production", // 프로덕션 모드 설정
+  mode: 'production', // 프로덕션 모드 설정
   devtool: false, // 소스맵 비활성화
   optimization: {
     minimize: true,

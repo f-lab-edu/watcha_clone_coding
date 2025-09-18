@@ -1,18 +1,17 @@
-import React from "react";
-import useMovieDetail from "@/hooks/useMovieDetail";
-import Button from "@/components/Button";
-import Status from "@/components/Status";
-import AppErrorBoundary from "@/components/AppErrorBoundary";
-import { Genre, Member, Review, Video } from "@/types/Movie";
-import { buildImageUrl } from "@/utils/transform";
+import React from 'react';
+import useMovieDetail from '@/hooks/useMovieDetail';
+import Button from '@/components/Button';
+import Status from '@/components/Status';
+import AppErrorBoundary from '@/components/AppErrorBoundary';
+import { Genre, Member, Review, Video } from '@/types/Movie';
+import { buildImageUrl } from '@/utils/transform';
 
-import Interest from "@/assets/interest.svg";
-import Assessment from "@/assets/assessment.svg";
-import Party from "@/assets/party.svg";
-import More from "@/assets/more.svg";
-import "@/styles/Detail.css";
-import { DetailPageSkeleton } from "@/components/Skeleton";
-
+import Interest from '@/assets/interest.svg';
+import Assessment from '@/assets/assessment.svg';
+import Party from '@/assets/party.svg';
+import More from '@/assets/more.svg';
+import '@/styles/Detail.css';
+import { DetailPageSkeleton } from '@/components/Skeleton';
 
 const DetailPageContent = () => {
   const { movieData, reviews, getReleaseYear, changeTimeFormat } = useMovieDetail();
@@ -66,11 +65,11 @@ const DetailPageContent = () => {
             </div>
             <div className="detail-rating">
               <div className="detail-vote-average">
-                <span className="vote-average-value">{movieData.voteAverage?.toFixed(1) || "0.0"}</span>
+                <span className="vote-average-value">{movieData.voteAverage?.toFixed(1) || '0.0'}</span>
                 <span className="vote-dest">평균 별점</span>
               </div>
               <div className="detail-vote-count">
-                <span className="vote-count-value">{movieData.voteCount?.toLocaleString() || "0"}</span>
+                <span className="vote-count-value">{movieData.voteCount?.toLocaleString() || '0'}</span>
                 <span className="vote-dest">평가 수</span>
               </div>
             </div>
@@ -100,7 +99,7 @@ const DetailPageContent = () => {
               <>
                 <img src={buildImageUrl(movieData.backdrop)} alt="Detail Image" />
                 <div className="preview-overlay">
-                  <Button className="preview-button">{"미리보기 >"}</Button>
+                  <Button className="preview-button">{'미리보기 >'}</Button>
                 </div>
               </>
             )}
@@ -157,7 +156,7 @@ const DetailPageContent = () => {
                     <div className="profile-info">
                       <div className="profile-name">{person.name}</div>
                       <div className="profile-role">
-                        {person.job === "Director" ? "감독" : "배우"}
+                        {person.job === 'Director' ? '감독' : '배우'}
                         {person.character && ` · ${person.character}`}
                       </div>
                     </div>
@@ -179,7 +178,7 @@ const DetailPageContent = () => {
                       {review.author_details.avatar_path ? (
                         <img src={buildImageUrl(review.author_details.avatar_path)} />
                       ) : (
-                        <div>{""}</div>
+                        <div>{''}</div>
                       )}
                     </div>
                     <div className="review-data">
@@ -208,7 +207,6 @@ const DetailPage = () => {
       </React.Suspense>
     </AppErrorBoundary>
   );
-}
-
+};
 
 export default DetailPage;

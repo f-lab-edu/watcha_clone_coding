@@ -1,8 +1,8 @@
-import { config } from "@/../config/env";
-import { RawMovie, TransformedMovie, MovieData } from "@/types/Movie";
+import { config } from '@/../config/env';
+import { RawMovie, TransformedMovie, MovieData } from '@/types/Movie';
 
 export const buildImageUrl = (path: string | null | undefined): string => {
-  if (!path) return "";
+  if (!path) return '';
   return `${config.tmdbImageUrl}${path}`;
 };
 
@@ -18,7 +18,7 @@ export const transformMovieList = (movies: RawMovie[], options?: { usePoster?: b
 };
 
 export const transformMovieData = (response: any): MovieData => {
-  const director = response.credits?.crew?.find((member: any) => member.job === "Director") || null;
+  const director = response.credits?.crew?.find((member: any) => member.job === 'Director') || null;
 
   return {
     id: response.id,
@@ -32,6 +32,6 @@ export const transformMovieData = (response: any): MovieData => {
     genres: response.genres,
     collection: response.belongs_to_collection,
     videos: response.videos?.results ?? [],
-    member: director ? [director, ...(response.credits?.cast ?? [])] : response.credits?.cast ?? [],
+    member: director ? [director, ...(response.credits?.cast ?? [])] : (response.credits?.cast ?? []),
   };
 };

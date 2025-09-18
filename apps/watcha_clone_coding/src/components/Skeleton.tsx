@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import "@/styles/Skeleton.css";
+import React, { memo } from 'react';
+import '@/styles/Skeleton.css';
 
 interface SkeletonProps {
   width?: string | number;
@@ -9,27 +9,23 @@ interface SkeletonProps {
   style?: React.CSSProperties;
 }
 
-const Skeleton: React.FC<SkeletonProps> = memo(({
-  width = "100%",
-  height = "20px",
-  borderRadius = "4px",
-  className = "",
-  style = {},
-}) => {
-  return (
-    <div
-      className={`skeleton ${className}`}
-      style={{
-        width,
-        height,
-        borderRadius,
-        ...style,
-      }}
-      aria-hidden="true"
-      role="presentation"
-    />
-  );
-});
+const Skeleton: React.FC<SkeletonProps> = memo(
+  ({ width = '100%', height = '20px', borderRadius = '4px', className = '', style = {} }) => {
+    return (
+      <div
+        className={`skeleton ${className}`}
+        style={{
+          width,
+          height,
+          borderRadius,
+          ...style,
+        }}
+        aria-hidden="true"
+        role="presentation"
+      />
+    );
+  },
+);
 
 // 오버레이 레이아웃 영화 카드 스켈레톤
 const OverlayMovieCardSkeleton: React.FC = memo(() => {
@@ -37,8 +33,8 @@ const OverlayMovieCardSkeleton: React.FC = memo(() => {
     <div className="skeleton-movie-card skeleton-movie-card-overlay">
       <Skeleton height="642px" borderRadius="8px" />
       <div className="skeleton-overlay-content">
-        <Skeleton width="60%" height="32px" style={{ marginBottom: "12px" }} />
-        <Skeleton width="80%" height="20px" style={{ marginBottom: "8px" }} />
+        <Skeleton width="60%" height="32px" style={{ marginBottom: '12px' }} />
+        <Skeleton width="80%" height="20px" style={{ marginBottom: '8px' }} />
         <Skeleton width="40%" height="16px" />
       </div>
     </div>
@@ -51,7 +47,7 @@ const TopMovieCardSkeleton: React.FC = memo(() => {
     <div className="skeleton-movie-card skeleton-movie-card-top">
       <Skeleton height="289px" borderRadius="8px" />
       <div className="skeleton-top-content">
-        <Skeleton width="90%" height="20px" style={{ marginBottom: "8px" }} />
+        <Skeleton width="90%" height="20px" style={{ marginBottom: '8px' }} />
         <Skeleton width="70%" height="16px" />
       </div>
     </div>
@@ -80,22 +76,22 @@ const NoneMovieCardSkeleton: React.FC = memo(() => {
 });
 
 // 캐러셀용 스켈레톤
-const CarouselSkeleton: React.FC<{ 
-  height: number; 
-  articleWidth: number; 
-  layout?: "overlay" | "top" | "left" | "none";
+const CarouselSkeleton: React.FC<{
+  height: number;
+  articleWidth: number;
+  layout?: 'overlay' | 'top' | 'left' | 'none';
   count?: number;
-}> = memo(({ height, articleWidth, layout = "top", count = 5 }) => {
+}> = memo(({ height, articleWidth, layout = 'top', count = 5 }) => {
   // 레이아웃에 따라 적절한 스켈레톤 컴포넌트를 렌더링하는 함수
   const renderMovieCardSkeleton = () => {
     switch (layout) {
-      case "overlay":
+      case 'overlay':
         return <OverlayMovieCardSkeleton />;
-      case "left":
+      case 'left':
         return <LeftMovieCardSkeleton />;
-      case "none":
+      case 'none':
         return <NoneMovieCardSkeleton />;
-      case "top":
+      case 'top':
       default:
         return <TopMovieCardSkeleton />;
     }
@@ -105,11 +101,7 @@ const CarouselSkeleton: React.FC<{
     <div className="skeleton-carousel" style={{ height: `${height}px` }}>
       <div className="skeleton-carousel-track" style={{ width: `${articleWidth * count}px` }}>
         {Array.from({ length: count }, (_, index) => (
-          <div
-            key={index}
-            className="skeleton-carousel-article"
-            style={{ width: `${articleWidth}px` }}
-          >
+          <div key={index} className="skeleton-carousel-article" style={{ width: `${articleWidth}px` }}>
             {renderMovieCardSkeleton()}
           </div>
         ))}
@@ -130,24 +122,24 @@ const PageSkeleton: React.FC = memo(() => {
       </div>
 
       {/* 메인 캐러셀 스켈레톤 */}
-      <section style={{ marginBottom: "40px" }}>
+      <section style={{ marginBottom: '40px' }}>
         <CarouselSkeleton height={642} articleWidth={1140} layout="overlay" count={3} />
       </section>
 
       {/* 추천 캐러셀 스켈레톤 */}
-      <section style={{ marginBottom: "40px" }}>
+      <section style={{ marginBottom: '40px' }}>
         <CarouselSkeleton height={289} articleWidth={421} layout="top" count={4} />
       </section>
 
       {/* Top 20 캐러셀 스켈레톤 */}
-      <section style={{ marginBottom: "40px" }}>
-        <Skeleton width="200px" height="28px" style={{ marginBottom: "16px" }} />
+      <section style={{ marginBottom: '40px' }}>
+        <Skeleton width="200px" height="28px" style={{ marginBottom: '16px' }} />
         <CarouselSkeleton height={200} articleWidth={400} layout="left" count={5} />
       </section>
 
       {/* 새로 올라온 콘텐츠 캐러셀 스켈레톤 */}
-      <section style={{ marginBottom: "40px" }}>
-        <Skeleton width="180px" height="28px" style={{ marginBottom: "16px" }} />
+      <section style={{ marginBottom: '40px' }}>
+        <Skeleton width="180px" height="28px" style={{ marginBottom: '16px' }} />
         <CarouselSkeleton height={164} articleWidth={290} layout="none" count={6} />
       </section>
     </div>
@@ -162,37 +154,37 @@ const DetailPageSkeleton: React.FC = memo(() => {
         <div className="skeleton-detail-info">
           {/* 영화 제목 */}
           <div className="skeleton-detail-title">
-            <Skeleton width="80%" height="48px" style={{ marginBottom: "16px" }} />
+            <Skeleton width="80%" height="48px" style={{ marginBottom: '16px' }} />
           </div>
-          
+
           {/* 영화 메타 정보 */}
           <div className="skeleton-detail-meta">
             <Skeleton width="80px" height="20px" />
             <Skeleton width="60px" height="20px" />
             <Skeleton width="100px" height="20px" />
           </div>
-          
+
           {/* 영화 개요 */}
           <div className="skeleton-detail-overview">
-            <Skeleton width="100%" height="66px" style={{ marginTop: "16px" }} />
+            <Skeleton width="100%" height="66px" style={{ marginTop: '16px' }} />
           </div>
-          
+
           {/* 평점 정보 */}
           <div className="skeleton-detail-rating">
             <div className="skeleton-vote-average">
               <Skeleton width="60px" height="44px" />
-              <Skeleton width="80px" height="20px" style={{ marginTop: "4px" }} />
+              <Skeleton width="80px" height="20px" style={{ marginTop: '4px' }} />
             </div>
             <div className="skeleton-vote-count">
               <Skeleton width="80px" height="44px" />
-              <Skeleton width="60px" height="20px" style={{ marginTop: "4px" }} />
+              <Skeleton width="60px" height="20px" style={{ marginTop: '4px' }} />
             </div>
           </div>
-          
+
           {/* 액션 버튼들 */}
           <div className="skeleton-detail-actions">
             <div className="skeleton-purchase-section">
-              <Skeleton width="120px" height="40px" style={{ marginRight: "10px" }} />
+              <Skeleton width="120px" height="40px" style={{ marginRight: '10px' }} />
               <Skeleton width="120px" height="40px" />
             </div>
             <div className="skeleton-evaluation-section">
@@ -202,7 +194,7 @@ const DetailPageSkeleton: React.FC = memo(() => {
             </div>
           </div>
         </div>
-        
+
         <div className="skeleton-detail-image">
           <Skeleton height="100%" borderRadius="8px" />
         </div>
@@ -211,7 +203,7 @@ const DetailPageSkeleton: React.FC = memo(() => {
       <div className="skeleton-detail-sections">
         {/* 관련 콘텐츠 섹션 */}
         <section className="skeleton-section">
-          <Skeleton width="150px" height="24px" style={{ marginBottom: "20px" }} />
+          <Skeleton width="150px" height="24px" style={{ marginBottom: '20px' }} />
           <div className="skeleton-collection">
             <Skeleton width="200px" height="288px" borderRadius="4px" />
           </div>
@@ -219,11 +211,11 @@ const DetailPageSkeleton: React.FC = memo(() => {
 
         {/* 관련 동영상 섹션 */}
         <section className="skeleton-section">
-          <Skeleton width="150px" height="24px" style={{ marginBottom: "20px" }} />
+          <Skeleton width="150px" height="24px" style={{ marginBottom: '20px' }} />
           <div className="skeleton-videos">
             {Array.from({ length: 4 }, (_, index) => (
               <div key={index} className="skeleton-video-item">
-                <Skeleton width="100%" height="20px" style={{ marginBottom: "8px" }} />
+                <Skeleton width="100%" height="20px" style={{ marginBottom: '8px' }} />
                 <Skeleton width="60px" height="16px" />
               </div>
             ))}
@@ -232,13 +224,13 @@ const DetailPageSkeleton: React.FC = memo(() => {
 
         {/* 감독/출연 섹션 */}
         <section className="skeleton-section">
-          <Skeleton width="150px" height="24px" style={{ marginBottom: "20px" }} />
+          <Skeleton width="150px" height="24px" style={{ marginBottom: '20px' }} />
           <div className="skeleton-members">
             {Array.from({ length: 6 }, (_, index) => (
               <div key={index} className="skeleton-member-item">
                 <Skeleton width="50px" height="50px" borderRadius="50%" />
                 <div className="skeleton-member-info">
-                  <Skeleton width="100px" height="22px" style={{ marginBottom: "2px" }} />
+                  <Skeleton width="100px" height="22px" style={{ marginBottom: '2px' }} />
                   <Skeleton width="80px" height="18px" />
                 </div>
               </div>
@@ -248,13 +240,13 @@ const DetailPageSkeleton: React.FC = memo(() => {
 
         {/* 리뷰 섹션 */}
         <section className="skeleton-section">
-          <Skeleton width="200px" height="24px" style={{ marginBottom: "20px" }} />
+          <Skeleton width="200px" height="24px" style={{ marginBottom: '20px' }} />
           <div className="skeleton-reviews">
             {Array.from({ length: 3 }, (_, index) => (
               <div key={index} className="skeleton-review-item">
                 <Skeleton width="38px" height="38px" borderRadius="50%" />
                 <div className="skeleton-review-content">
-                  <Skeleton width="120px" height="22px" style={{ marginBottom: "8px" }} />
+                  <Skeleton width="120px" height="22px" style={{ marginBottom: '8px' }} />
                   <Skeleton width="100%" height="60px" />
                 </div>
               </div>
@@ -273,7 +265,7 @@ const SearchHomePageSkeleton: React.FC = memo(() => {
       {/* 인기 검색어 섹션 */}
       <section className="skeleton-popular-keyword">
         <div className="skeleton-popular-header">
-          <Skeleton width="200px" height="32px" style={{ marginBottom: "24px" }} />
+          <Skeleton width="200px" height="32px" style={{ marginBottom: '24px' }} />
         </div>
         <div className="skeleton-popular-content">
           <div className="skeleton-trending-list">
@@ -300,7 +292,7 @@ const SearchHomePageSkeleton: React.FC = memo(() => {
       {/* 장르별 영화 섹션 */}
       <section className="skeleton-category">
         <div className="skeleton-category-header">
-          <Skeleton width="150px" height="28px" style={{ marginBottom: "8px" }} />
+          <Skeleton width="150px" height="28px" style={{ marginBottom: '8px' }} />
           <Skeleton width="300px" height="20px" />
         </div>
         <CarouselSkeleton height={180} articleWidth={319} layout="overlay" count={4} />
@@ -315,7 +307,7 @@ const SearchResultPageSkeleton: React.FC = memo(() => {
     <div className="skeleton-search-result">
       {/* 검색 결과 헤더 */}
       <div className="skeleton-search-header">
-        <Skeleton width="300px" height="32px" style={{ marginBottom: "8px" }} />
+        <Skeleton width="300px" height="32px" style={{ marginBottom: '8px' }} />
         <Skeleton width="100px" height="20px" />
       </div>
 
@@ -324,7 +316,7 @@ const SearchResultPageSkeleton: React.FC = memo(() => {
         {Array.from({ length: 12 }, (_, index) => (
           <div key={index} className="skeleton-search-item">
             <Skeleton height="200px" borderRadius="8px" />
-            <Skeleton width="80%" height="16px" style={{ marginTop: "8px" }} />
+            <Skeleton width="80%" height="16px" style={{ marginTop: '8px' }} />
           </div>
         ))}
       </div>
@@ -346,14 +338,14 @@ const SkeletonComponents = {
 } as const;
 
 export default SkeletonComponents;
-export { 
-  Skeleton, 
+export {
+  Skeleton,
   OverlayMovieCardSkeleton,
   TopMovieCardSkeleton,
   LeftMovieCardSkeleton,
   NoneMovieCardSkeleton,
-  CarouselSkeleton, 
-  PageSkeleton, 
+  CarouselSkeleton,
+  PageSkeleton,
   DetailPageSkeleton,
   SearchHomePageSkeleton,
   SearchResultPageSkeleton,

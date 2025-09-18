@@ -1,39 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import {Carousel} from "carousel";
-import ThemeTab from "@/components/ThemeTab";
-import GenresCard from "@/components/GenresCard";
-import Status from "@/components/Status";
-import useSearchMovies from "@/hooks/useSearchMovies";
-import { Genre } from "@/types/Movie";
-import { useSearchListQuery } from "@/queries/search/useSearchListQuery";
-import { buildImageUrl } from "@/utils/transform";
-import AppErrorBoundary from "@/components/AppErrorBoundary";
-import "@/styles/Search.css";
-import { SearchHomePageSkeleton } from "@/components/Skeleton";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Carousel } from 'carousel';
+import ThemeTab from '@/components/ThemeTab';
+import GenresCard from '@/components/GenresCard';
+import Status from '@/components/Status';
+import useSearchMovies from '@/hooks/useSearchMovies';
+import { Genre } from '@/types/Movie';
+import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
+import { buildImageUrl } from '@/utils/transform';
+import AppErrorBoundary from '@/components/AppErrorBoundary';
+import '@/styles/Search.css';
+import { SearchHomePageSkeleton } from '@/components/Skeleton';
 
 const TAB_BUTTONS = [
   {
-    name: "전체",
+    name: '전체',
   },
   {
-    name: "액션",
+    name: '액션',
   },
   {
-    name: "로맨스",
+    name: '로맨스',
   },
   {
-    name: "코미디",
+    name: '코미디',
   },
   {
-    name: "다른 장르 보기 V",
+    name: '다른 장르 보기 V',
   },
 ];
 
 const SearchHomePageContent = () => {
   const { highlightedIndex, handleMouseEnter } = useSearchMovies();
-  const { trendingQuery, genresQuery} = useSearchListQuery();
-
+  const { trendingQuery, genresQuery } = useSearchListQuery();
 
   return (
     <div>
@@ -47,7 +46,7 @@ const SearchHomePageContent = () => {
                 {trendingQuery.data?.slice(0, 10).map((movie: any, index: number) => (
                   <li
                     key={movie.id}
-                    className={`trending-item ${index === highlightedIndex ? "highlighted" : ""}`}
+                    className={`trending-item ${index === highlightedIndex ? 'highlighted' : ''}`}
                     onMouseEnter={() => handleMouseEnter(index)}
                   >
                     <Link to={`/movie/${movie.id}`}>

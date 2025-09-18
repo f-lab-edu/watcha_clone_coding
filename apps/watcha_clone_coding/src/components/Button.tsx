@@ -1,8 +1,9 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from 'react';
 
 type ButtonProps = React.PropsWithChildren<{
   icon?: any;
-}> & ButtonHTMLAttributes<HTMLButtonElement>;
+}> &
+  ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({ icon, children, ...props }: ButtonProps) => {
   return (

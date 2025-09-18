@@ -1,29 +1,29 @@
-import React from "react";
-import {Carousel} from "carousel";
-import MovieCard from "@/components/MovieCard";
-import AppErrorBoundary from "@/components/AppErrorBoundary";
-import ThemeTab from "@/components/ThemeTab";
-import { useMovieListQuery } from "@/queries/movieList/useMovieListQuery";
-import { CarouselProps } from "@/types/Carousel";
-import Status from "@/components/Status";
-import "@/styles/Page.css";
-import { PageSkeleton } from "@/components/Skeleton";
+import React from 'react';
+import { Carousel } from 'carousel';
+import MovieCard from '@/components/MovieCard';
+import AppErrorBoundary from '@/components/AppErrorBoundary';
+import ThemeTab from '@/components/ThemeTab';
+import { useMovieListQuery } from '@/queries/movieList/useMovieListQuery';
+import { CarouselProps } from '@/types/Carousel';
+import Status from '@/components/Status';
+import '@/styles/Page.css';
+import { PageSkeleton } from '@/components/Skeleton';
 
 const TAB_BUTTONS = [
   {
-    name: "추천",
+    name: '추천',
   },
   {
-    name: "#완전한 발견",
+    name: '#완전한 발견',
   },
   {
-    name: "#한국",
+    name: '#한국',
   },
   {
-    name: "#애니메이션",
+    name: '#애니메이션',
   },
   {
-    name: "성인+",
+    name: '성인+',
   },
 ];
 
@@ -34,7 +34,7 @@ const ListPageContent = () => {
     <div>
       <ThemeTab list={TAB_BUTTONS} />
       {/* 메인 슬라이드 */}
-      <section style={{ marginBottom: "40px" }}>
+      <section style={{ marginBottom: '40px' }}>
         <Carousel.Root height={642} articleWidth={1140} slides={popularQuery.data ?? []}>
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={1140}>
@@ -48,7 +48,7 @@ const ListPageContent = () => {
         </Carousel.Root>
       </section>
       {/* 추천1 */}
-      <section style={{ marginBottom: "40px" }}>
+      <section style={{ marginBottom: '40px' }}>
         <Carousel.Root height={289} articleWidth={421} slides={popularQuery.data ?? []}>
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={421}>
@@ -61,7 +61,7 @@ const ListPageContent = () => {
           <Carousel.RightButton />
         </Carousel.Root>
       </section>
-      <section style={{ marginBottom: "40px" }}>
+      <section style={{ marginBottom: '40px' }}>
         <h2>개별 구매 Top 20</h2>
         <Carousel.Root height={200} articleWidth={400} slides={topRatedQuery.data ?? []}>
           <Carousel.LeftButton />
@@ -75,7 +75,7 @@ const ListPageContent = () => {
           <Carousel.RightButton />
         </Carousel.Root>
       </section>
-      <section style={{ marginBottom: "40px" }}>
+      <section style={{ marginBottom: '40px' }}>
         <h2>새로 올라온 콘텐츠</h2>
         <Carousel.Root height={164} articleWidth={290} slides={nowPlayingQuery.data ?? []}>
           <Carousel.LeftButton />
