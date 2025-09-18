@@ -34,7 +34,7 @@ p {
   -webkit-appearance: textfield;는 기본 검색 입력 필드의 네이티브 UI를 제거하는 역할을 합니다.
   이를 통해 돋보기 아이콘이나 기본적인 X 버튼과 같은 브라우저 기본 스타일이 제거됩니다.
 */
-[type="search"] {
+[type='search'] {
   -webkit-appearance: textfield; /* 기본(네이티브) 모양을 제거 */
 }
 
@@ -44,7 +44,7 @@ WebKit 및 Blink 엔진을 사용하는 브라우저에서 검색어를 지울 �
 검색 결과 버튼을 숨깁니다. 
 이 두 선택자는 'X' 버튼과 검색 기록을 표시하는 버튼을 제어합니다.
 */
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-results-button {
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-results-button {
   display: none; /* X 버튼 및 검색 결과 버튼 숨기기 */
 }

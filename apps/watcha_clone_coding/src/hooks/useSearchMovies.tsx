@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const useSearchMovies = () => {
   const [highlightedIndex, setHighlightedIndex] = useState(0);

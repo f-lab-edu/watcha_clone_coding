@@ -1,6 +1,6 @@
-import React from "react";
-import { useQueryErrorResetBoundary } from "@tanstack/react-query";
-import Status from "@/components/Status";
+import React from 'react';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import Status from '@/components/Status';
 
 type AppErrorBoundaryProps = {
   children: React.ReactNode;
@@ -11,7 +11,10 @@ type ErrorBoundaryState = {
   error?: unknown;
 };
 
-class ErrorBoundaryInner extends React.Component<{ onReset: () => void; children: React.ReactNode }, ErrorBoundaryState> {
+class ErrorBoundaryInner extends React.Component<
+  { onReset: () => void; children: React.ReactNode },
+  ErrorBoundaryState
+> {
   constructor(props: { onReset: () => void; children: React.ReactNode }) {
     super(props);
     this.state = { hasError: false };
@@ -33,7 +36,7 @@ class ErrorBoundaryInner extends React.Component<{ onReset: () => void; children
 
   render(): React.ReactNode {
     if (this.state.hasError) {
-      const message = (this.state.error as any)?.message ?? "알 수 없는 오류가 발생했어요";
+      const message = (this.state.error as any)?.message ?? '알 수 없는 오류가 발생했어요';
       return <Status.ErrorState message={message} retry={this.handleReset} />;
     }
     return this.props.children;
@@ -46,5 +49,3 @@ const AppErrorBoundary: React.FC<AppErrorBoundaryProps> = ({ children }) => {
 };
 
 export default AppErrorBoundary;
-
-

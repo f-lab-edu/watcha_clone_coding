@@ -134,7 +134,7 @@
   left: 50%;
   width: 0;
   height: 1px;
-  content: "";
+  content: '';
   background-color: #84868d;
   border-radius: 1px;
   transform: translateX(-50%);
@@ -238,7 +238,7 @@
 }
 .search-reset::before,
 .search-reset::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 0.6em;
   height: 2px;
@@ -293,7 +293,7 @@
   display: inline-block;
   width: 1px;
   height: 10px;
-  content: "";
+  content: '';
   margin: 5px 6px 0;
   vertical-align: top;
   background-color: rgba(255, 255, 255, 0.2);
@@ -318,7 +318,7 @@
   display: inline-block;
   width: 1px;
   height: 10px;
-  content: "";
+  content: '';
   margin: 5px 6px 0;
   vertical-align: top;
   background-color: rgba(255, 255, 255, 0.2);
@@ -358,7 +358,7 @@
   display: inline-block;
   width: 1px;
   height: 10px;
-  content: "";
+  content: '';
   margin: 0 9px 0 0;
   vertical-align: middle;
   background-color: rgba(255, 255, 255, 0.2);

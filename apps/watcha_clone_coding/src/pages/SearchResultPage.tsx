@@ -1,28 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ThemeTab from "@/components/ThemeTab";
-import Status from "@/components/Status";
-import useSearchMovie from "@/hooks/useSearchMovie";
-import { useSearchListQuery } from "@/queries/search/useSearchListQuery";
-import { useSearchGenresQuery, useSearchMovieQuery } from "@/queries/search/useSearchQuery";
-import { buildImageUrl } from "@/utils/transform";
-import { TransformedMovie } from "@/types/Movie";
-import AppErrorBoundary from "@/components/AppErrorBoundary";
-import "@/styles/Search.css";
-import { SearchResultPageSkeleton } from "@/components/Skeleton";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ThemeTab from '@/components/ThemeTab';
+import Status from '@/components/Status';
+import useSearchMovie from '@/hooks/useSearchMovie';
+import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
+import { useSearchGenresQuery, useSearchMovieQuery } from '@/queries/search/useSearchQuery';
+import { buildImageUrl } from '@/utils/transform';
+import { TransformedMovie } from '@/types/Movie';
+import AppErrorBoundary from '@/components/AppErrorBoundary';
+import '@/styles/Search.css';
+import { SearchResultPageSkeleton } from '@/components/Skeleton';
 
 const SearchResultPageContent = () => {
   const { query, genreId } = useSearchMovie();
   const { genresQuery } = useSearchListQuery();
-  const { data: keywordData} = useSearchMovieQuery(query);
+  const { data: keywordData } = useSearchMovieQuery(query);
   const { data: genresData } = useSearchGenresQuery(genreId);
-
 
   const resultList = (resultData: TransformedMovie[], type: string) => {
     return (
       <div>
         {/* 장르 검색일 때만 장르 탭 표시 */}
-        {type === "genres" && genresQuery.data.length > 0 && (
+        {type === 'genres' && genresQuery.data.length > 0 && (
           <div className="genre-filter-section">
             <h3>장르별 필터</h3>
             <ThemeTab list={genresQuery.data} />
@@ -32,7 +31,7 @@ const SearchResultPageContent = () => {
         {/* 검색 결과 헤더 */}
         <div className="search-result-header">
           <h2>
-            {type === "keyword"
+            {type === 'keyword'
               ? `"${query}" 검색 결과`
               : `장르: ${
                   genresQuery.data.find((g: { name: string; id?: number }) => g.id?.toString() === genreId)?.name
@@ -71,13 +70,13 @@ const SearchResultPageContent = () => {
 
   if (query) {
     if (keywordData && keywordData.length > 0) {
-      return resultList(keywordData, "keyword");
+      return resultList(keywordData, 'keyword');
     } else {
       return emptyList();
     }
   } else if (genreId) {
     if (genresData && genresData.length > 0) {
-      return resultList(genresData, "genres");
+      return resultList(genresData, 'genres');
     } else {
       return emptyList();
     }
@@ -85,7 +84,6 @@ const SearchResultPageContent = () => {
 
   return <Status.Loading />;
 };
-
 
 const SearchResultPage = () => {
   return (

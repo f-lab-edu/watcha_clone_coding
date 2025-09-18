@@ -1,5 +1,5 @@
-import "@/styles/Status.css";
-import React from "react";
+import '@/styles/Status.css';
+import React from 'react';
 
 type ErrorProps = {
   message?: string;
@@ -29,13 +29,10 @@ const ErrorState: React.FC<ErrorProps> = ({ message, retry }) => {
   );
 };
 
-const Status = { 
-  Loading, 
-  ErrorState 
+const Status = {
+  Loading,
+  ErrorState,
 } as const;
 
 export default Status;
-export { 
-  Loading, 
-  ErrorState 
-};
+export { Loading, ErrorState };

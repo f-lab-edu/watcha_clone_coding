@@ -1,14 +1,14 @@
-import axios from "axios";
-import { config as apiConfig } from "@/../config/env";
+import axios from 'axios';
+import { config as apiConfig } from '@/../config/env';
 
 // Axios 인스턴스 생성
 export const instance = axios.create({
   baseURL: apiConfig.tmdbBaseUrl,
   timeout: 5000, // 타임아웃을 5초로 단축
   headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    "Accept-Encoding": "gzip, deflate, br", // 압축 지원
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    'Accept-Encoding': 'gzip, deflate, br', // 압축 지원
   },
   // 브라우저 환경에서는 Keep-Alive가 자동으로 처리됨
 });
@@ -38,7 +38,7 @@ instance.interceptors.response.use(
   (error) => {
     const statusCode = error.response?.status;
     if (statusCode === 401) {
-      console.error("인증 오류: API 키가 유효하지 않습니다.");
+      console.error('인증 오류: API 키가 유효하지 않습니다.');
     }
     return Promise.reject(error);
   },

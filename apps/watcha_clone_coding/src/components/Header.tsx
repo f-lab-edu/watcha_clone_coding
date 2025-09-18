@@ -1,10 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
-import Button from "@/components/Button";
-import useSearchMovie from "@/hooks/useSearchMovie";
+import { Link, useLocation } from 'react-router-dom';
+import Button from '@/components/Button';
+import useSearchMovie from '@/hooks/useSearchMovie';
 
-import Watcha from "@/assets/watcha.svg";
-import Search from "@/assets/search.svg";
-import Alarm from "@/assets/alarm.svg";
+import Watcha from '@/assets/watcha.svg';
+import Search from '@/assets/search.svg';
+import Alarm from '@/assets/alarm.svg';
 
 const Header = () => {
   const location = useLocation();
@@ -46,8 +46,8 @@ const Header = () => {
         </div>
 
         <div className="header-actions">
-          {pathName !== "/search" ? (
-            <Link to={"/search"}>
+          {pathName !== '/search' ? (
+            <Link to={'/search'}>
               <Button
                 className="header-search-button button-base interactive-element"
                 aria-label="검색"
@@ -61,7 +61,7 @@ const Header = () => {
               <Search />
               <input
                 ref={(node) => {
-                  if (pathName === "/search" && node) {
+                  if (pathName === '/search' && node) {
                     node.focus();
                   }
                 }}
@@ -71,14 +71,14 @@ const Header = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter") {
+                  if (e.key === 'Enter') {
                     handleEnterKeyDown(e);
                   }
                 }}
                 name="query"
               />
               {query ? (
-                <Button className="search-reset" aria-label="검색어 지우기" onClick={() => setQuery("")}></Button>
+                <Button className="search-reset" aria-label="검색어 지우기" onClick={() => setQuery('')}></Button>
               ) : null}
             </div>
           )}

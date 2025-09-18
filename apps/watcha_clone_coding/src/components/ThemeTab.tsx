@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import useSearchMovie from "@/hooks/useSearchMovie";
-import Button from "@/components/Button";
+import { useEffect, useState } from 'react';
+import useSearchMovie from '@/hooks/useSearchMovie';
+import Button from '@/components/Button';
 
 interface ThemeTabProps {
   list: Array<{
@@ -10,7 +10,7 @@ interface ThemeTabProps {
 }
 
 const ThemeTab = ({ list }: ThemeTabProps) => {
-  const [activeName, setActiveName] = useState<string>(list[0]?.name ?? "");
+  const [activeName, setActiveName] = useState<string>(list[0]?.name ?? '');
   const { genreId, searchByGenre } = useSearchMovie();
 
   // genreId에 해당하는 아이템 찾기
@@ -39,7 +39,7 @@ const ThemeTab = ({ list }: ThemeTabProps) => {
         {list.map((item) => {
           const isActive = activeName === item.name;
           return (
-            <li key={item.name} className={`tab-item${isActive ? " tab-item-active" : ""}`}>
+            <li key={item.name} className={`tab-item${isActive ? ' tab-item-active' : ''}`}>
               <Button onClick={() => handleTabClick(item.name)}>{item.name} </Button>
             </li>
           );
