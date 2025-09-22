@@ -1,3 +1,3 @@
-module.exports = require('prettier-config');
+module.exports = require('@watcha/prettier-config');
 
 

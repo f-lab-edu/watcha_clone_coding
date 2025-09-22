@@ -73,6 +73,9 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^4.15.2",
     "webpack-merge": "^6.0.1",
-    "carousel": "workspace:*"
+    "carousel": "workspace:*",
+    "@watcha/tsconfig": "workspace:*",
+    "@watcha/eslint-config": "workspace:*",
+    "@watcha/prettier-config": "workspace:*"
   }
 }

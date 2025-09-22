@@ -26,7 +26,7 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/, // .ts 또는 .tsx 확장자 파일 처리
         use: 'babel-loader', // Babel 로더 사용
-        exclude: /node_modules/, // node_modules 제외
+        exclude: /node_modules\/(?!(axios|@tanstack))/, // axios, tanstack query 제외
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i, // 이미지 파일 처리
