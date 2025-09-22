@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['../../packages/eslint-config'],
+  extends: ['@watcha/eslint-config'],
   parserOptions: {
     project: './tsconfig.json',
   },

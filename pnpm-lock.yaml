@@ -83,6 +83,15 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.0.0
         version: 6.21.0(eslint@8.57.1)(typescript@5.9.2)
+      '@watcha/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@watcha/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
+      '@watcha/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       '@webpack-cli/generators':
         specifier: ^3.0.7
         version: 3.0.7(@types/node@24.3.3)(encoding@0.1.13)(mem-fs@2.3.0)(prettier@3.6.2)(webpack-cli@6.0.1)(webpack@5.101.3)
@@ -161,6 +170,15 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.7
         version: 19.1.9(@types/react@19.1.13)
+      '@watcha/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@watcha/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config
+      '@watcha/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       react:
         specifier: ^19.1.1
         version: 19.1.1

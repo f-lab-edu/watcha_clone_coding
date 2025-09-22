@@ -1,12 +1,20 @@
 {
-  "name": "tsconfig",
+  "name": "@watcha/tsconfig",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shared TypeScript configurations for Watcha project",
   "main": "index.js",
+  "files": [
+    "base.json",
+    "react.json",
+    "node.json"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "config"
+  ],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.15.1"

@@ -14,7 +14,10 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7"
+    "@types/react-dom": "^19.1.7",
+    "@watcha/tsconfig": "workspace:*",
+    "@watcha/eslint-config": "workspace:*",
+    "@watcha/prettier-config": "workspace:*"
   },
   "peerDependencies": {
     "react": "^19.1.1",
