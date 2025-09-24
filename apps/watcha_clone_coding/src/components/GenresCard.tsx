@@ -1,8 +1,10 @@
-import { GenredCardProps } from '@/types/Carousel';
-import useMovieCard from '@/hooks/useMovieCard';
-import Button from '@/components/Button';
+import { ReactElement } from 'react';
 
-const GenresCard = (props: GenredCardProps) => {
+import Button from '@/components/Button';
+import useMovieCard from '@/hooks/useMovieCard';
+import { GenredCardProps } from '@/types/Carousel';
+
+const GenresCard = (props: GenredCardProps): ReactElement => {
   const { handleGenreClick, generateRandomGradient } = useMovieCard(props);
 
   return (

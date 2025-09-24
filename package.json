@@ -1,12 +1,39 @@
 {
-    "name": "monorepo",
-    "private": true,
-    "packageManager": "pnpm@10.15.1",  
-    "scripts": {
-        "build:staging": "pnpm --F \"watcha_clone_coding\" build:staging",
-        "build:production": "pnpm --F \"watcha_clone_coding\" build:production",
-        "start": "pnpm --F \"watcha_clone_coding\" start",
-        "dev": "pnpm --F \"watcha_clone_coding\" dev",
-        "type-check": "pnpm --F \"watcha_clone_coding\" type-check"
-    }
+  "name": "monorepo",
+  "private": true,
+  "packageManager": "pnpm@10.15.1",
+  "scripts": {
+    "build:staging": "pnpm --F \"watcha_clone_coding\" build:staging",
+    "build:production": "pnpm --F \"watcha_clone_coding\" build:production",
+    "start": "pnpm --F \"watcha_clone_coding\" start",
+    "dev": "pnpm --F \"watcha_clone_coding\" dev",
+    "type-check": "pnpm --F \"watcha_clone_coding\" type-check",
+    "lint": "pnpm --F \"watcha_clone_coding\" lint",
+    "lint:fix": "pnpm --F \"watcha_clone_coding\" lint --fix",
+    "format": "pnpm --F \"watcha_clone_coding\" format",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "engines": {
+    "node": ">=22.13.0",
+    "pnpm": ">=10.15.1"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.0",
+    "prettier": "^3.6.2"
+  },
+  "lint-staged": {
+    "apps/**/*.{ts,tsx}": [
+      "pnpm --F watcha_clone_coding exec eslint --fix",
+      "pnpm --F watcha_clone_coding exec prettier --write"
+    ],
+    "packages/**/*.{ts,tsx}": [
+      "pnpm --F carousel exec eslint --fix",
+      "pnpm --F carousel exec prettier --write"
+    ],
+    "*.{json,md}": [
+      "pnpm exec prettier --write"
+    ]
+  }
 }

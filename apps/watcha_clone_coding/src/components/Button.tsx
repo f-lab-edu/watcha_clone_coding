@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonProps = React.PropsWithChildren<{
-  icon?: any;
-}> &
-  ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = {
+  children: ReactNode;
+  icon?: ReactNode;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({ icon, children, ...props }: ButtonProps) => {
+const Button = ({ icon, children, ...props }: ButtonProps): JSX.Element => {
   return (
     <button type="button" {...props}>
       {icon && <span className="button-icon">{icon}</span>}

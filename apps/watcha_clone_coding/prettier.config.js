@@ -1,1 +1,3 @@
-module.exports = require('@watcha/prettier-config');
+import config from '@watcha/prettier-config';
+
+export default config;

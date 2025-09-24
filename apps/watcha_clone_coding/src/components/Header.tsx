@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
+
+import Alarm from '@/assets/alarm.svg';
+import Search from '@/assets/search.svg';
+import Watcha from '@/assets/watcha.svg';
 import Button from '@/components/Button';
 import useSearchMovie from '@/hooks/useSearchMovie';
 
-import Watcha from '@/assets/watcha.svg';
-import Search from '@/assets/search.svg';
-import Alarm from '@/assets/alarm.svg';
 
 const Header = () => {
   const location = useLocation();

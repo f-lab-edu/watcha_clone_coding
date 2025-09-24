@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ThemeTab from '@/components/ThemeTab';
+
+import AppErrorBoundary from '@/components/AppErrorBoundary';
+import { SearchResultPageSkeleton } from '@/components/Skeleton';
 import Status from '@/components/Status';
+import ThemeTab from '@/components/ThemeTab';
 import useSearchMovie from '@/hooks/useSearchMovie';
 import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
 import { useSearchGenresQuery, useSearchMovieQuery } from '@/queries/search/useSearchQuery';
-import { buildImageUrl } from '@/utils/transform';
 import { TransformedMovie } from '@/types/Movie';
-import AppErrorBoundary from '@/components/AppErrorBoundary';
+import { buildImageUrl } from '@/utils/transform';
 import '@/styles/Search.css';
-import { SearchResultPageSkeleton } from '@/components/Skeleton';
 
 const SearchResultPageContent = () => {
   const { query, genreId } = useSearchMovie();

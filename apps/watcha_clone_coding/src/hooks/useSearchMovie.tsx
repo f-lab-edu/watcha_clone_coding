@@ -1,5 +1,6 @@
-import { useEffect, type FormEvent, type KeyboardEvent } from 'react';
+import { useEffect, type KeyboardEvent } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import useSearchKeywordStore from '@/stores/useSearchKeywordStore';
 
 const useSearchMovie = () => {

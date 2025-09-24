@@ -27,6 +27,8 @@ const Skeleton: React.FC<SkeletonProps> = memo(
   },
 );
 
+Skeleton.displayName = 'Skeleton';
+
 // 오버레이 레이아웃 영화 카드 스켈레톤
 const OverlayMovieCardSkeleton: React.FC = memo(() => {
   return (
@@ -41,6 +43,8 @@ const OverlayMovieCardSkeleton: React.FC = memo(() => {
   );
 });
 
+OverlayMovieCardSkeleton.displayName = 'OverlayMovieCardSkeleton';
+
 // 상단 레이아웃 영화 카드 스켈레톤
 const TopMovieCardSkeleton: React.FC = memo(() => {
   return (
@@ -54,6 +58,8 @@ const TopMovieCardSkeleton: React.FC = memo(() => {
   );
 });
 
+TopMovieCardSkeleton.displayName = 'TopMovieCardSkeleton';
+
 // 좌측 레이아웃 영화 카드 스켈레톤
 const LeftMovieCardSkeleton: React.FC = memo(() => {
   return (
@@ -66,6 +72,8 @@ const LeftMovieCardSkeleton: React.FC = memo(() => {
   );
 });
 
+LeftMovieCardSkeleton.displayName = 'LeftMovieCardSkeleton';
+
 // 콘텐츠 없는 영화 카드 스켈레톤
 const NoneMovieCardSkeleton: React.FC = memo(() => {
   return (
@@ -74,6 +82,8 @@ const NoneMovieCardSkeleton: React.FC = memo(() => {
     </div>
   );
 });
+
+NoneMovieCardSkeleton.displayName = 'NoneMovieCardSkeleton';
 
 // 캐러셀용 스켈레톤
 const CarouselSkeleton: React.FC<{
@@ -110,6 +120,8 @@ const CarouselSkeleton: React.FC<{
   );
 });
 
+CarouselSkeleton.displayName = 'CarouselSkeleton';
+
 // 페이지 전체 로딩용 스켈레톤
 const PageSkeleton: React.FC = memo(() => {
   return (
@@ -145,6 +157,8 @@ const PageSkeleton: React.FC = memo(() => {
     </div>
   );
 });
+
+PageSkeleton.displayName = 'PageSkeleton';
 
 // 상세 페이지용 스켈레톤
 const DetailPageSkeleton: React.FC = memo(() => {
@@ -258,6 +272,8 @@ const DetailPageSkeleton: React.FC = memo(() => {
   );
 });
 
+DetailPageSkeleton.displayName = 'DetailPageSkeleton';
+
 // 검색 홈 페이지용 스켈레톤
 const SearchHomePageSkeleton: React.FC = memo(() => {
   return (
@@ -301,6 +317,8 @@ const SearchHomePageSkeleton: React.FC = memo(() => {
   );
 });
 
+SearchHomePageSkeleton.displayName = 'SearchHomePageSkeleton';
+
 // 검색 결과 페이지용 스켈레톤
 const SearchResultPageSkeleton: React.FC = memo(() => {
   return (
@@ -323,6 +341,8 @@ const SearchResultPageSkeleton: React.FC = memo(() => {
     </div>
   );
 });
+
+SearchResultPageSkeleton.displayName = 'SearchResultPageSkeleton';
 
 const SkeletonComponents = {
   Skeleton,

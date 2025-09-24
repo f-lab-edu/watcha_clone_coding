@@ -1,12 +1,13 @@
-import { createContext, useContext, ReactNode } from "react";
-import { CarouselContextType, RootProps, TrackProps, ArticleProps } from "../types/Carousel";
+import React, { createContext, useContext } from "react";
+
 import Button from "./Button";
 import useCarousel from "../hooks/useCarousel";
+import { CarouselContextType, RootProps, TrackProps, ArticleProps } from "../types/Carousel";
 import "../styles/Carousel.css";
 
 const CarouselContext = createContext<CarouselContextType | undefined>(undefined);
 
-const useCarouselContext = () => {
+const useCarouselContext = (): CarouselContextType => {
   const context = useContext(CarouselContext);
   if (!context) {
     throw new Error("Carousel components must be used within Carousel.Root");
@@ -14,7 +15,7 @@ const useCarouselContext = () => {
   return context;
 };
 
-const Root: React.FC<RootProps> = ({ height, articleWidth, slides = [], children }) => {
+const Root: React.FC<RootProps> = ({ height, articleWidth, slides = [], children }): React.JSX.Element => {
   const carouselHooks = useCarousel({ articleWidth, slides: slides });
 
   if (!slides || slides.length === 0) {
@@ -30,7 +31,7 @@ const Root: React.FC<RootProps> = ({ height, articleWidth, slides = [], children
   );
 };
 
-const LeftButton: React.FC = () => {
+const LeftButton: React.FC = (): React.JSX.Element => {
   const { handlePrev } = useCarouselContext();
 
   return (
@@ -40,7 +41,7 @@ const LeftButton: React.FC = () => {
   );
 };
 
-const RightButton: React.FC = () => {
+const RightButton: React.FC = (): React.JSX.Element => {
   const { handleNext } = useCarouselContext();
 
   return (
@@ -50,7 +51,7 @@ const RightButton: React.FC = () => {
   );
 };
 
-const Track: React.FC<TrackProps> = ({ children, articleWidth }) => {
+const Track: React.FC<TrackProps> = ({ children, articleWidth }): React.JSX.Element => {
   const { trackRef, transitionEnabled, displayIndex, clonedSlides } = useCarouselContext();
 
   return (
@@ -67,7 +68,7 @@ const Track: React.FC<TrackProps> = ({ children, articleWidth }) => {
   );
 };
 
-const Article: React.FC<ArticleProps> = ({ articleWidth, layout = "overlay", children }) => {
+const Article: React.FC<ArticleProps> = ({ articleWidth, layout = "overlay", children }): React.JSX.Element => {
   const { clonedSlides, handleTransitionEnd } = useCarouselContext();
 
   return (

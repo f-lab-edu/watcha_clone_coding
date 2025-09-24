@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
-import { GenredCardProps, MovieCardProps } from '@/types/Carousel';
+
 import useSearchMovie from '@/hooks/useSearchMovie';
+import { GenredCardProps, MovieCardProps } from '@/types/Carousel';
 
 const useMovieCard = (props: MovieCardProps | GenredCardProps) => {
   const { searchByGenre } = useSearchMovie();

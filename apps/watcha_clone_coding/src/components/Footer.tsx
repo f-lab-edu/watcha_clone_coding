@@ -1,9 +1,11 @@
-import Facebook from '@/assets/facebook.svg';
-import Twitter from '@/assets/twitter.svg';
-import Instagram from '@/assets/instagram.svg';
-import Blog from '@/assets/blog.svg';
+import { ReactElement } from 'react';
 
-const Footer = () => {
+import Blog from '@/assets/blog.svg';
+import Facebook from '@/assets/facebook.svg';
+import Instagram from '@/assets/instagram.svg';
+import Twitter from '@/assets/twitter.svg';
+
+const Footer = (): ReactElement => {
   return (
     <footer className="footer">
       {/* 서비스 이용약관 및 정책 */}
