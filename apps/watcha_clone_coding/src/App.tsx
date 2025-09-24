@@ -2,6 +2,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy, Suspense, ReactElement } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+// Test comment for husky and lint-staged
+
 import AppErrorBoundary from './components/AppErrorBoundary';
 import Status from './components/Status';
 
