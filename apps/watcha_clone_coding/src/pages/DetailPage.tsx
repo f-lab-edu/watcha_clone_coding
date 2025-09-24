@@ -1,17 +1,16 @@
 import React from 'react';
-import useMovieDetail from '@/hooks/useMovieDetail';
-import Button from '@/components/Button';
-import Status from '@/components/Status';
+
+import Assessment from '@/assets/assessment.svg';
+import Interest from '@/assets/interest.svg';
+import More from '@/assets/more.svg';
+import Party from '@/assets/party.svg';
 import AppErrorBoundary from '@/components/AppErrorBoundary';
+import Button from '@/components/Button';
+import { DetailPageSkeleton } from '@/components/Skeleton';
+import useMovieDetail from '@/hooks/useMovieDetail';
 import { Genre, Member, Review, Video } from '@/types/Movie';
 import { buildImageUrl } from '@/utils/transform';
-
-import Interest from '@/assets/interest.svg';
-import Assessment from '@/assets/assessment.svg';
-import Party from '@/assets/party.svg';
-import More from '@/assets/more.svg';
 import '@/styles/Detail.css';
-import { DetailPageSkeleton } from '@/components/Skeleton';
 
 const DetailPageContent = () => {
   const { movieData, reviews, getReleaseYear, changeTimeFormat } = useMovieDetail();

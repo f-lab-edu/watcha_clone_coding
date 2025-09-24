@@ -1,6 +1,7 @@
-import useSearchMovie from '@/hooks/useSearchMovie';
 import SearchHomePage from './SearchHomePage';
 import SearchResultPage from './SearchResultPage';
+
+import useSearchMovie from '@/hooks/useSearchMovie';
 
 const SearchPage = () => {
   const { query, genreId } = useSearchMovie();

@@ -1,5 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { searchListKeys } from './queryKeys';
+
 import { fetchSearchKeywords, fetchSearchGenres } from '@/utils/api';
 
 export const useSearchMovieQuery = (keyword: string) => {

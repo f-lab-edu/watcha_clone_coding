@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import { MovieCardProps } from '@/types/Carousel';
 
 const MovieCard = (props: MovieCardProps) => {

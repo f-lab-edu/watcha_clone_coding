@@ -1,13 +1,13 @@
-import React from 'react';
 import { Carousel } from 'carousel';
-import MovieCard from '@/components/MovieCard';
+import React from 'react';
+
 import AppErrorBoundary from '@/components/AppErrorBoundary';
+import MovieCard from '@/components/MovieCard';
+import { PageSkeleton } from '@/components/Skeleton';
 import ThemeTab from '@/components/ThemeTab';
 import { useMovieListQuery } from '@/queries/movieList/useMovieListQuery';
 import { CarouselProps } from '@/types/Carousel';
-import Status from '@/components/Status';
 import '@/styles/Page.css';
-import { PageSkeleton } from '@/components/Skeleton';
 
 const TAB_BUTTONS = [
   {

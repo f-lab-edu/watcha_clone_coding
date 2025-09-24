@@ -1,16 +1,16 @@
+import { Carousel } from 'carousel';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Carousel } from 'carousel';
-import ThemeTab from '@/components/ThemeTab';
-import GenresCard from '@/components/GenresCard';
-import Status from '@/components/Status';
-import useSearchMovies from '@/hooks/useSearchMovies';
-import { Genre } from '@/types/Movie';
-import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
-import { buildImageUrl } from '@/utils/transform';
+
 import AppErrorBoundary from '@/components/AppErrorBoundary';
-import '@/styles/Search.css';
+import GenresCard from '@/components/GenresCard';
 import { SearchHomePageSkeleton } from '@/components/Skeleton';
+import ThemeTab from '@/components/ThemeTab';
+import useSearchMovies from '@/hooks/useSearchMovies';
+import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
+import { Genre } from '@/types/Movie';
+import { buildImageUrl } from '@/utils/transform';
+import '@/styles/Search.css';
 
 const TAB_BUTTONS = [
   {

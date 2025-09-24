@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import useSearchMovie from '@/hooks/useSearchMovie';
+
 import Button from '@/components/Button';
+import useSearchMovie from '@/hooks/useSearchMovie';
 
 interface ThemeTabProps {
   list: Array<{

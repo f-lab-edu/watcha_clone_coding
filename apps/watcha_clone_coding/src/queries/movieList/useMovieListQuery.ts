@@ -1,6 +1,8 @@
-import { fetchNowPlayingMovieList, fetchPopularMovieList, fetchTopRatedMovieList } from '@/utils/api';
 import { useSuspenseQueries } from '@tanstack/react-query';
+
 import { movieListKeys } from './queryKeys';
+
+import { fetchNowPlayingMovieList, fetchPopularMovieList, fetchTopRatedMovieList } from '@/utils/api';
 
 export const useMovieListQuery = () => {
   const results = useSuspenseQueries({

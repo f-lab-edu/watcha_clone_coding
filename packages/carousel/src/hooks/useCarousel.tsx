@@ -1,10 +1,20 @@
-import { useState, useRef, useEffect, useCallback } from "react";
-import { Genre } from "../types/Movie";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+
 import { CarouselProps as CarouselSlide } from "../types/Carousel";
+import { Genre } from "../types/Movie";
 
 type Slide = CarouselSlide | Genre;
 
-const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: Slide[] }) => {
+const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: Slide[] }): {
+  containerRef: React.RefObject<HTMLDivElement>;
+  trackRef: React.RefObject<HTMLDivElement>;
+  transitionEnabled: boolean;
+  displayIndex: number;
+  clonedSlides: Slide[];
+  handleTransitionEnd: () => void;
+  handlePrev: () => void;
+  handleNext: () => void;
+} => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [visibleCount, setVisibleCount] = useState(1);
@@ -13,7 +23,7 @@ const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: S
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  const calculateVisibleCount = useCallback(() => {
+  const calculateVisibleCount = useCallback((): void => {
     if (containerRef.current) {
       const containerWidth = containerRef.current.offsetWidth;
       const count = Math.ceil(containerWidth / articleWidth);
@@ -33,28 +43,28 @@ const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: S
   useEffect(() => {
     calculateVisibleCount();
 
-    const handleResize = () => {
+    const handleResize = (): void => {
       calculateVisibleCount();
     };
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return (): void => window.removeEventListener("resize", handleResize);
   }, [calculateVisibleCount]);
 
   const clonedSlides = [...slides.slice(-visibleCount), ...slides, ...slides.slice(0, visibleCount)];
   const displayIndex = currentIndex + visibleCount;
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     if (!transitionEnabled) return;
     setCurrentIndex((prev) => prev + 1);
   };
 
-  const handlePrev = () => {
+  const handlePrev = (): void => {
     if (!transitionEnabled) return;
     setCurrentIndex((prev) => prev - 1);
   };
 
-  const handleTransitionEnd = () => {
+  const handleTransitionEnd = (): void => {
     if (currentIndex >= slides.length) {
       setTransitionEnabled(false);
       setCurrentIndex(0);
@@ -69,7 +79,7 @@ const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: S
       const timer = requestAnimationFrame(() => {
         setTransitionEnabled(true);
       });
-      return () => cancelAnimationFrame(timer);
+      return (): void => cancelAnimationFrame(timer);
     }
   }, [transitionEnabled, isInitialized]);
 
