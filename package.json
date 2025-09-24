@@ -7,6 +7,12 @@
         "build:production": "pnpm --F \"watcha_clone_coding\" build:production",
         "start": "pnpm --F \"watcha_clone_coding\" start",
         "dev": "pnpm --F \"watcha_clone_coding\" dev",
-        "type-check": "pnpm --F \"watcha_clone_coding\" type-check"
+        "type-check": "pnpm --F \"watcha_clone_coding\" type-check",
+        "lint": "pnpm --F \"watcha_clone_coding\" lint",
+        "lint:fix": "pnpm --F \"watcha_clone_coding\" lint --fix"
+    },
+    "engines": {
+        "node": ">=22.13.0",
+        "pnpm": ">=10.15.1"
     }
 }
