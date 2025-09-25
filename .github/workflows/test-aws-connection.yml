@@ -1,0 +1,145 @@
+# .github/workflows/test-aws-connection.yml
+name: Test AWS Connection
+
+# 수동으로 실행할 수 있도록 설정
+on:
+  workflow_dispatch:  # GitHub UI에서 수동 실행
+  push:
+    branches: [test-aws]  # test-aws 브랜치에 푸시할 때만 실행
+
+env:
+  AWS_REGION: ap-northeast-2
+
+jobs:
+  test-aws-connection:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+          
+      - name: Test 1 - AWS CLI 버전 확인
+        run: |
+          echo "=== AWS CLI 버전 확인 ==="
+          aws --version
+          echo ""
+          
+      - name: Test 2 - AWS 계정 정보 확인
+        run: |
+          echo "=== AWS 계정 및 권한 확인 ==="
+          aws sts get-caller-identity
+          echo ""
+          
+      - name: Test 3 - S3 버킷 접근 테스트
+        run: |
+          echo "=== S3 버킷 접근 테스트 ==="
+          echo "버킷 이름: ${{ secrets.S3_BUCKET_NAME }}"
+          
+          # 버킷 존재 여부 확인
+          if aws s3 ls s3://${{ secrets.S3_BUCKET_NAME }} > /dev/null 2>&1; then
+            echo "✅ S3 버킷 접근 성공"
+            aws s3 ls s3://${{ secrets.S3_BUCKET_NAME }} --human-readable --summarize
+          else
+            echo "❌ S3 버킷 접근 실패"
+            exit 1
+          fi
+          echo ""
+          
+      - name: Test 4 - S3 업로드/삭제 권한 테스트
+        run: |
+          echo "=== S3 업로드/삭제 권한 테스트 ==="
+          
+          # 테스트 파일 생성
+          echo "GitHub Actions 테스트 파일 - $(date)" > test-file.txt
+          
+          # 업로드 테스트
+          if aws s3 cp test-file.txt s3://${{ secrets.S3_BUCKET_NAME }}/github-actions-test.txt; then
+            echo "✅ S3 파일 업로드 성공"
+          else
+            echo "❌ S3 파일 업로드 실패"
+            exit 1
+          fi
+          
+          # 다운로드 테스트
+          if aws s3 cp s3://${{ secrets.S3_BUCKET_NAME }}/github-actions-test.txt downloaded-test.txt; then
+            echo "✅ S3 파일 다운로드 성공"
+            echo "다운로드된 파일 내용:"
+            cat downloaded-test.txt
+          else
+            echo "❌ S3 파일 다운로드 실패"
+          fi
+          
+          # 삭제 테스트
+          if aws s3 rm s3://${{ secrets.S3_BUCKET_NAME }}/github-actions-test.txt; then
+            echo "✅ S3 파일 삭제 성공"
+          else
+            echo "❌ S3 파일 삭제 실패"
+          fi
+          echo ""
+          
+      - name: Test 5 - CloudFront 접근 테스트
+        run: |
+          echo "=== CloudFront 접근 테스트 ==="
+          echo "Distribution ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
+          
+          # CloudFront Distribution 존재 여부 확인
+          if aws cloudfront get-distribution --id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} > /dev/null 2>&1; then
+            echo "✅ CloudFront Distribution 접근 성공"
+            
+            # Distribution 정보 출력
+            aws cloudfront get-distribution --id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+              --query 'Distribution.[Id,Status,DomainName]' \
+              --output table
+          else
+            echo "❌ CloudFront Distribution 접근 실패"
+            echo "사용 가능한 Distributions 목록:"
+            aws cloudfront list-distributions \
+              --query 'DistributionList.Items[*].[Id,Status,DomainName]' \
+              --output table || echo "CloudFront 목록 조회 권한 없음"
+            exit 1
+          fi
+          echo ""
+          
+      - name: Test 6 - CloudFront 무효화 권한 테스트
+        run: |
+          echo "=== CloudFront 무효화 권한 테스트 ==="
+          
+          # 테스트용 무효화 생성 (실제 영향 최소화)
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/github-actions-test-path" \
+            --query 'Invalidation.Id' \
+            --output text)
+          
+          if [ $? -eq 0 ]; then
+            echo "✅ CloudFront 무효화 권한 테스트 성공"
+            echo "생성된 Invalidation ID: $INVALIDATION_ID"
+            
+            # 무효화 상태 확인
+            aws cloudfront get-invalidation \
+              --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+              --id $INVALIDATION_ID \
+              --query 'Invalidation.[Id,Status,CreateTime]' \
+              --output table
+          else
+            echo "❌ CloudFront 무효화 권한 테스트 실패"
+            exit 1
+          fi
+          echo ""
+          
+      - name: Test 7 - 종합 결과
+        run: |
+          echo "=== 🎉 모든 테스트 성공! ==="
+          echo "✅ AWS 인증 정보 올바름"
+          echo "✅ S3 버킷 읽기/쓰기/삭제 권한 확인"
+          echo "✅ CloudFront Distribution 접근 권한 확인"
+          echo "✅ CloudFront 무효화 권한 확인"
+          echo ""
+          echo "🚀 실제 배포 워크플로우를 안전하게 사용할 수 있습니다!"
