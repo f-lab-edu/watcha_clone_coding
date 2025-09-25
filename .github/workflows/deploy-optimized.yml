@@ -48,11 +48,29 @@ jobs:
           echo "=== 워크스페이스 패키지들 빌드 ==="
           pnpm --filter @watcha/carousel build
           
+          # CSS 파일 복사 (TypeScript가 복사하지 않는 경우)
+          if [ -d "packages/carousel/src/styles" ]; then
+            echo "=== CSS 파일 복사 ==="
+            mkdir -p packages/carousel/dist/src/styles
+            cp -r packages/carousel/src/styles/* packages/carousel/dist/src/styles/ || echo "CSS 파일 복사 실패"
+          fi
+          
       - name: Run type check
         run: pnpm type-check
         
       - name: Build for production
-        run: pnpm build:production
+        run: |
+          # ES Modules 이슈 해결을 위한 임시 조치
+          cd apps/watcha_clone_coding
+          
+          # package.json에서 type: module 임시 제거
+          sed -i 's/"type": "module",//g' package.json
+          
+          # 빌드 실행
+          pnpm build:production
+          
+          # type: module 복원
+          sed -i 's/"version": "1.0.0",/"version": "1.0.0",\n  "type": "module",/g' package.json
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
