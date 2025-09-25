@@ -1,13 +1,19 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
-import { CarouselProps as CarouselSlide } from "../types/Carousel";
-import { Genre } from "../types/Movie";
+import { CarouselProps as CarouselSlide } from '../types/Carousel';
+import { Genre } from '../types/Movie';
 
 type Slide = CarouselSlide | Genre;
 
-const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: Slide[] }): {
-  containerRef: React.RefObject<HTMLDivElement>;
-  trackRef: React.RefObject<HTMLDivElement>;
+const useCarousel = ({
+  articleWidth,
+  slides,
+}: {
+  articleWidth: number;
+  slides: Slide[];
+}): {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  trackRef: React.RefObject<HTMLDivElement | null>;
   transitionEnabled: boolean;
   displayIndex: number;
   clonedSlides: Slide[];
@@ -47,8 +53,8 @@ const useCarousel = ({ articleWidth, slides }: { articleWidth: number; slides: S
       calculateVisibleCount();
     };
 
-    window.addEventListener("resize", handleResize);
-    return (): void => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return (): void => window.removeEventListener('resize', handleResize);
   }, [calculateVisibleCount]);
 
   const clonedSlides = [...slides.slice(-visibleCount), ...slides, ...slides.slice(0, visibleCount)];

@@ -6,7 +6,6 @@ import Watcha from '@/assets/watcha.svg';
 import Button from '@/components/Button';
 import useSearchMovie from '@/hooks/useSearchMovie';
 
-
 const Header = () => {
   const location = useLocation();
   const pathName = location.pathname;

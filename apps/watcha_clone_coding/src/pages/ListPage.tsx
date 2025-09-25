@@ -1,4 +1,4 @@
-import { Carousel } from 'carousel';
+import { Carousel } from '@watcha/carousel';
 import React from 'react';
 
 import AppErrorBoundary from '@/components/AppErrorBoundary';

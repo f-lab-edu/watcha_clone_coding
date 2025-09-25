@@ -2,20 +2,13 @@
   "extends": "@watcha/tsconfig/react.json",
   "compilerOptions": {
     "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "types/**/*",
-    "index.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*", "types/**/*", "index.ts"],
+  "exclude": ["node_modules", "dist"]
 }
