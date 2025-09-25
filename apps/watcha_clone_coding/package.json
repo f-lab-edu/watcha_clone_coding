@@ -1,7 +1,6 @@
 {
   "name": "watcha_clone_coding",
   "version": "1.0.0",
-  "type": "module",
   "description": "\"# watcha_clone_coding\"",
   "main": "index.js",
   "packageManager": "pnpm@10.15.1",
