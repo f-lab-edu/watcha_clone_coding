@@ -39,8 +39,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         
-      - name: Run type check
-        run: pnpm type-check
+      - name: Debug - 환경 확인
+        run: |
+          echo "Node.js: $(node --version)"
+          echo "pnpm: $(pnpm --version)"
+          echo "작업 디렉토리: $(pwd)"
+          echo "패키지 목록:"
+          pnpm list -r --depth=0
+          
+      - name: Run type check (with verbose output)
+        run: |
+          echo "실행 중: pnpm -r type-check"
+          pnpm -r type-check --reporter=append-only
         
       - name: Run lint
         run: pnpm lint
