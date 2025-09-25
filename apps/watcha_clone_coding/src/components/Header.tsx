@@ -78,9 +78,7 @@ const Header = () => {
                 name="query"
               />
               {query ? (
-                <Button className="search-reset" aria-label="검색어 지우기" onClick={() => setQuery('')}>
-                  ×
-                </Button>
+                <Button className="search-reset" aria-label="검색어 지우기" onClick={() => setQuery('')}></Button>
               ) : null}
             </div>
           )}
@@ -88,9 +86,7 @@ const Header = () => {
             className="header-notification-button button-base interactive-element"
             aria-label="알림"
             icon={<Alarm />}
-          >
-            {null}
-          </Button>
+          ></Button>
           <Button className="header-login-button button-base interactive-element text-base text-regular">
             로그인/회원가입
           </Button>
