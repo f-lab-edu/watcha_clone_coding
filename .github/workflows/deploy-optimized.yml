@@ -62,11 +62,9 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           
       - name: Deploy to S3 with optimized settings
-        env:
-          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
         run: |
           # HTML 파일 업로드 - 캐시 비활성화
-          aws s3 sync ${{ env.BUILD_DIR }} s3://$S3_BUCKET_NAME \
+          aws s3 sync ${{ env.BUILD_DIR }} s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "*" \
             --include "*.html" \
             --cache-control "max-age=0,must-revalidate,public" \
@@ -74,31 +72,29 @@ jobs:
             --delete
           
           # CSS 파일 업로드 - 1년 캐시
-          aws s3 sync ${{ env.BUILD_DIR }} s3://$S3_BUCKET_NAME \
+          aws s3 sync ${{ env.BUILD_DIR }} s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "*" \
             --include "*.css" \
             --cache-control "max-age=31536000,public" \
             --content-type "text/css; charset=utf-8"
           
           # JS 파일 업로드 - 1년 캐시  
-          aws s3 sync ${{ env.BUILD_DIR }} s3://$S3_BUCKET_NAME \
+          aws s3 sync ${{ env.BUILD_DIR }} s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "*" \
             --include "*.js" \
             --cache-control "max-age=31536000,public" \
             --content-type "application/javascript; charset=utf-8"
           
           # 기타 파일들 (이미지, 폰트 등) 업로드 - 1년 캐시
-          aws s3 sync ${{ env.BUILD_DIR }} s3://$S3_BUCKET_NAME \
+          aws s3 sync ${{ env.BUILD_DIR }} s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "*.html" \
             --exclude "*.css" \
             --exclude "*.js" \
             --cache-control "max-age=31536000,public"
           
       - name: Invalidate CloudFront
-        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
-        env:
-          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        if: secrets.CLOUDFRONT_DISTRIBUTION_ID
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*.html" "/*.css" "/*.js"
