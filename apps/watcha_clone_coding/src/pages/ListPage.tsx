@@ -39,7 +39,7 @@ const ListPageContent = () => {
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={1140}>
             <Carousel.Article articleWidth={1140} layout="overlay">
-              {(slide) => {
+              {(slide: any) => {
                 return <MovieCard slide={slide as CarouselProps} layout="overlay" type="movie" />;
               }}
             </Carousel.Article>
@@ -53,7 +53,7 @@ const ListPageContent = () => {
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={421}>
             <Carousel.Article articleWidth={421} layout="top">
-              {(slide) => {
+              {(slide: any) => {
                 return <MovieCard slide={slide as CarouselProps} layout="top" type="movie" />;
               }}
             </Carousel.Article>
@@ -67,7 +67,7 @@ const ListPageContent = () => {
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={400}>
             <Carousel.Article articleWidth={400} layout="left">
-              {(slide) => {
+              {(slide: any) => {
                 return <MovieCard slide={slide as CarouselProps} layout="left" type="movie" />;
               }}
             </Carousel.Article>
@@ -81,7 +81,7 @@ const ListPageContent = () => {
           <Carousel.LeftButton />
           <Carousel.Track articleWidth={290}>
             <Carousel.Article articleWidth={290} layout="none">
-              {(slide) => {
+              {(slide: any) => {
                 return <MovieCard slide={slide as CarouselProps} layout="none" type="movie" />;
               }}
             </Carousel.Article>
