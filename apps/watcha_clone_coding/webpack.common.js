@@ -46,6 +46,18 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        carousel: {
+          test: /[\\/]packages[\\/]carousel[\\/]/,
+          name: 'carousel',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html', // 템플릿 파일 경로

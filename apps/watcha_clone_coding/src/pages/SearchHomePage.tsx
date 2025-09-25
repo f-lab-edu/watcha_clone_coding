@@ -1,4 +1,4 @@
-import { Carousel } from 'carousel';
+import { Carousel } from '@watcha/carousel';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,8 +8,8 @@ import { SearchHomePageSkeleton } from '@/components/Skeleton';
 import ThemeTab from '@/components/ThemeTab';
 import useSearchMovies from '@/hooks/useSearchMovies';
 import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
-import { Genre } from '@/types/Movie';
 import { buildImageUrl } from '@/utils/transform';
+
 import '@/styles/Search.css';
 
 const TAB_BUTTONS = [
@@ -78,8 +78,8 @@ const SearchHomePageContent = () => {
             <Carousel.LeftButton />
             <Carousel.Track articleWidth={319}>
               <Carousel.Article articleWidth={319} layout="overlay">
-                {(slide) => {
-                  return <GenresCard slide={slide as Genre} layout="overlay" type="genres" />;
+                {(slide: any) => {
+                  return <GenresCard slide={slide} layout="overlay" type="genres" />;
                 }}
               </Carousel.Article>
             </Carousel.Track>

@@ -44,7 +44,7 @@ class ErrorBoundaryInner extends React.Component<
   }
 }
 
-const AppErrorBoundary = ({ children }: AppErrorBoundaryProps): JSX.Element => {
+const AppErrorBoundary = ({ children }: AppErrorBoundaryProps): React.ReactElement => {
   const { reset } = useQueryErrorResetBoundary();
   return <ErrorBoundaryInner onReset={reset}>{children}</ErrorBoundaryInner>;
 };
