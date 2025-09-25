@@ -1,12 +1,12 @@
 # .github/workflows/pr-check.yml
-name: PR Type Check # workflow name
+name: PR Type Check
 
 on:
-  pull_request: # event trigger
+  pull_request:
     branches: [main, develop]
 
 jobs:
-  type-check: # job name
+  type-check:
     runs-on: ubuntu-latest
     
     steps:
@@ -47,10 +47,8 @@ jobs:
           echo "패키지 목록:"
           pnpm list -r --depth=0
           
-      - name: Run type check (with verbose output)
-        run: |
-          echo "실행 중: pnpm -r type-check"
-          pnpm -r type-check --reporter=append-only
+      - name: Run type check
+        run: pnpm type-check
         
       - name: Run lint
         run: pnpm lint
