@@ -5,7 +5,7 @@ name: Test AWS Connection
 on:
   workflow_dispatch:  # GitHub UI에서 수동 실행
   push:
-    branches: [test-aws]  # test-aws 브랜치에 푸시할 때만 실행
+    branches: [test]  # test-aws 브랜치에 푸시할 때만 실행
 
 env:
   AWS_REGION: ap-northeast-2
