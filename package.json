@@ -3,8 +3,7 @@
   "private": true,
   "packageManager": "pnpm@10.15.1",
   "scripts": {
-    "build:staging": "pnpm --F \"watcha_clone_coding\" build:staging",
-    "build:production": "pnpm --F \"watcha_clone_coding\" build:production",
+    "build": "pnpm --F \"watcha_clone_coding\" build",
     "start": "pnpm --F \"watcha_clone_coding\" start",
     "dev": "pnpm --F \"watcha_clone_coding\" dev",
     "type-check": "pnpm -r type-check",

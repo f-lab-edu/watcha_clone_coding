@@ -3,7 +3,7 @@ import watchaConfig from '@watcha/eslint-config';
 export default [
   ...watchaConfig,
   {
-    ignores: ['dist/**', 'node_modules/**'],
+    ignores: ['dist/**', 'node_modules/**', 'vite.config.ts'],
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
