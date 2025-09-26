@@ -19,9 +19,14 @@
     "pnpm": ">=10.15.1"
   },
   "devDependencies": {
+    "@swc/core": "^1.13.19",
+    "@swc/helpers": "^0.5.17",
+    "@vitejs/plugin-react-swc": "^4.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7"
   },
   "lint-staged": {
     "apps/**/*.{ts,tsx}": [
