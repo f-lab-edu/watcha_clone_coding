@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
-import { CarouselProps as CarouselSlide } from '../types/Carousel';
-import { Genre } from '../types/Movie';
+import { CarouselProps as CarouselSlide } from '@/types/Carousel';
+import { Genre } from '@/types/Movie';
 
 type Slide = CarouselSlide | Genre;
 
