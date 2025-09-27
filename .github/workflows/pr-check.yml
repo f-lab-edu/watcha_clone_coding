@@ -61,6 +61,13 @@ jobs:
           pnpm --filter @watcha/carousel build
           echo "carousel 빌드 완료!"
           
+          # CSS 파일 복사 (TypeScript가 복사하지 않는 경우)
+          if [ -d "packages/carousel/src/styles" ]; then
+            echo "=== CSS 파일 복사 ==="
+            mkdir -p packages/carousel/dist/src/styles
+            cp -r packages/carousel/src/styles/* packages/carousel/dist/src/styles/ || echo "CSS 파일 복사 실패"
+          fi
+          
           # 빌드 결과 확인
           echo "carousel 빌드 결과 확인:"
           ls -la packages/carousel/dist/ || echo "ERROR: carousel dist 디렉토리가 생성되지 않음!"
@@ -80,6 +87,12 @@ jobs:
       - name: Run type check
         run: |
           echo "=== 타입 체크 실행 ==="
+          echo "현재 작업 디렉토리: $(pwd)"
+          echo "carousel dist 디렉토리 확인:"
+          ls -la packages/carousel/dist/ || echo "carousel dist 디렉토리가 없음"
+          echo "CSS 파일 확인:"
+          ls -la packages/carousel/dist/src/styles/ || echo "CSS 파일이 없음"
+          echo "type-check 실행 중..."
           pnpm type-check
           echo "타입 체크 완료!"
           
