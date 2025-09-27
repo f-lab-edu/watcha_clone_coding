@@ -3,10 +3,13 @@ import watchaConfig from '@watcha/eslint-config';
 export default [
   ...watchaConfig,
   {
-    ignores: ['dist/**', 'node_modules/**'],
+    ignores: ['dist/**', 'node_modules/**', 'vite.config.ts'],
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
+      },
+      globals: {
+        React: 'readonly', // React를 전역으로 추가
       },
     },
     settings: {

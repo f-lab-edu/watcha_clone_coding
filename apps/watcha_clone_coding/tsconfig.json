@@ -2,21 +2,14 @@
   "extends": "@watcha/tsconfig/react.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "declaration": true,
     "declarationMap": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./src/*"],
+      "@watcha/carousel": ["./node_modules/@watcha/carousel/dist/index.d.ts"]
     }
   },
-  "include": [
-    "src/**/*",
-    "types/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*", "types/**/*", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }
