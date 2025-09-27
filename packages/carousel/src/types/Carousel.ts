@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { Genre } from '@/types/Movie';
+import { Genre } from '../types/Movie';
 
 export type CarouselProps = {
   id: number;
