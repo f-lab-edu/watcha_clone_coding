@@ -46,13 +46,23 @@ jobs:
           echo "작업 디렉토리: $(pwd)"
           echo "패키지 목록:"
           pnpm list -r --depth=0
+          echo "워크스페이스 의존성 확인:"
+          pnpm list --depth=0 --filter @watcha/carousel
           
-      - name: Build workspace packages
+      - name: Build workspace packages in correct order
         run: |
-          echo "=== 워크스페이스 패키지들 빌드 ==="
-          # 모든 워크스페이스 패키지를 의존성 순서에 따라 빌드
-          pnpm -r build
-          echo "빌드 완료!"
+          echo "=== 워크스페이스 패키지들 순차 빌드 ==="
+          # 1. 먼저 carousel 패키지 빌드
+          echo "1. carousel 패키지 빌드 중..."
+          pnpm --filter @watcha/carousel build
+          echo "carousel 빌드 완료!"
+          
+          # 2. carousel 의존성을 사용하는 앱 빌드
+          echo "2. watcha_clone_coding 앱 빌드 중..."
+          pnpm --filter watcha_clone_coding build
+          echo "watcha_clone_coding 빌드 완료!"
+          
+          echo "모든 패키지 빌드 완료!"
           
       - name: Run type check
         run: |
