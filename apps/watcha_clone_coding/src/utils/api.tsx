@@ -1,5 +1,4 @@
-import { instance } from './axios';
-
+import { instance } from '@/utils/axios';
 import { transformMovieList, transformMovieData } from '@/utils/transform';
 
 const movieListQueryString = new URLSearchParams({
