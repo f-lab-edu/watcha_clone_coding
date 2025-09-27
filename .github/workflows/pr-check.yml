@@ -48,18 +48,22 @@ jobs:
           pnpm list -r --depth=0
           echo "워크스페이스 의존성 확인:"
           pnpm list --depth=0 --filter @watcha/carousel
-          echo "carousel 패키지 빌드 상태 확인:"
-          ls -la packages/carousel/dist/
-          echo "앱의 node_modules에서 carousel 확인:"
-          ls -la apps/watcha_clone_coding/node_modules/@watcha/carousel/ || echo "carousel이 node_modules에 없음"
+          echo "carousel 패키지 빌드 상태 확인 (빌드 전):"
+          ls -la packages/carousel/ || echo "carousel 패키지 디렉토리가 없음"
+          ls -la packages/carousel/dist/ || echo "carousel dist 디렉토리가 아직 없음 (정상)"
           
       - name: Build workspace packages in correct order
         run: |
           echo "=== 워크스페이스 패키지들 순차 빌드 ==="
+          
           # 1. 먼저 carousel 패키지 빌드
           echo "1. carousel 패키지 빌드 중..."
           pnpm --filter @watcha/carousel build
           echo "carousel 빌드 완료!"
+          
+          # 빌드 결과 확인
+          echo "carousel 빌드 결과 확인:"
+          ls -la packages/carousel/dist/ || echo "ERROR: carousel dist 디렉토리가 생성되지 않음!"
           
           # 2. carousel 빌드 후 의존성 재설치 (workspace 링크 업데이트)
           echo "2. workspace 의존성 재설치 중..."
