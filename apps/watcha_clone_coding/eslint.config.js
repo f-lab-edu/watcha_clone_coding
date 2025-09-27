@@ -8,6 +8,9 @@ export default [
       parserOptions: {
         project: './tsconfig.json',
       },
+      globals: {
+        React: 'readonly', // React를 전역으로 추가
+      },
     },
     settings: {
       react: {

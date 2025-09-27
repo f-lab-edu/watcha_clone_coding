@@ -1,18 +1,18 @@
 import React from 'react';
 
-import Assessment from '@/assets/assessment.svg';
-import Interest from '@/assets/interest.svg';
-import More from '@/assets/more.svg';
-import Party from '@/assets/party.svg';
 import AppErrorBoundary from '@/components/AppErrorBoundary';
 import Button from '@/components/Button';
+import AssessmentIcon from '@/components/icons/AssessmentIcon';
+import InterestIcon from '@/components/icons/InterestIcon';
+import MoreIcon from '@/components/icons/MoreIcon';
+import PartyIcon from '@/components/icons/PartyIcon';
 import { DetailPageSkeleton } from '@/components/Skeleton';
 import useMovieDetail from '@/hooks/useMovieDetail';
 import { Genre, Member, Review, Video } from '@/types/Movie';
 import { buildImageUrl } from '@/utils/transform';
 import '@/styles/Detail.css';
 
-const DetailPageContent = () => {
+const DetailPageContent = (): React.ReactElement => {
   const { movieData, reviews, getReleaseYear, changeTimeFormat } = useMovieDetail();
 
   // 로딩 상태 처리
@@ -78,16 +78,16 @@ const DetailPageContent = () => {
                 <Button className="gift-button">선물하기</Button>
               </div>
               <div className="evaluation-section">
-                <Button className="evaluation-section-button" icon={<Interest />}>
+                <Button className="evaluation-section-button" icon={<InterestIcon />}>
                   <p>보고싶어요</p>
                 </Button>
-                <Button className="evaluation-section-button" icon={<Assessment />}>
+                <Button className="evaluation-section-button" icon={<AssessmentIcon />}>
                   <p>평가하기</p>
                 </Button>
-                <Button className="evaluation-section-button" icon={<Party />}>
+                <Button className="evaluation-section-button" icon={<PartyIcon />}>
                   <p>왓챠파티</p>
                 </Button>
-                <Button className="evaluation-section-button" icon={<More />}>
+                <Button className="evaluation-section-button" icon={<MoreIcon />}>
                   <p>더보기</p>
                 </Button>
               </div>
@@ -198,7 +198,7 @@ const DetailPageContent = () => {
   );
 };
 
-const DetailPage = () => {
+const DetailPage = (): React.ReactElement => {
   return (
     <AppErrorBoundary>
       <React.Suspense fallback={<DetailPageSkeleton />}>

@@ -10,7 +10,8 @@
     "build": "tsc && vite build",
     "dev": "vite",
     "type-check": "tsc -p ./tsconfig.build.json",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "lint:check": "eslint . --ext .ts,.tsx",
     "format": "prettier --write ."
   },
   "repository": {
