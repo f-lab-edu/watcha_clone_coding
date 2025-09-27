@@ -67,7 +67,7 @@ jobs:
           sed -i 's/"type": "module",//g' package.json
           
           # 빌드 실행
-          pnpm build:production
+          pnpm build
           
           # type: module 복원
           sed -i 's/"version": "1.0.0",/"version": "1.0.0",\n  "type": "module",/g' package.json
