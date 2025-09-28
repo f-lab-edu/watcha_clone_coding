@@ -59,6 +59,10 @@ jobs:
         run: pnpm type-check
         
       - name: Build for production
+        env:
+          VITE_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
+          VITE_TMDB_BASE_URL: https://api.themoviedb.org/3
+          VITE_TMDB_IMAGE_URL: https://image.tmdb.org/t/p/w500
         run: |
           # ES Modules 이슈 해결을 위한 임시 조치
           cd apps/watcha_clone_coding
