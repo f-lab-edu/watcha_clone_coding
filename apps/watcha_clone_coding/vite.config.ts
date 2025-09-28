@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
       'process.env.NODE_ENV': JSON.stringify(mode),
       'process.env.APP_PHASE': JSON.stringify(env.APP_PHASE || 'local'),
     },
+    envPrefix: ['VITE_', 'VITE_TMDB_'],
     plugins: [react()],
     resolve: {
       alias: {
