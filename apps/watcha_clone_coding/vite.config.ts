@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
     },
     // 공유 설정 패키지들을 위한 optimizeDeps 설정
     optimizeDeps: {
-      include: ['@your-org/shared-components', '@your-org/shared-utils'],
+      include: ['@watcha/carousel'],
     },
     build: {
       outDir: 'dist',
