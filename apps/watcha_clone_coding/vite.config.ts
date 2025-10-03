@@ -13,11 +13,8 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
+        '@watcha/carousel': resolve(__dirname, '../../packages/carousel'),
       },
-    },
-    // 공유 설정 패키지들을 위한 optimizeDeps 설정
-    optimizeDeps: {
-      include: ['@watcha/carousel'],
     },
     build: {
       outDir: 'dist',
