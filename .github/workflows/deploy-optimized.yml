@@ -6,6 +6,7 @@ on:
     branches: [main]
 
 env:
+  CI: true
   AWS_REGION: ap-northeast-2
   BUILD_DIR: ./apps/watcha_clone_coding/dist
 
@@ -41,7 +42,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
             
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
         
       - name: Build workspace packages
         run: |
