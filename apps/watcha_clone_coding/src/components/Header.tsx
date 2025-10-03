@@ -7,7 +7,7 @@ import SearchIcon from '@/components/icons/SearchIcon';
 import WatchaIcon from '@/components/icons/WatchaIcon';
 import useSearchMovie from '@/hooks/useSearchMovie';
 
-const Header = (): React.ReactElement => {
+const Header: React.FC = () => {
   const location = useLocation();
   const pathName = location.pathname;
   const { query, setQuery, handleEnterKeyDown } = useSearchMovie();

@@ -7,7 +7,7 @@
     "declarationMap": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@watcha/carousel": ["./node_modules/@watcha/carousel/dist/index.d.ts"]
+      "@watcha/carousel": ["../../packages/carousel"]
     }
   },
   "include": ["src/**/*", "types/**/*", "vite.config.ts"],

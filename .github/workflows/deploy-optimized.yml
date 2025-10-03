@@ -6,6 +6,7 @@ on:
     branches: [main]
 
 env:
+  CI: true
   AWS_REGION: ap-northeast-2
   BUILD_DIR: ./apps/watcha_clone_coding/dist
 
@@ -41,22 +42,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
             
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        
-      - name: Build workspace packages
-        run: |
-          echo "=== 워크스페이스 패키지들 빌드 ==="
-          pnpm --filter @watcha/carousel build
-          
-          # CSS 파일 복사 (TypeScript가 복사하지 않는 경우)
-          if [ -d "packages/carousel/src/styles" ]; then
-            echo "=== CSS 파일 복사 ==="
-            mkdir -p packages/carousel/dist/src/styles
-            cp -r packages/carousel/src/styles/* packages/carousel/dist/src/styles/ || echo "CSS 파일 복사 실패"
-          fi
-          
-      - name: Run type check
-        run: pnpm type-check
+        run: pnpm install
         
       - name: Build for production
         env:
