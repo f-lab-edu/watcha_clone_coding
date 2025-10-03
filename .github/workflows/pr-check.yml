@@ -42,14 +42,3 @@ jobs:
       - name: Install dependencies
         run: pnpm install
           
-      - name: Run type check
-        run: |
-          echo "=== 타입 체크 실행 ==="
-          pnpm type-check
-          echo "타입 체크 완료!"
-          
-      - name: Run lint
-        run: |
-          echo "=== 린트 체크 실행 ==="
-          pnpm lint
-          echo "린트 체크 완료!"

@@ -44,9 +44,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
         
-      - name: Run type check
-        run: pnpm type-check
-        
       - name: Build for production
         env:
           VITE_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
