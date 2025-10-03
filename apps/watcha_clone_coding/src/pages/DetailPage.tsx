@@ -12,7 +12,7 @@ import { Genre, Member, Review, Video } from '@/types/Movie';
 import { buildImageUrl } from '@/utils/transform';
 import '@/styles/Detail.css';
 
-const DetailPageContent = (): React.ReactElement => {
+const DetailPageContent: React.FC = () => {
   const { movieData, reviews, getReleaseYear, changeTimeFormat } = useMovieDetail();
 
   // 로딩 상태 처리
@@ -198,7 +198,7 @@ const DetailPageContent = (): React.ReactElement => {
   );
 };
 
-const DetailPage = (): React.ReactElement => {
+const DetailPage: React.FC = () => {
   return (
     <AppErrorBoundary>
       <React.Suspense fallback={<DetailPageSkeleton />}>
