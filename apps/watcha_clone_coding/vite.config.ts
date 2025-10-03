@@ -1,18 +1,13 @@
 import { resolve } from 'path';
 
 import react from '@vitejs/plugin-react-swc';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
-
+export default defineConfig(() => {
   return {
     root: '.',
     publicDir: 'public',
-    define: {
-      'process.env.NODE_ENV': JSON.stringify(mode),
-      'process.env.APP_PHASE': JSON.stringify(env.APP_PHASE || 'local'),
-    },
+    envDir: './env',
     envPrefix: ['VITE_', 'VITE_TMDB_'],
     plugins: [react()],
     resolve: {
@@ -26,19 +21,9 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: 'dist',
-      rollupOptions: {
-        external: () => {
-          // 모노레포 내 다른 패키지들을 external로 처리하지 않음
-          return false;
-        },
-      },
     },
     server: {
       port: 3000,
-      fs: {
-        // 모노레포 루트까지 접근 허용
-        allow: ['../../'],
-      },
     },
   };
 });

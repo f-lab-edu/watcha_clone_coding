@@ -4,3 +4,4 @@ dist
 
 # 환경설정
 .env*
+apps/watcha_clone_coding/env/.env*
