@@ -1,11 +1,11 @@
 import React from 'react';
 
+import AssessmentIcon from '@/assets/assuessment.svg?react';
+import InterestIcon from '@/assets/interest.svg?react';
+import MoreIcon from '@/assets/more.svg?react';
+import PartyIcon from '@/assets/party.svg?react';
 import AppErrorBoundary from '@/components/AppErrorBoundary';
 import Button from '@/components/Button';
-import AssessmentIcon from '@/components/icons/AssessmentIcon';
-import InterestIcon from '@/components/icons/InterestIcon';
-import MoreIcon from '@/components/icons/MoreIcon';
-import PartyIcon from '@/components/icons/PartyIcon';
 import { DetailPageSkeleton } from '@/components/Skeleton';
 import useMovieDetail from '@/hooks/useMovieDetail';
 import { Genre, Member, Review, Video } from '@/types/Movie';
