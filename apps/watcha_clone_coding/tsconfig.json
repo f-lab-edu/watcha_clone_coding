@@ -11,6 +11,6 @@
     },
     "types": ["vite-plugin-svgr/client"]
   },
-  "include": ["src/**/*", "types/**/*", "vite.config.ts", "svg.d.ts", "vite-env.d.ts"],
+  "include": ["src/**/*", "config/**/*", "types/**/*", "vite.config.ts", "svg.d.ts", "vite-env.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
