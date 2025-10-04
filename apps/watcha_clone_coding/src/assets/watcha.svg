@@ -1,8 +1,4 @@
-import React from 'react';
-
-const WatchaIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
-  return (
-    <svg width="88" height="26" viewBox="0 0 196 59" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+<svg width="88" height="26" viewBox="0 0 196 59" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -16,7 +12,3 @@ const WatchaIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
         fill="#FF0558"
       />
     </svg>
-  );
-};
-
-export default WatchaIcon;

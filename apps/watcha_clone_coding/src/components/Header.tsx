@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import AlarmIcon from '@/assets/alarm.svg?react';
+import SearchIcon from '@/assets/search.svg?react';
+import WatchaIcon from '@/assets/watcha.svg?react';
 import Button from '@/components/Button';
-import AlarmIcon from '@/components/icons/AlarmIcon';
-import SearchIcon from '@/components/icons/SearchIcon';
-import WatchaIcon from '@/components/icons/WatchaIcon';
 import useSearchMovie from '@/hooks/useSearchMovie';
 
 const Header: React.FC = () => {

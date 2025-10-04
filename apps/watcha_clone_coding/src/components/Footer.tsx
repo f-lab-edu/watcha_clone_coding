@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 
-import BlogIcon from '@/components/icons/BlogIcon';
-import FacebookIcon from '@/components/icons/FacebookIcon';
-import InstagramIcon from '@/components/icons/InstagramIcon';
-import TwitterIcon from '@/components/icons/TwitterIcon';
+import BlogIcon from '@/assets/blog.svg?react';
+import FacebookIcon from '@/assets/facebook.svg?react';
+import InstagramIcon from '@/assets/instagram.svg?react';
+import TwitterIcon from '@/assets/twitter.svg?react';
 
 const Footer = (): ReactElement => {
   return (
