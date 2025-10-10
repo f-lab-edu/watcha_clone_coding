@@ -9,7 +9,6 @@
       "@/*": ["./src/*"],
       "@watcha/carousel": ["../../packages/carousel"]
     },
-    "types": ["svgr/webpack"],
     "plugins": [
       {
         "name": "next"
