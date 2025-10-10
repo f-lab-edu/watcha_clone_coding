@@ -1,16 +1,19 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import { useParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 import { useMovieDetailQuery } from '@/queries/detail/useMovieDetailQuery';
 
 const useMovieDetail = () => {
   dayjs.extend(duration);
   // URL에서 movieId 추출
-  const { id: movieId } = useParams();
+  const {
+    query: { id },
+  } = useRouter();
+  const movieId = typeof id === 'string' ? id : '';
 
   // Hook은 항상 호출되어야 하므로, movieId가 없어도 호출
-  const { detailQuery, reviewsQuery } = useMovieDetailQuery(movieId || '');
+  const { detailQuery, reviewsQuery } = useMovieDetailQuery(movieId);
 
   const getReleaseYear = (date: string): number => {
     if (!date) return 0;

@@ -1,5 +1,7 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import AppErrorBoundary from '@/components/AppErrorBoundary';
 import { SearchResultPageSkeleton } from '@/components/Skeleton';
@@ -10,7 +12,6 @@ import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
 import { useSearchGenresQuery, useSearchMovieQuery } from '@/queries/search/useSearchQuery';
 import { TransformedMovie } from '@/types/Movie';
 import { buildImageUrl } from '@/utils/transform';
-import '@/styles/Search.css';
 
 const SearchResultPageContent = () => {
   const { query, genreId } = useSearchMovie();
@@ -45,7 +46,7 @@ const SearchResultPageContent = () => {
           <ul>
             {resultData.map((movie) => (
               <li className="search-result-item" key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
+                <Link href={`/movie/${movie.id}`}>
                   <img src={buildImageUrl(movie.image)} alt={movie.title} />
                   <div className="movie-info">
                     <span>{movie.title}</span>

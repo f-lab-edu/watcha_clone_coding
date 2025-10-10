@@ -1,4 +1,3 @@
-import '@/styles/Status.css';
 import React from 'react';
 
 type ErrorProps = {
