@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { MovieCardProps } from '@/types/Carousel';
 
 const MovieCard = (props: MovieCardProps) => {
   return (
-    <Link to={`/movie/${props.slide.id}`}>
+    <Link href={`/movie/${props.slide.id}`}>
       <div className={`slider-card slider-card-${props.layout}`}>
         <div className="slider-image-container">
           <img src={props.slide.image} alt={props.slide.title} className="slider-image" />

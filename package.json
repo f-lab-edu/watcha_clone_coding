@@ -10,7 +10,7 @@
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
     "format": "pnpm -r format",
-    "format:check": "prettier --check .",
+    "format:check": "pnpm -r format:check",
     "prepare": "husky"
   },
   "engines": {

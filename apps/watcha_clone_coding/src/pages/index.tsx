@@ -1,3 +1,5 @@
+'use client';
+
 import { Carousel } from '@watcha/carousel';
 import React from 'react';
 
@@ -7,7 +9,6 @@ import { PageSkeleton } from '@/components/Skeleton';
 import ThemeTab from '@/components/ThemeTab';
 import { useMovieListQuery } from '@/queries/movieList/useMovieListQuery';
 import { CarouselProps } from '@/types/Carousel';
-import '@/styles/Page.css';
 
 const TAB_BUTTONS = [
   {

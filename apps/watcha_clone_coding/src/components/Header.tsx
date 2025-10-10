@@ -1,22 +1,22 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
-import AlarmIcon from '@/assets/alarm.svg?react';
-import SearchIcon from '@/assets/search.svg?react';
-import WatchaIcon from '@/assets/watcha.svg?react';
+import AlarmIcon from '@/assets/alarm.svg';
+import SearchIcon from '@/assets/search.svg';
+import WatchaIcon from '@/assets/watcha.svg';
 import Button from '@/components/Button';
 import useSearchMovie from '@/hooks/useSearchMovie';
 
 const Header: React.FC = () => {
-  const location = useLocation();
-  const pathName = location.pathname;
+  const { pathname } = useRouter();
   const { query, setQuery, handleEnterKeyDown } = useSearchMovie();
 
   return (
     <header className="header">
       <nav className="header-nav">
         <div className="header-nav-content">
-          <Link to="/" className="header-logo">
+          <Link href="/" className="header-logo">
             <WatchaIcon />
           </Link>
 
@@ -47,8 +47,8 @@ const Header: React.FC = () => {
         </div>
 
         <div className="header-actions">
-          {pathName !== '/search' ? (
-            <Link to={'/search'}>
+          {pathname !== '/search' ? (
+            <Link href={'/search'}>
               <Button
                 className="header-search-button button-base interactive-element"
                 aria-label="검색"
@@ -62,7 +62,7 @@ const Header: React.FC = () => {
               <SearchIcon />
               <input
                 ref={(node) => {
-                  if (pathName === '/search' && node) {
+                  if (pathname === '/search' && node) {
                     node.focus();
                   }
                 }}

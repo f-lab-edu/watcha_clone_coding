@@ -1,6 +1,8 @@
+'use client';
+
 import { Carousel } from '@watcha/carousel';
+import Link from 'next/link';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import AppErrorBoundary from '@/components/AppErrorBoundary';
 import GenresCard from '@/components/GenresCard';
@@ -9,8 +11,6 @@ import ThemeTab from '@/components/ThemeTab';
 import useSearchMovies from '@/hooks/useSearchMovies';
 import { useSearchListQuery } from '@/queries/search/useSearchListQuery';
 import { buildImageUrl } from '@/utils/transform';
-
-import '@/styles/Search.css';
 
 const TAB_BUTTONS = [
   {
@@ -49,7 +49,7 @@ const SearchHomePageContent = () => {
                     className={`trending-item ${index === highlightedIndex ? 'highlighted' : ''}`}
                     onMouseEnter={() => handleMouseEnter(index)}
                   >
-                    <Link to={`/movie/${movie.id}`}>
+                    <Link href={`/movie/${movie.id}`}>
                       <span className="trending-rank">{index + 1}</span>
                       <span className="trending-title">{movie.title}</span>
                     </Link>

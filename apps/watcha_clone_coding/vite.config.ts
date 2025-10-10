@@ -2,7 +2,6 @@ import { resolve } from 'path';
 
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
-import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(() => {
   return {
@@ -10,7 +9,7 @@ export default defineConfig(() => {
     publicDir: 'public',
     envDir: './env',
     envPrefix: ['VITE_', 'VITE_TMDB_'],
-    plugins: [react(), svgr()],
+    plugins: [react()],
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),

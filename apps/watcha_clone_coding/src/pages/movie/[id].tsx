@@ -1,16 +1,17 @@
+'use client';
+
 import React from 'react';
 
-import AssessmentIcon from '@/assets/assuessment.svg?react';
-import InterestIcon from '@/assets/interest.svg?react';
-import MoreIcon from '@/assets/more.svg?react';
-import PartyIcon from '@/assets/party.svg?react';
+import AssessmentIcon from '@/assets/assuessment.svg';
+import InterestIcon from '@/assets/interest.svg';
+import MoreIcon from '@/assets/more.svg';
+import PartyIcon from '@/assets/party.svg';
 import AppErrorBoundary from '@/components/AppErrorBoundary';
 import Button from '@/components/Button';
 import { DetailPageSkeleton } from '@/components/Skeleton';
 import useMovieDetail from '@/hooks/useMovieDetail';
 import { Genre, Member, Review, Video } from '@/types/Movie';
 import { buildImageUrl } from '@/utils/transform';
-import '@/styles/Detail.css';
 
 const DetailPageContent: React.FC = () => {
   const { movieData, reviews, getReleaseYear, changeTimeFormat } = useMovieDetail();

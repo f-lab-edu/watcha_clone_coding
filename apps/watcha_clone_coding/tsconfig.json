@@ -9,8 +9,14 @@
       "@/*": ["./src/*"],
       "@watcha/carousel": ["../../packages/carousel"]
     },
-    "types": ["vite-plugin-svgr/client"]
+    "types": ["svgr/webpack"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "jsx": "preserve"
   },
-  "include": ["src/**/*", "config/**/*", "types/**/*", "vite.config.ts", "svg.d.ts", "vite-env.d.ts"],
+  "include": ["src/**/*", "config/**/*", "types/**/*", "vite.config.ts", "svg.d.ts", "vite-env.d.ts", "next-env.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
