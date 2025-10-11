@@ -41,7 +41,7 @@ const ListPageContent = () => {
           <Carousel.Track articleWidth={1140}>
             <Carousel.Article articleWidth={1140} layout="overlay">
               {(slide: any) => {
-                return <MovieCard slide={slide as CarouselProps} layout="overlay" type="movie" />;
+                return <MovieCard slide={slide as CarouselProps} layout="overlay" type="movie" priority={true} />;
               }}
             </Carousel.Article>
           </Carousel.Track>

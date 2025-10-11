@@ -15,6 +15,7 @@ const MovieCard = (props: MovieCardProps) => {
             fill
             sizes="(max-width: 768px) 100vw, 500px"
             style={{ objectFit: 'cover' }}
+            priority={props.priority}
           />
         </div>
         <div className={`slider-content slider-content-${props.layout}`}>
