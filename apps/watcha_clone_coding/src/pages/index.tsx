@@ -1,6 +1,7 @@
 'use client';
 
 import { Carousel } from '@watcha/carousel';
+import Head from 'next/head';
 import React from 'react';
 
 import AppErrorBoundary from '@/components/AppErrorBoundary';
@@ -96,11 +97,16 @@ const ListPageContent = () => {
 
 const ListPage = () => {
   return (
-    <AppErrorBoundary>
-      <React.Suspense fallback={<PageSkeleton />}>
-        <ListPageContent />
-      </React.Suspense>
-    </AppErrorBoundary>
+    <>
+      <Head>
+        <title>WATCHA - 영화 추천</title>
+      </Head>
+      <AppErrorBoundary>
+        <React.Suspense fallback={<PageSkeleton />}>
+          <ListPageContent />
+        </React.Suspense>
+      </AppErrorBoundary>
+    </>
   );
 };
 

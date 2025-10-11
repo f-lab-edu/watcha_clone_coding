@@ -1,6 +1,7 @@
 'use client';
 
 import { Carousel } from '@watcha/carousel';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -94,11 +95,16 @@ const SearchHomePageContent = () => {
 
 const SearchHomePage = () => {
   return (
-    <AppErrorBoundary>
-      <React.Suspense fallback={<SearchHomePageSkeleton />}>
-        <SearchHomePageContent />
-      </React.Suspense>
-    </AppErrorBoundary>
+    <>
+      <Head>
+        <title>검색 - WATCHA</title>
+      </Head>
+      <AppErrorBoundary>
+        <React.Suspense fallback={<SearchHomePageSkeleton />}>
+          <SearchHomePageContent />
+        </React.Suspense>
+      </AppErrorBoundary>
+    </>
   );
 };
 
