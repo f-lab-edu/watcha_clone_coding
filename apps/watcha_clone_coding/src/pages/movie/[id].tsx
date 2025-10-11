@@ -98,7 +98,13 @@ const DetailPageContent: React.FC = () => {
           <div className="detail-image">
             {movieData.backdrop && (
               <>
-                <Image src={buildImageUrl(movieData.backdrop)} alt="Detail Image" />
+                <Image
+                  src={buildImageUrl(movieData.backdrop)}
+                  alt="Detail Image"
+                  width={1280}
+                  height={720}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
                 <div className="preview-overlay">
                   <Button className="preview-button">{'미리보기 >'}</Button>
                 </div>
@@ -115,7 +121,13 @@ const DetailPageContent: React.FC = () => {
           {movieData.collection && (
             <ul className="collection-list">
               <li className="collection-item">
-                <Image src={buildImageUrl(movieData.collection.poster_path)} alt={movieData.collection.name} />
+                <Image
+                  src={buildImageUrl(movieData.collection.poster_path)}
+                  alt={movieData.collection.name}
+                  width={300}
+                  height={450}
+                  style={{ objectFit: 'cover' }}
+                />
               </li>
             </ul>
           )}
@@ -152,7 +164,13 @@ const DetailPageContent: React.FC = () => {
                 <div key={person.id} className="member-item">
                   <div className="profile">
                     <div className="profile-image">
-                      <Image src={buildImageUrl(person.profile_path)} alt={person.name} />
+                      <Image
+                        src={buildImageUrl(person.profile_path)}
+                        alt={person.name}
+                        width={50}
+                        height={50}
+                        style={{ objectFit: 'cover' }}
+                      />
                     </div>
                     <div className="profile-info">
                       <div className="profile-name">{person.name}</div>
@@ -177,7 +195,13 @@ const DetailPageContent: React.FC = () => {
                   <article className="reviews-item">
                     <div className="reviewer-icon">
                       {review.author_details.avatar_path ? (
-                        <Image src={buildImageUrl(review.author_details.avatar_path)} alt={review.author} />
+                        <Image
+                          src={buildImageUrl(review.author_details.avatar_path)}
+                          alt={review.author}
+                          width={38}
+                          height={38}
+                          style={{ objectFit: 'cover' }}
+                        />
                       ) : (
                         <div>{''}</div>
                       )}

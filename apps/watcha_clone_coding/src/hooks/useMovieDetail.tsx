@@ -12,7 +12,13 @@ const useMovieDetail = () => {
   } = useRouter();
   const movieId = typeof id === 'string' ? id : '';
 
-  // Hook은 항상 호출되어야 하므로, movieId가 없어도 호출
+  // movieId가 없으면 에러 처리
+  if (!movieId) {
+    const error = new Error('Movie ID가 URL에서 찾을 수 없습니다');
+    error.name = 'NotFoundError';
+    throw error;
+  }
+
   const { detailQuery, reviewsQuery } = useMovieDetailQuery(movieId);
 
   const getReleaseYear = (date: string): number => {
@@ -26,17 +32,6 @@ const useMovieDetail = () => {
     const formattedTime = dayjs.duration(time, 'minute').format('HH시간 mm분');
     return formattedTime;
   };
-
-  // movieId가 없으면 에러 처리
-  if (!movieId) {
-    console.error('Movie ID가 URL에서 찾을 수 없습니다.');
-    return {
-      movieData: null,
-      reviews: [],
-      getReleaseYear,
-      changeTimeFormat,
-    };
-  }
 
   return {
     movieData: detailQuery.data,
