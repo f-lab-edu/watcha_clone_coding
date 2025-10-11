@@ -81,9 +81,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.13.0
         version: 8.44.1(eslint@9.36.0)(typescript@5.9.2)
-      '@vitejs/plugin-react-swc':
-        specifier: ^4.1.0
-        version: 4.1.0(@swc/helpers@0.5.17)(vite@7.1.7(@types/node@24.3.3)(terser@5.44.0)(yaml@2.8.1))
       '@watcha/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
@@ -108,9 +105,6 @@ importers:
       typescript-eslint:
         specifier: ^8.13.0
         version: 8.44.1(eslint@9.36.0)(typescript@5.9.2)
-      vite:
-        specifier: ^7.1.7
-        version: 7.1.7(@types/node@24.3.3)(terser@5.44.0)(yaml@2.8.1)
 
   packages/carousel:
     dependencies:

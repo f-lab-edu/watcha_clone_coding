@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { MovieCardProps } from '@/types/Carousel';
@@ -7,7 +8,7 @@ const MovieCard = (props: MovieCardProps) => {
     <Link href={`/movie/${props.slide.id}`}>
       <div className={`slider-card slider-card-${props.layout}`}>
         <div className="slider-image-container">
-          <img src={props.slide.image} alt={props.slide.title} className="slider-image" />
+          <Image src={props.slide.image} alt={props.slide.title} className="slider-image" />
         </div>
         <div className={`slider-content slider-content-${props.layout}`}>
           {props.layout !== 'left' && <h3 className="slider-title">{props.slide.title}</h3>}
