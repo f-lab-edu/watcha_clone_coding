@@ -1,6 +1,7 @@
 'use client';
 
 import { Carousel } from '@watcha/carousel';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -59,7 +60,7 @@ const SearchHomePageContent = () => {
             </div>
             <div className="background-img">
               {trendingQuery.data?.[highlightedIndex] && (
-                <img
+                <Image
                   src={buildImageUrl(trendingQuery.data[highlightedIndex].backdrop_path)}
                   alt={trendingQuery.data[highlightedIndex].title}
                 />

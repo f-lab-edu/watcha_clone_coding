@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React from 'react';
 
 import AssessmentIcon from '@/assets/assuessment.svg';
@@ -97,7 +98,7 @@ const DetailPageContent: React.FC = () => {
           <div className="detail-image">
             {movieData.backdrop && (
               <>
-                <img src={buildImageUrl(movieData.backdrop)} alt="Detail Image" />
+                <Image src={buildImageUrl(movieData.backdrop)} alt="Detail Image" />
                 <div className="preview-overlay">
                   <Button className="preview-button">{'미리보기 >'}</Button>
                 </div>
@@ -114,7 +115,7 @@ const DetailPageContent: React.FC = () => {
           {movieData.collection && (
             <ul className="collection-list">
               <li className="collection-item">
-                <img src={buildImageUrl(movieData.collection.poster_path)} />
+                <Image src={buildImageUrl(movieData.collection.poster_path)} />
               </li>
             </ul>
           )}
@@ -151,7 +152,7 @@ const DetailPageContent: React.FC = () => {
                 <div key={person.id} className="member-item">
                   <div className="profile">
                     <div className="profile-image">
-                      <img src={buildImageUrl(person.profile_path)} alt={person.name} />
+                      <Image src={buildImageUrl(person.profile_path)} alt={person.name} />
                     </div>
                     <div className="profile-info">
                       <div className="profile-name">{person.name}</div>
@@ -176,7 +177,7 @@ const DetailPageContent: React.FC = () => {
                   <article className="reviews-item">
                     <div className="reviewer-icon">
                       {review.author_details.avatar_path ? (
-                        <img src={buildImageUrl(review.author_details.avatar_path)} />
+                        <Image src={buildImageUrl(review.author_details.avatar_path)} alt={review.author} />
                       ) : (
                         <div>{''}</div>
                       )}
