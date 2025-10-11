@@ -115,7 +115,7 @@ const DetailPageContent: React.FC = () => {
           {movieData.collection && (
             <ul className="collection-list">
               <li className="collection-item">
-                <Image src={buildImageUrl(movieData.collection.poster_path)} />
+                <Image src={buildImageUrl(movieData.collection.poster_path)} alt={movieData.collection.name} />
               </li>
             </ul>
           )}
