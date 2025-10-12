@@ -1,5 +1,3 @@
-'use client';
-
 import { Carousel } from '@watcha/carousel';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -64,6 +62,9 @@ const SearchHomePageContent = () => {
                 <Image
                   src={buildImageUrl(trendingQuery.data[highlightedIndex].backdrop_path)}
                   alt={trendingQuery.data[highlightedIndex].title}
+                  width={1280}
+                  height={720}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               )}
             </div>

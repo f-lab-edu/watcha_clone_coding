@@ -1,5 +1,3 @@
-'use client';
-
 import { Carousel } from '@watcha/carousel';
 import Head from 'next/head';
 import React from 'react';

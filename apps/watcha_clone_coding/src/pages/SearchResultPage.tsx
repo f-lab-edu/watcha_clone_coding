@@ -1,5 +1,3 @@
-'use client';
-
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -63,7 +61,13 @@ const SearchResultPageContent = () => {
               {resultData.map((movie) => (
                 <li className="search-result-item" key={movie.id}>
                   <Link href={`/movie/${movie.id}`}>
-                    <Image src={buildImageUrl(movie.image)} alt={movie.title} />
+                    <Image
+                      src={buildImageUrl(movie.image)}
+                      alt={movie.title}
+                      width={300}
+                      height={450}
+                      style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                    />
                     <div className="movie-info">
                       <span>{movie.title}</span>
                     </div>
