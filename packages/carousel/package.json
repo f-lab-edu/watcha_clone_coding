@@ -1,44 +1,60 @@
 {
-  "name": "@watcha/carousel",
+  "name": "@orbital0m0/carousel",
   "version": "1.0.0",
   "description": "",
-  "main": "./index.ts",
-  "module": "./index.ts",
-  "types": "./index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./index.ts",
-      "import": "./index.ts",
-      "default": "./index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "./styles": "./src/styles/Carousel.css"
+    "./styles": "./dist/index.css"
   },
+  "files": [
+    "dist",
+    "src/styles",
+    "README.md"
+  ],
   "sideEffects": [
     "*.css"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build": "vite build && tsc --emitDeclarationOnly --project tsconfig.build.json",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "carousel",
+    "react",
+    "component"
+  ],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.15.1",
   "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
-    "@watcha/tsconfig": "workspace:*",
     "@watcha/eslint-config": "workspace:*",
-    "@watcha/prettier-config": "workspace:*"
+    "@watcha/prettier-config": "workspace:*",
+    "@watcha/tsconfig": "workspace:*",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.17.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vite": "^6.0.11"
   },
   "peerDependencies": {
     "react": "^19.1.1",
