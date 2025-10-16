@@ -107,13 +107,16 @@ importers:
         version: 8.44.1(eslint@9.36.0)(typescript@5.9.2)
 
   packages/carousel:
-    dependencies:
+    devDependencies:
       '@types/react':
         specifier: ^19.1.10
         version: 19.1.13
       '@types/react-dom':
         specifier: ^19.1.7
         version: 19.1.9(@types/react@19.1.13)
+      '@vitejs/plugin-react':
+        specifier: ^4.3.4
+        version: 4.7.0(vite@6.3.6(@types/node@24.3.3)(terser@5.44.0)(yaml@2.8.1))
       '@watcha/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -123,19 +126,15 @@ importers:
       '@watcha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      eslint:
+        specifier: ^9.17.0
+        version: 9.36.0
       react:
         specifier: ^19.1.1
         version: 19.1.1
       react-dom:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
-    devDependencies:
-      '@vitejs/plugin-react':
-        specifier: ^4.3.4
-        version: 4.7.0(vite@6.3.6(@types/node@24.3.3)(terser@5.44.0)(yaml@2.8.1))
-      eslint:
-        specifier: ^9.17.0
-        version: 9.36.0
       typescript:
         specifier: ^5.9.2
         version: 5.9.2

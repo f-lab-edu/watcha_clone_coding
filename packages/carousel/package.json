@@ -1,6 +1,6 @@
 {
   "name": "@orbital0m0/carousel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -41,18 +41,16 @@
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.15.1",
-  "dependencies": {
+  "devDependencies": {
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.3.4",
     "@watcha/eslint-config": "workspace:*",
     "@watcha/prettier-config": "workspace:*",
     "@watcha/tsconfig": "workspace:*",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.17.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "typescript": "^5.9.2",
     "vite": "^6.0.11"
   },
