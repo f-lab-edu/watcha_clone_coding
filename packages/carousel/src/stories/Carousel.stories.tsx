@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ReactNode } from 'react';
 
 import Carousel from '../components/Carousel';
 import { CarouselProps, RootProps } from '../types/Carousel';
@@ -47,6 +48,90 @@ const sampleMovies: CarouselProps[] = [
   },
 ];
 
+// 공통 래퍼 컴포넌트
+const CarouselWrapper = ({ args, children }: { args: RootProps; children: ReactNode }) => (
+  <div style={{ width: '1000px', position: 'relative' }}>
+    <Carousel.Root {...args}>
+      <Carousel.LeftButton />
+      <Carousel.RightButton />
+      <Carousel.Track articleWidth={args.articleWidth}>{children}</Carousel.Track>
+    </Carousel.Root>
+  </div>
+);
+
+// 레이아웃별 렌더 함수들
+const renderOverlayWithRank = (movie: CarouselProps) => (
+  <div style={{ position: 'relative', height: '100%' }}>
+    <img src={movie.image} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: '10px',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+        color: 'white',
+      }}
+    >
+      {movie.rank && <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{movie.rank}</div>}
+      <div style={{ fontSize: '16px' }}>{movie.title}</div>
+    </div>
+  </div>
+);
+
+const renderOverlay = (movie: CarouselProps) => (
+  <div style={{ position: 'relative', height: '100%' }}>
+    <img src={movie.image} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: '10px',
+        background: 'rgba(0,0,0,0.7)',
+        color: 'white',
+      }}
+    >
+      <div>{movie.title}</div>
+    </div>
+  </div>
+);
+
+const renderTop = (movie: CarouselProps) => (
+  <div style={{ height: '100%' }}>
+    <div style={{ padding: '10px', background: '#f5f5f5' }}>
+      {movie.rank && <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{movie.rank}</div>}
+      <div style={{ fontSize: '14px' }}>{movie.title}</div>
+    </div>
+    <img
+      src={movie.image}
+      alt={movie.title}
+      style={{ width: '100%', height: 'calc(100% - 50px)', objectFit: 'cover' }}
+    />
+  </div>
+);
+
+const renderLeft = (movie: CarouselProps) => (
+  <div style={{ display: 'flex', height: '100%' }}>
+    <div style={{ width: '150px', flexShrink: 0 }}>
+      <img src={movie.image} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    </div>
+    <div style={{ flex: 1, padding: '15px', background: '#fff', border: '1px solid #ddd' }}>
+      {movie.rank && <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '8px' }}>{movie.rank}</div>}
+      <div style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>{movie.title}</div>
+      <div style={{ fontSize: '14px', color: '#666' }}>{movie.description}</div>
+    </div>
+  </div>
+);
+
+const renderNone = (movie: CarouselProps) => (
+  <div style={{ height: '100%' }}>
+    <img src={movie.image} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+  </div>
+);
+
 const meta = {
   title: 'Components/Carousel',
   component: Carousel.Root,
@@ -82,42 +167,11 @@ export const Default: Story = {
     slides: sampleMovies,
   } as RootProps,
   render: (args: RootProps) => (
-    <div style={{ width: '1000px', position: 'relative' }}>
-      <Carousel.Root {...args}>
-        <Carousel.LeftButton />
-        <Carousel.RightButton />
-        <Carousel.Track articleWidth={args.articleWidth}>
-          <Carousel.Article articleWidth={args.articleWidth} layout="overlay">
-            {(slide) => {
-              const movie = slide as CarouselProps;
-              return (
-                <div style={{ position: 'relative', height: '100%' }}>
-                  <img
-                    src={movie.image}
-                    alt={movie.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      padding: '10px',
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-                      color: 'white',
-                    }}
-                  >
-                    {movie.rank && <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{movie.rank}</div>}
-                    <div style={{ fontSize: '16px' }}>{movie.title}</div>
-                  </div>
-                </div>
-              );
-            }}
-          </Carousel.Article>
-        </Carousel.Track>
-      </Carousel.Root>
-    </div>
+    <CarouselWrapper args={args}>
+      <Carousel.Article articleWidth={args.articleWidth} layout="overlay">
+        {(slide) => renderOverlayWithRank(slide as CarouselProps)}
+      </Carousel.Article>
+    </CarouselWrapper>
   ),
 };
 
@@ -129,41 +183,11 @@ export const OverlayLayout: Story = {
     slides: sampleMovies,
   } as RootProps,
   render: (args: RootProps) => (
-    <div style={{ width: '1000px', position: 'relative' }}>
-      <Carousel.Root {...args}>
-        <Carousel.LeftButton />
-        <Carousel.RightButton />
-        <Carousel.Track articleWidth={args.articleWidth}>
-          <Carousel.Article articleWidth={args.articleWidth} layout="overlay">
-            {(slide) => {
-              const movie = slide as CarouselProps;
-              return (
-                <div style={{ position: 'relative', height: '100%' }}>
-                  <img
-                    src={movie.image}
-                    alt={movie.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      padding: '10px',
-                      background: 'rgba(0,0,0,0.7)',
-                      color: 'white',
-                    }}
-                  >
-                    <div>{movie.title}</div>
-                  </div>
-                </div>
-              );
-            }}
-          </Carousel.Article>
-        </Carousel.Track>
-      </Carousel.Root>
-    </div>
+    <CarouselWrapper args={args}>
+      <Carousel.Article articleWidth={args.articleWidth} layout="overlay">
+        {(slide) => renderOverlay(slide as CarouselProps)}
+      </Carousel.Article>
+    </CarouselWrapper>
   ),
 };
 
@@ -175,32 +199,11 @@ export const TopLayout: Story = {
     slides: sampleMovies,
   } as RootProps,
   render: (args: RootProps) => (
-    <div style={{ width: '1000px', position: 'relative' }}>
-      <Carousel.Root {...args}>
-        <Carousel.LeftButton />
-        <Carousel.RightButton />
-        <Carousel.Track articleWidth={args.articleWidth}>
-          <Carousel.Article articleWidth={args.articleWidth} layout="top">
-            {(slide) => {
-              const movie = slide as CarouselProps;
-              return (
-                <div style={{ height: '100%' }}>
-                  <div style={{ padding: '10px', background: '#f5f5f5' }}>
-                    {movie.rank && <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{movie.rank}</div>}
-                    <div style={{ fontSize: '14px' }}>{movie.title}</div>
-                  </div>
-                  <img
-                    src={movie.image}
-                    alt={movie.title}
-                    style={{ width: '100%', height: 'calc(100% - 50px)', objectFit: 'cover' }}
-                  />
-                </div>
-              );
-            }}
-          </Carousel.Article>
-        </Carousel.Track>
-      </Carousel.Root>
-    </div>
+    <CarouselWrapper args={args}>
+      <Carousel.Article articleWidth={args.articleWidth} layout="top">
+        {(slide) => renderTop(slide as CarouselProps)}
+      </Carousel.Article>
+    </CarouselWrapper>
   ),
 };
 
@@ -212,37 +215,11 @@ export const LeftLayout: Story = {
     slides: sampleMovies,
   } as RootProps,
   render: (args: RootProps) => (
-    <div style={{ width: '1000px', position: 'relative' }}>
-      <Carousel.Root {...args}>
-        <Carousel.LeftButton />
-        <Carousel.RightButton />
-        <Carousel.Track articleWidth={args.articleWidth}>
-          <Carousel.Article articleWidth={args.articleWidth} layout="left">
-            {(slide) => {
-              const movie = slide as CarouselProps;
-              return (
-                <div style={{ display: 'flex', height: '100%' }}>
-                  <div style={{ width: '150px', flexShrink: 0 }}>
-                    <img
-                      src={movie.image}
-                      alt={movie.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                  </div>
-                  <div style={{ flex: 1, padding: '15px', background: '#fff', border: '1px solid #ddd' }}>
-                    {movie.rank && (
-                      <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '8px' }}>{movie.rank}</div>
-                    )}
-                    <div style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>{movie.title}</div>
-                    <div style={{ fontSize: '14px', color: '#666' }}>{movie.description}</div>
-                  </div>
-                </div>
-              );
-            }}
-          </Carousel.Article>
-        </Carousel.Track>
-      </Carousel.Root>
-    </div>
+    <CarouselWrapper args={args}>
+      <Carousel.Article articleWidth={args.articleWidth} layout="left">
+        {(slide) => renderLeft(slide as CarouselProps)}
+      </Carousel.Article>
+    </CarouselWrapper>
   ),
 };
 
@@ -254,28 +231,11 @@ export const NoneLayout: Story = {
     slides: sampleMovies,
   } as unknown as RootProps,
   render: (args: RootProps) => (
-    <div style={{ width: '1000px', position: 'relative' }}>
-      <Carousel.Root {...args}>
-        <Carousel.LeftButton />
-        <Carousel.RightButton />
-        <Carousel.Track articleWidth={args.articleWidth}>
-          <Carousel.Article articleWidth={args.articleWidth} layout="none">
-            {(slide) => {
-              const movie = slide as CarouselProps;
-              return (
-                <div style={{ height: '100%' }}>
-                  <img
-                    src={movie.image}
-                    alt={movie.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                </div>
-              );
-            }}
-          </Carousel.Article>
-        </Carousel.Track>
-      </Carousel.Root>
-    </div>
+    <CarouselWrapper args={args}>
+      <Carousel.Article articleWidth={args.articleWidth} layout="none">
+        {(slide) => renderNone(slide as CarouselProps)}
+      </Carousel.Article>
+    </CarouselWrapper>
   ),
 };
 
@@ -288,19 +248,10 @@ export const NoData: Story = {
     children: <></>,
   } as unknown as RootProps,
   render: (args: RootProps) => (
-    <div style={{ width: '1000px', position: 'relative' }}>
-      <Carousel.Root {...args}>
-        <Carousel.LeftButton />
-        <Carousel.RightButton />
-        <Carousel.Track articleWidth={args.articleWidth}>
-          <Carousel.Article articleWidth={args.articleWidth}>
-            {(slide) => {
-              const movie = slide as CarouselProps;
-              return <div>{movie.title}</div>;
-            }}
-          </Carousel.Article>
-        </Carousel.Track>
-      </Carousel.Root>
-    </div>
+    <CarouselWrapper args={args}>
+      <Carousel.Article articleWidth={args.articleWidth}>
+        {(slide) => <div>{(slide as CarouselProps).title}</div>}
+      </Carousel.Article>
+    </CarouselWrapper>
   ),
 };
