@@ -7,6 +7,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "types/**/*", "index.ts", "vite.config.ts"],
+  "include": ["src/**/*", "types/**/*", "index.ts", "vite.config.ts", ".storybook/**/*"],
   "exclude": ["node_modules", "dist"]
 }

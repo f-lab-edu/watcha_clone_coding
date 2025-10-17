@@ -31,7 +31,9 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
     "build": "vite build && tsc --emitDeclarationOnly --project tsconfig.build.json",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [
     "carousel",
@@ -42,6 +44,9 @@
   "license": "ISC",
   "packageManager": "pnpm@10.15.1",
   "devDependencies": {
+    "@storybook/addon-docs": "9.1.10",
+    "@storybook/addon-onboarding": "9.1.10",
+    "@storybook/react-vite": "9.1.10",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.3.4",
@@ -49,8 +54,10 @@
     "@watcha/prettier-config": "workspace:*",
     "@watcha/tsconfig": "workspace:*",
     "eslint": "^9.17.0",
+    "eslint-plugin-storybook": "9.1.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "storybook": "9.1.10",
     "typescript": "^5.9.2",
     "vite": "^6.0.11"
   },
