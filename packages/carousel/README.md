@@ -6,8 +6,7 @@ React 기반의 재사용 가능한 Carousel 컴포넌트 라이브러리입니�
 
 컴포넌트의 사용 예시와 문서는 Storybook에서 확인할 수 있습니다.
 
-- **배포된 Storybook**: [https://orbital0m0.github.io/watcha_clone_coding/](https://orbital0m0.github.io/watcha_clone_coding/)
-  > ⚠️ 배포 후 실제 URL로 업데이트하세요!
+- **배포된 Storybook**: [https://f-lab-edu.github.io/watcha_clone_coding/](https://f-lab-edu.github.io/watcha_clone_coding/)
 
 ### 로컬에서 Storybook 실행
 
