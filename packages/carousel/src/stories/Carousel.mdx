@@ -1,0 +1,205 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as CarouselStories from './Carousel.stories';
+
+<Meta of={CarouselStories} />
+
+# Carousel
+
+유연하고 강력한 캐러셀 컴포넌트입니다. 컴파운드 컴포넌트 패턴을 사용하여 높은 커스터마이징이 가능합니다.
+
+## 주요 기능
+
+- 🎯 컴파운드 컴포넌트 패턴으로 유연한 구조
+- ♾️ 무한 스크롤 지원
+- 🎨 4가지 레이아웃 옵션 (overlay, top, left, none)
+- 📱 반응형 디자인 지원
+- ⌨️ 키보드 및 마우스 네비게이션
+- 🔄 자동 슬라이드 전환 가능
+
+## 컴포넌트 구조
+
+캐러셀은 다음과 같은 하위 컴포넌트로 구성됩니다:
+
+- `Carousel.Root`: 캐러셀의 루트 컨테이너
+- `Carousel.Track`: 슬라이드가 이동하는 트랙
+- `Carousel.Article`: 개별 슬라이드 아이템
+- `Carousel.LeftButton`: 이전 슬라이드 버튼
+- `Carousel.RightButton`: 다음 슬라이드 버튼
+
+## Props
+
+### Carousel.Root
+
+- `height` (number, required): 캐러셀의 높이 (px)
+- `articleWidth` (number, required): 각 슬라이드의 너비 (px)
+- `slides` (array, required): 표시할 슬라이드 데이터 배열
+- `children` (ReactNode): 하위 컴포넌트
+
+### Carousel.Article
+
+- `articleWidth` (number, required): 슬라이드 너비
+- `layout` ('overlay' | 'top' | 'left' | 'none'): 레이아웃 타입
+- `children` (function): 렌더 함수 `(slide, index) => ReactNode`
+
+## 기본 사용법
+
+기본적인 캐러셀 구조입니다.
+
+<Canvas of={CarouselStories.Default} />
+
+## 레이아웃 옵션
+
+### Overlay Layout
+
+이미지 위에 정보가 오버레이되는 레이아웃입니다. 영화 포스터나 배너에 적합합니다.
+
+<Canvas of={CarouselStories.OverlayLayout} />
+
+### Top Layout
+
+정보가 이미지 위쪽에 표시되는 레이아웃입니다.
+
+<Canvas of={CarouselStories.TopLayout} />
+
+### Left Layout
+
+정보가 이미지 왼쪽에 표시되는 레이아웃입니다. 상세 정보 표시에 적합합니다.
+
+<Canvas of={CarouselStories.LeftLayout} />
+
+### None Layout
+
+정보 없이 순수 이미지만 표시하는 레이아웃입니다.
+
+<Canvas of={CarouselStories.NoneLayout} />
+
+## 데이터 없음 처리
+
+슬라이드 데이터가 없을 때의 처리입니다.
+
+<Canvas of={CarouselStories.NoData} />
+
+## 사용 예제
+
+### 기본 예제
+
+```tsx
+import Carousel from '@/components/Carousel';
+
+const movies = [
+  {
+    id: 1,
+    rank: 1,
+    image: '/movie1.jpg',
+    title: '영화 제목 1',
+    description: '영화 설명',
+    href: '/movie/1',
+  },
+  // ... more movies
+];
+
+function MyCarousel() {
+  return (
+    <Carousel.Root height={400} articleWidth={200} slides={movies}>
+      <Carousel.LeftButton />
+      <Carousel.RightButton />
+      <Carousel.Track articleWidth={200}>
+        <Carousel.Article articleWidth={200} layout="overlay">
+          {(slide) => (
+            <div style={{ position: 'relative', height: '100%' }}>
+              <img 
+                src={slide.image} 
+                alt={slide.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+              <div style={{ 
+                position: 'absolute', 
+                bottom: 0, 
+                padding: '10px',
+                color: 'white' 
+              }}>
+                <div>{slide.rank}</div>
+                <div>{slide.title}</div>
+              </div>
+            </div>
+          )}
+        </Carousel.Article>
+      </Carousel.Track>
+    </Carousel.Root>
+  );
+}
+```
+
+### 커스텀 레이아웃
+
+```tsx
+<Carousel.Root height={300} articleWidth={400} slides={data}>
+  <Carousel.LeftButton />
+  <Carousel.RightButton />
+  <Carousel.Track articleWidth={400}>
+    <Carousel.Article articleWidth={400} layout="left">
+      {(slide) => (
+        <div style={{ display: 'flex' }}>
+          <img src={slide.image} alt={slide.title} />
+          <div>
+            <h3>{slide.title}</h3>
+            <p>{slide.description}</p>
+          </div>
+        </div>
+      )}
+    </Carousel.Article>
+  </Carousel.Track>
+</Carousel.Root>
+```
+
+### 버튼 없이 사용
+
+```tsx
+<Carousel.Root height={400} articleWidth={200} slides={movies}>
+  <Carousel.Track articleWidth={200}>
+    <Carousel.Article articleWidth={200}>
+      {(slide) => <YourSlideComponent {...slide} />}
+    </Carousel.Article>
+  </Carousel.Track>
+</Carousel.Root>
+```
+
+## 스타일링
+
+캐러셀은 다음의 CSS 클래스를 제공합니다:
+
+- `.slider-container`: 캐러셀 컨테이너
+- `.slider-track`: 슬라이드 트랙
+- `.slider-article`: 개별 슬라이드
+- `.slider-article-overlay`: overlay 레이아웃
+- `.slider-article-top`: top 레이아웃
+- `.slider-article-left`: left 레이아웃
+- `.slider-article-none`: none 레이아웃
+- `.slider-button`: 네비게이션 버튼
+- `.slider-button-prev`: 이전 버튼
+- `.slider-button-next`: 다음 버튼
+- `.no-transition`: 트랜지션 비활성화
+
+## 접근성
+
+- 네비게이션 버튼에 `aria-label` 속성 제공
+- 키보드 네비게이션 지원 (탭 키로 버튼 포커스)
+- 시맨틱 HTML 사용 (`<article>` 태그)
+
+## 성능 최적화
+
+- 무한 스크롤을 위한 슬라이드 복제 최소화
+- CSS transform을 사용한 하드웨어 가속
+- 트랜지션이 필요 없을 때 비활성화
+
+## 참고사항
+
+- `slides` prop이 비어있거나 없으면 "데이터가 없습니다." 메시지가 표시됩니다
+- 슬라이드 개수가 3개 미만일 경우 무한 스크롤이 제대로 작동하지 않을 수 있습니다
+- `articleWidth`는 `Root`, `Track`, `Article` 컴포넌트에 모두 동일한 값을 전달해야 합니다
+- 렌더 함수의 첫 번째 인자는 슬라이드 데이터, 두 번째 인자는 인덱스입니다
+
+## 관련 컴포넌트
+
+- [Button](/docs/components-button--docs): 캐러셀 네비게이션에 사용되는 버튼 컴포넌트
+
