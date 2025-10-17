@@ -74,7 +74,7 @@ const renderOverlayWithRank = (movie: CarouselProps) => (
         color: 'white',
       }}
     >
-      {movie.rank && <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{movie.rank}</div>}
+      {Boolean(movie.rank) && <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{movie.rank}</div>}
       <div style={{ fontSize: '16px' }}>{movie.title}</div>
     </div>
   </div>
@@ -102,7 +102,7 @@ const renderOverlay = (movie: CarouselProps) => (
 const renderTop = (movie: CarouselProps) => (
   <div style={{ height: '100%' }}>
     <div style={{ padding: '10px', background: '#f5f5f5' }}>
-      {movie.rank && <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{movie.rank}</div>}
+      {Boolean(movie.rank) && <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{movie.rank}</div>}
       <div style={{ fontSize: '14px' }}>{movie.title}</div>
     </div>
     <img
@@ -119,7 +119,9 @@ const renderLeft = (movie: CarouselProps) => (
       <img src={movie.image} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     </div>
     <div style={{ flex: 1, padding: '15px', background: '#fff', border: '1px solid #ddd' }}>
-      {movie.rank && <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '8px' }}>{movie.rank}</div>}
+      {Boolean(movie.rank) && (
+        <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '8px' }}>{movie.rank}</div>
+      )}
       <div style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>{movie.title}</div>
       <div style={{ fontSize: '14px', color: '#666' }}>{movie.description}</div>
     </div>
