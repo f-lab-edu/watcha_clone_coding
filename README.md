@@ -1,6 +1,7 @@
-# 🎬 Watcha Clone Coding
+# 🎬 영화 추천 사이트
 
-왓챠 클론 코딩 프로젝트 - pnpm 워크스페이스 기반 모노레포 구조
+영화 추천 사이트 프로젝트
+(https://watcha-clone-coding.p-e.kr/)
 
 ## 📋 프로젝트 소개
 
