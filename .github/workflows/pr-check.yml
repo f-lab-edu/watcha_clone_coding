@@ -53,6 +53,6 @@ jobs:
         
       # ✅ turbo 명령어로 변경
       - name: Type check all packages
-        run: turbo run type-check
+        run: pnpm run type-check
       
           
