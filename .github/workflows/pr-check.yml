@@ -38,11 +38,21 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+      
+      # 🚀 Turborepo 캐시 추가
+      - name: Setup Turborepo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
             
       - name: Install dependencies
         run: pnpm install
         
+      # ✅ turbo 명령어로 변경
       - name: Type check all packages
-        run: pnpm type-check
+        run: pnpm run type-check
       
           

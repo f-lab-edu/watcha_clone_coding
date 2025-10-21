@@ -40,10 +40,20 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+      
+      # 🚀 Turborepo 캐시 추가
+      - name: Setup Turborepo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
             
       - name: Install dependencies
         run: pnpm install
         
+      # ✅ turbo 명령어로 변경
       - name: Build for production
         env:
           NEXT_PUBLIC_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
@@ -56,10 +66,12 @@ jobs:
           # package.json에서 type: module 임시 제거
           sed -i 's/"type": "module",//g' package.json
           
-          # 빌드 실행
-          pnpm build
+          # 🔥 turbo로 빌드 실행
+          cd ../..
+          turbo run build --filter=watcha_clone_coding
           
           # type: module 복원
+          cd apps/watcha_clone_coding
           sed -i 's/"version": "1.0.0",/"version": "1.0.0",\n  "type": "module",/g' package.json
         
       - name: Configure AWS credentials
