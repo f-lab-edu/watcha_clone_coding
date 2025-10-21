@@ -3,14 +3,14 @@
   "private": true,
   "packageManager": "pnpm@10.15.1",
   "scripts": {
-    "build": "pnpm --F \"@watcha/carousel\" build && pnpm --F \"watcha_clone_coding\" build",
-    "start": "pnpm --F \"watcha_clone_coding\" start",
-    "dev": "pnpm --F \"watcha_clone_coding\" dev",
-    "type-check": "pnpm -r type-check",
-    "lint": "pnpm -r lint",
-    "lint:fix": "pnpm -r lint:fix",
-    "format": "pnpm -r format",
-    "format:check": "pnpm -r format:check",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "type-check": "turbo run type-check",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
     "prepare": "husky"
   },
   "engines": {
@@ -22,6 +22,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.0",
     "prettier": "^3.6.2",
+    "turbo": "^2.5.8",
     "typescript": "^5.9.2",
     "vite": "^7.1.7"
   },
