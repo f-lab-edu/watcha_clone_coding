@@ -41,4 +41,8 @@ jobs:
             
       - name: Install dependencies
         run: pnpm install
+        
+      - name: Type check all packages
+        run: pnpm type-check
+      
           
