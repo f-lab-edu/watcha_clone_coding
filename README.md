@@ -51,7 +51,7 @@ pnpm start
 # TMDB API 설정
 VITE_TMDB_API_KEY=your_tmdb_api_key_here
 VITE_TMDB_BASE_URL=https://api.themoviedb.org/3
-VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p/w500
+VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p/original
 
 # 앱 설정
 APP_PHASE=local
