@@ -68,7 +68,7 @@ jobs:
           
           # 🔥 turbo로 빌드 실행
           cd ../..
-          turbo run build --filter=watcha_clone_coding
+          pnpm turbo run build --filter=watcha_clone_coding
           
           # type: module 복원
           cd apps/watcha_clone_coding
