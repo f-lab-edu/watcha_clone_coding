@@ -15,3 +15,10 @@ if (process.env.NODE_ENV === 'development' && !config.tmdbApiKey) {
 if (process.env.NODE_ENV === 'production' && !config.tmdbApiKey) {
   throw new Error('NEXT_PUBLIC_TMDB_API_KEY가 설정되지 않았습니다. 프로덕션 배포를 위해 API 키를 설정해주세요.');
 }
+
+// 서버 사이드에서 빌드 시 체크
+if (typeof window === 'undefined' && process.env.NODE_ENV === 'production') {
+  if (!process.env.NEXT_PUBLIC_TMDB_API_KEY) {
+    throw new Error('NEXT_PUBLIC_TMDB_API_KEY가 설정되지 않았습니다.');
+  }
+}

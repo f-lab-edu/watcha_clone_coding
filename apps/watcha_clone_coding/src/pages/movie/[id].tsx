@@ -1,6 +1,11 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
+
+import { movieDetailKeys } from '../../queries/detail/queryKeys';
+import { fetchMovieDetail, fetchMovieReviews, fetchPopularMovieList } from '../../utils/api';
 
 import AssessmentIcon from '@/assets/assuessment.svg';
 import InterestIcon from '@/assets/interest.svg';
@@ -12,6 +17,64 @@ import { DetailPageSkeleton } from '@/components/Skeleton';
 import useMovieDetail from '@/hooks/useMovieDetail';
 import { Genre, Member, Review, Video } from '@/types/Movie';
 import { buildImageUrl } from '@/utils/transform';
+
+// 어떤 페이지를 미리 생성할지
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    // 인기 영화 목록 빌드 타임에 생성
+    const movies = await fetchPopularMovieList();
+
+    const paths = movies.slice(0, 50).map((movie) => ({
+      params: { id: movie.id.toString() },
+    }));
+
+    return {
+      paths,
+      fallback: 'blocking', // 나머지 영화는 첫 요청 시 생성
+    };
+  } catch (error) {
+    console.error('Error in getStaticPaths:', error);
+
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
+};
+
+// getStaticProps - 각 페이지의 데이터 prefetch
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const movieId = params?.id as string;
+  const queryClient = new QueryClient();
+
+  try {
+    // 영화 상세 정보와 리뷰를 병렬로 prefetch
+    await Promise.all([
+      queryClient.prefetchQuery({
+        queryKey: movieDetailKeys.detail(movieId),
+        queryFn: () => fetchMovieDetail(movieId),
+      }),
+      queryClient.prefetchQuery({
+        queryKey: movieDetailKeys.reviews(movieId),
+        queryFn: () => fetchMovieReviews(movieId),
+      }),
+    ]);
+
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+      revalidate: 86400, // 24시간마다 재생성 (영화 정보는 거의 안 바뀜)
+    };
+  } catch (error) {
+    console.error(`Error fetching movie ${movieId}:`, error);
+
+    // 404 페이지로
+    return {
+      notFound: true,
+    };
+  }
+};
 
 const DetailPageContent: React.FC = () => {
   const { movieData, reviews, getReleaseYear, changeTimeFormat } = useMovieDetail();
