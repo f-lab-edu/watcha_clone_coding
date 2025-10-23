@@ -1,6 +1,4 @@
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { Carousel } from '@watcha/carousel';
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
 
@@ -8,10 +6,8 @@ import AppErrorBoundary from '@/components/AppErrorBoundary';
 import MovieCard from '@/components/MovieCard';
 import { PageSkeleton } from '@/components/Skeleton';
 import ThemeTab from '@/components/ThemeTab';
-import { movieListKeys } from '@/queries/movieList/queryKeys';
 import { useMovieListQuery } from '@/queries/movieList/useMovieListQuery';
 import { CarouselProps } from '@/types/Carousel';
-import { fetchPopularMovieList, fetchTopRatedMovieList, fetchNowPlayingMovieList } from '@/utils/api';
 
 const TAB_BUTTONS = [
   {
@@ -30,45 +26,6 @@ const TAB_BUTTONS = [
     name: '성인+',
   },
 ];
-
-export const getStaticProps: GetStaticProps = async () => {
-  const queryClient = new QueryClient();
-
-  try {
-    // 기존 hook과 동일한 queryKey, queryFn 사용
-    await Promise.all([
-      queryClient.prefetchQuery({
-        queryKey: movieListKeys.popular(),
-        queryFn: fetchPopularMovieList,
-      }),
-      queryClient.prefetchQuery({
-        queryKey: movieListKeys.top_rated(),
-        queryFn: fetchTopRatedMovieList,
-      }),
-      queryClient.prefetchQuery({
-        queryKey: movieListKeys.now_playing(),
-        queryFn: fetchNowPlayingMovieList,
-      }),
-    ]);
-
-    return {
-      props: {
-        dehydratedState: dehydrate(queryClient),
-      },
-      revalidate: 3600, // 1시간마다 재생성
-    };
-  } catch (error) {
-    console.error('Failed to prefetch movie data:', error);
-
-    // 에러 발생 시 빈 상태로 반환 (클라이언트에서 재시도)
-    return {
-      props: {
-        dehydratedState: dehydrate(queryClient),
-      },
-      revalidate: 60,
-    };
-  }
-};
 
 const ListPageContent = () => {
   const { popularQuery, topRatedQuery, nowPlayingQuery } = useMovieListQuery();
