@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, HydrationBoundary } from '@tanstack/react-query';
 import { AppProps } from 'next/app';
 import { useState } from 'react';
 
@@ -24,6 +24,8 @@ export default function App({ Component, pageProps }: AppProps) {
             retryDelay: (attemptIndex: number): number => Math.min(1000 * 2 ** attemptIndex, 30000), // 지수 백오프
             refetchOnWindowFocus: false, // 윈도우 포커스 시 자동 리페치 비활성화
             refetchOnReconnect: true, // 네트워크 재연결 시 리페치
+            // SSR에서 prefetch된 데이터는 재요청하지 않도록
+            refetchOnMount: false,
           },
         },
       }),
@@ -32,9 +34,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AppErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <HydrationBoundary state={pageProps.dehydratedState}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </HydrationBoundary>
       </QueryClientProvider>
     </AppErrorBoundary>
   );
