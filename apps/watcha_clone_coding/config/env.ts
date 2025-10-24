@@ -3,7 +3,7 @@
 export const config = {
   tmdbApiKey: process.env.NEXT_PUBLIC_TMDB_API_KEY,
   tmdbBaseUrl: process.env.NEXT_PUBLIC_TMDB_BASE_URL || 'https://api.themoviedb.org/3',
-  tmdbImageUrl: process.env.NEXT_PUBLIC_TMDB_IMAGE_URL || 'https://image.tmdb.org/t/p/original',
+  tmdbImageUrl: process.env.NEXT_PUBLIC_TMDB_IMAGE_URL || 'https://image.tmdb.org/t/p/w1280',
 };
 
 // 환경변수 검증 (개발 환경에서만)
