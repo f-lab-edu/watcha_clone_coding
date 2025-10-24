@@ -58,7 +58,7 @@ jobs:
         env:
           NEXT_PUBLIC_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
           NEXT_PUBLIC_TMDB_BASE_URL: https://api.themoviedb.org/3
-          NEXT_PUBLIC_TMDB_IMAGE_URL: https://image.tmdb.org/t/p/original
+          NEXT_PUBLIC_TMDB_IMAGE_URL: https://image.tmdb.org/t/p/w1280
         run: |
           # ES Modules 이슈 해결을 위한 임시 조치
           cd apps/watcha_clone_coding

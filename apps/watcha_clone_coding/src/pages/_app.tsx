@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import AppErrorBoundary from '../components/AppErrorBoundary';
 import Layout from '../layouts/Layout';
+import '@orbital0m0/carousel/styles';
 import '@/styles/App.css';
 import '@/styles/Layout.css';
 import '@/styles/Page.css';

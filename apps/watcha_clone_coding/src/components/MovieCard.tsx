@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { MovieCardProps } from '@/types/Carousel';
@@ -8,14 +7,11 @@ const MovieCard = (props: MovieCardProps) => {
     <Link href={`/movie/${props.slide.id}`}>
       <div className={`slider-card slider-card-${props.layout}`}>
         <div className="slider-image-container">
-          <Image
+          <img
             src={props.slide.image}
             alt={props.slide.title}
             className="slider-image"
-            fill
-            sizes="(max-width: 768px) 100vw, 500px"
-            style={{ objectFit: 'cover' }}
-            priority={props.priority}
+            loading={props.priority ? 'eager' : 'lazy'}
           />
         </div>
         <div className={`slider-content slider-content-${props.layout}`}>
