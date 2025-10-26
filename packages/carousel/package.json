@@ -18,9 +18,6 @@
     "src/styles",
     "README.md"
   ],
-  "sideEffects": [
-    "*.css"
-  ],
   "publishConfig": {
     "access": "public"
   },
