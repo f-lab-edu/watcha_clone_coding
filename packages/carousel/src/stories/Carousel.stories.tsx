@@ -100,16 +100,17 @@ const renderOverlay = (movie: CarouselProps) => (
 );
 
 const renderTop = (movie: CarouselProps) => (
-  <div style={{ height: '100%' }}>
-    <div style={{ padding: '10px', background: '#f5f5f5' }}>
-      {Boolean(movie.rank) && <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{movie.rank}</div>}
-      <div style={{ fontSize: '14px' }}>{movie.title}</div>
+  <div className="slider-card-top">
+    <div className="slider-content-top">
+      {Boolean(movie.rank) && (
+        <div style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>{movie.rank}</div>
+      )}
+      <div className="slider-title">{movie.title}</div>
+      {movie.description && <div className="slider-description">{movie.description}</div>}
     </div>
-    <img
-      src={movie.image}
-      alt={movie.title}
-      style={{ width: '100%', height: 'calc(100% - 50px)', objectFit: 'cover' }}
-    />
+    <div className="slider-image-container">
+      <img src={movie.image} alt={movie.title} className="slider-image" />
+    </div>
   </div>
 );
 
