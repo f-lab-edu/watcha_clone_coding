@@ -67,41 +67,6 @@ import { Button } from "@orbital0m0/carousel";
         type: { summary: 'ReactNode' },
       },
     },
-    disabled: {
-      control: 'boolean',
-      description: '버튼 비활성화 여부',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    onClick: {
-      action: 'clicked',
-      description: '클릭 이벤트 핸들러 함수',
-      table: {
-        type: { summary: '() => void' },
-      },
-    },
-    className: {
-      control: 'text',
-      description: '커스텀 CSS 클래스명',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    style: {
-      description: '인라인 스타일 객체',
-      table: {
-        type: { summary: 'CSSProperties' },
-      },
-    },
-    'aria-label': {
-      control: 'text',
-      description: '스크린 리더를 위한 접근성 레이블',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
   },
 } satisfies Meta<typeof Button>;
 
