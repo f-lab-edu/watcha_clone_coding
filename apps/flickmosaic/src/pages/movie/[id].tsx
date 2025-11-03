@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 // getStaticProps - 각 페이지의 데이터 prefetch
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const movieId = params?.id as string;
   const queryClient = new QueryClient();
 
