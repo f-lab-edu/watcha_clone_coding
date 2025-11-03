@@ -1,6 +1,6 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook";
 
-import watchaConfig from '@watcha/eslint-config';
+import flickmosaicConfig from '@flickmosaic/eslint-config';
 
-export default [...watchaConfig, ...storybook.configs["flat/recommended"]];
+export default [...flickmosaicConfig, ...storybook.configs["flat/recommended"]];

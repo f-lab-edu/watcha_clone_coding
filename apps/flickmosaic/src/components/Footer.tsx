@@ -10,9 +10,9 @@ const Footer = (): ReactElement => {
     <footer className="footer">
       {/* 서비스 이용약관 및 정책 */}
       <ul className="footer-terms text-base text-small">
-        <li className="footer-terms-item">왓챠피디아 서비스 이용 약관</li>
+        <li className="footer-terms-item">플릭모자이크 서비스 이용 약관</li>
         <li className="footer-terms-item">개인정보 처리 방침</li>
-        <li className="footer-terms-item">왓챠 서비스 이용 약관</li>
+        <li className="footer-terms-item">플릭모자이크 서비스 이용 약관</li>
         <li className="footer-terms-item">청소년 보호정책</li>
         <li className="footer-terms-item">고객센터</li>
         <li className="footer-terms-item">채용정보</li>
@@ -22,15 +22,15 @@ const Footer = (): ReactElement => {
       <ul className="footer-contact">
         <li className="footer-contact-item text-base text-medium">
           <span className="footer-contact-label">고객센터(이용 및 결제 문의)</span>
-          <a href="mailto:cs@watcha.co.kr" className="footer-contact-link">
-            cs@watcha.co.kr
+          <a href="mailto:cs@flickmosaic.com" className="footer-contact-link">
+            cs@flickmosaic.com
           </a>
         </li>
 
         <li className="footer-contact-item text-base text-medium">
           <span className="footer-contact-label">광고 문의</span>
-          <a href="mailto:ad-sales@watcha.com" className="footer-contact-link">
-            ad-sales@watcha.com
+          <a href="mailto:ad-sales@flickmosaic.com" className="footer-contact-link">
+            ad-sales@flickmosaic.com
           </a>
           <span className="footer-contact-link">02-515-9985 (유료)</span>
         </li>
@@ -38,12 +38,12 @@ const Footer = (): ReactElement => {
         <li className="footer-contact-item text-base text-medium">
           <span className="footer-contact-label">제휴 및 대외 협력</span>
           <a
-            href="https://watcha.team/contact"
+            href="https://flickmosaic.team/contact"
             className="footer-contact-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            https://watcha.team/contact
+            https://flickmosaic.team/contact
           </a>
           <a href="#" className="footer-contact-link">
             최신 광고 소개서
@@ -68,7 +68,7 @@ const Footer = (): ReactElement => {
       {/* 회사 정보 */}
       <div className="footer-company">
         <ul className="footer-company-list text-base text-medium">
-          <li className="footer-company-item divider-element">주식회사 왓챠</li>
+          <li className="footer-company-item divider-element">주식회사 플릭모자이크</li>
           <li className="footer-company-item divider-element">대표 박태훈</li>
           <li className="footer-company-item">서울특별시 서초구 강남대로 343 신덕빌딩 3층</li>
         </ul>
@@ -103,7 +103,7 @@ const Footer = (): ReactElement => {
       </div>
 
       {/* 저작권 정보 */}
-      <div className="footer-copyright text-base text-medium">Copyright © 2025 by Watcha_clone_coding</div>
+      <div className="footer-copyright text-base text-medium">Copyright © 2025 by FlickMosaic</div>
     </footer>
   );
 };

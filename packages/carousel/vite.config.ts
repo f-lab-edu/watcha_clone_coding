@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'index.ts'),
-      name: 'WatchaCarousel',
+      name: 'FlickMosaicCarousel',
       formats: ['es'],
       fileName: () => 'index.js',
     },

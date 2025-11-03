@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="ko">
       <Head>
-        <meta name="description" content="WATCHA Clone Coding - 영화 추천 서비스" />
+        <meta name="description" content="FlickMosaic - 영화 추천 서비스" />
         <meta name="theme-color" content="#000000" />
         <link rel="preconnect" href="https://api.themoviedb.org" />
         <link rel="preconnect" href="https://image.tmdb.org" />

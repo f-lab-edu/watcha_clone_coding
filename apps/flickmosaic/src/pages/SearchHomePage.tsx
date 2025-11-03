@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { Carousel } from '@watcha/carousel';
+import { Carousel } from '@flickmosaic/carousel';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -138,7 +138,7 @@ const SearchHomePage = () => {
   return (
     <>
       <Head>
-        <title>검색 - WATCHA</title>
+        <title>검색 - FLICKMOSAIC</title>
       </Head>
       <AppErrorBoundary>
         <React.Suspense fallback={<SearchHomePageSkeleton />}>

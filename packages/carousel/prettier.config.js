@@ -1,3 +1,3 @@
-module.exports = require('@watcha/prettier-config');
+module.exports = require('@flickmosaic/prettier-config');
 
 

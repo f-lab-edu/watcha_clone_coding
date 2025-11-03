@@ -15,7 +15,7 @@ const SearchPage = () => {
   return (
     <>
       <Head>
-        <title>검색 - WATCHA</title>
+        <title>검색 - FlickMosaic</title>
       </Head>
       <SearchHomePage />
     </>

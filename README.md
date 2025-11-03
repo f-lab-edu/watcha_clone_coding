@@ -1,18 +1,18 @@
-# 🎬 영화 추천 사이트
+# 🎬 FlickMosaic
 
 영화 추천 사이트 프로젝트
-(https://watcha-clone-coding.p-e.kr/)
+(https://flickmosaic.p-e.kr/)
 
 ## 📋 프로젝트 소개
 
-이 프로젝트는 영화 정보 플랫폼 왓챠를 클론 코딩한 Next.js 애플리케이션과 재사용 가능한 Carousel 컴포넌트 라이브러리로 구성된 모노레포입니다.
+이 프로젝트는 영화 정보 플랫폼을 구현한 Next.js 애플리케이션과 재사용 가능한 Carousel 컴포넌트 라이브러리로 구성된 모노레포입니다.
 
 ### 🏗️ 모노레포 구조
 
 ```
-watcha_clone_coding/
+flickmosaic/
 ├── apps/
-│   └── watcha_clone_coding/    # 메인 Next.js 애플리케이션
+│   └── flickmosaic/    # 메인 Next.js 애플리케이션
 └── packages/
     ├── carousel/               # Carousel 컴포넌트 라이브러리
     ├── eslint-config/         # 공유 ESLint 설정
@@ -45,7 +45,7 @@ pnpm start
 
 ### 환경변수 설정
 
-`apps/watcha_clone_coding/` 디렉토리에 `.env` 파일을 생성하세요:
+`apps/flickmosaic/` 디렉토리에 `.env` 파일을 생성하세요:
 
 ```bash
 # TMDB API 설정
@@ -65,7 +65,7 @@ APP_PHASE=local
 
 ## 📦 프로젝트 구성
 
-### 🎬 Watcha Clone Coding App
+### 🎬 FlickMosaic App
 
 영화 정보를 탐색하고 검색할 수 있는 Next.js 기반 웹 애플리케이션입니다.
 
@@ -89,7 +89,7 @@ APP_PHASE=local
 **프로젝트 구조:**
 
 ```
-apps/watcha_clone_coding/src/
+apps/flickmosaic/src/
 ├── components/     # 재사용 가능한 UI 컴포넌트
 ├── hooks/         # 커스텀 React 훅
 ├── layouts/       # 레이아웃 컴포넌트
@@ -104,7 +104,7 @@ apps/watcha_clone_coding/src/
 **개발 명령어:**
 
 ```bash
-cd apps/watcha_clone_coding
+cd apps/flickmosaic
 
 # 개발 서버 실행
 pnpm dev
@@ -167,7 +167,7 @@ function App() {
 
 **Storybook:**
 
-- 📚 [배포된 Storybook 문서](https://f-lab-edu.github.io/watcha_clone_coding/)
+- 📚 [배포된 Storybook 문서](https://f-lab-edu.github.io/flickmosaic/)
 - 로컬 실행: `pnpm --F @orbital0m0/carousel storybook`
 
 **개발 명령어:**
@@ -228,7 +228,7 @@ pnpm format:check
 pnpm --F <package-name> <command>
 
 # 예시:
-pnpm --F watcha_clone_coding dev
+pnpm --F flickmosaic dev
 pnpm --F @orbital0m0/carousel build
 ```
 
@@ -273,9 +273,9 @@ CLOUDFRONT_DISTRIBUTION_ID  # CloudFront 배포 ID
 
 모노레포의 모든 패키지는 다음 공유 설정을 사용합니다:
 
-- `@watcha/eslint-config`: ESLint 설정
-- `@watcha/prettier-config`: Prettier 설정
-- `@watcha/tsconfig`: TypeScript 설정
+- `@flickmosaic/eslint-config`: ESLint 설정
+- `@flickmosaic/prettier-config`: Prettier 설정
+- `@flickmosaic/tsconfig`: TypeScript 설정
 
 ## 📚 추가 문서
 
@@ -284,9 +284,9 @@ CLOUDFRONT_DISTRIBUTION_ID  # CloudFront 배포 ID
 
 ## 🔗 링크
 
-- **Repository**: [https://github.com/f-lab-edu/watcha_clone_coding](https://github.com/f-lab-edu/watcha_clone_coding)
-- **Issues**: [https://github.com/f-lab-edu/watcha_clone_coding/issues](https://github.com/f-lab-edu/watcha_clone_coding/issues)
-- **Storybook**: [https://f-lab-edu.github.io/watcha_clone_coding/](https://f-lab-edu.github.io/watcha_clone_coding/)
+- **Repository**: [https://github.com/f-lab-edu/flickmosaic](https://github.com/f-lab-edu/flickmosaic)
+- **Issues**: [https://github.com/f-lab-edu/flickmosaic/issues](https://github.com/f-lab-edu/flickmosaic/issues)
+- **Storybook**: [https://f-lab-edu.github.io/flickmosaic/](https://f-lab-edu.github.io/flickmosaic/)
 
 ## 📄 라이센스
 

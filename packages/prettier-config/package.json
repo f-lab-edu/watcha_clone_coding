@@ -1,7 +1,7 @@
 {
-  "name": "@watcha/prettier-config",
+  "name": "@flickmosaic/prettier-config",
   "version": "1.0.0",
-  "description": "Shared Prettier configuration for Watcha project",
+  "description": "Shared Prettier configuration for FlickMosaic project",
   "main": "index.js",
   "files": [
     "index.js"

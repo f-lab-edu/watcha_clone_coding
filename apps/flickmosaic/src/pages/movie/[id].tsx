@@ -107,7 +107,7 @@ const DetailPageContent: React.FC = () => {
   return (
     <>
       <Head>
-        <title>{movieData.title} - WATCHA</title>
+        <title>{movieData.title} - FlickMosaic</title>
       </Head>
       <div className="detail-page">
         <div className="detail">
@@ -153,7 +153,7 @@ const DetailPageContent: React.FC = () => {
                     <p>평가하기</p>
                   </Button>
                   <Button className="evaluation-section-button" icon={<PartyIcon />}>
-                    <p>왓챠파티</p>
+                    <p>파티</p>
                   </Button>
                   <Button className="evaluation-section-button" icon={<MoreIcon />}>
                     <p>더보기</p>
@@ -253,7 +253,7 @@ const DetailPageContent: React.FC = () => {
 
           {/* 리뷰 섹션 */}
           <section className="reviews-section">
-            <div className="section-title">왓챠피디아 사용자 평</div>
+            <div className="section-title">플릭모자이크 사용자 평</div>
             {reviews.length > 0 && (
               <ul>
                 {reviews.map((review: Review) => (

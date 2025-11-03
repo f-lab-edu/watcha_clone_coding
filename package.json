@@ -28,8 +28,8 @@
   },
   "lint-staged": {
     "apps/**/*.{ts,tsx}": [
-      "pnpm --F watcha_clone_coding exec eslint --fix",
-      "pnpm --F watcha_clone_coding exec prettier --write"
+      "pnpm --F flickmosaic exec eslint --fix",
+      "pnpm --F flickmosaic exec prettier --write"
     ],
     "packages/**/*.{ts,tsx}": [
       "pnpm --F carousel exec eslint --fix",

@@ -1,7 +1,7 @@
 {
-  "name": "watcha_clone_coding",
+  "name": "flickmosaic",
   "version": "1.0.0",
-  "description": "\"# watcha_clone_coding\"",
+  "description": "\"# flickmosaic\"",
   "main": "index.js",
   "type": "module",
   "packageManager": "pnpm@10.15.1",
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/f-lab-edu/watcha_clone_coding.git"
+    "url": "git+https://github.com/f-lab-edu/flickmosaic.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/f-lab-edu/watcha_clone_coding/issues"
+    "url": "https://github.com/f-lab-edu/flickmosaic/issues"
   },
-  "homepage": "https://github.com/f-lab-edu/watcha_clone_coding#readme",
+  "homepage": "https://github.com/f-lab-edu/flickmosaic#readme",
   "dependencies": {
     "@lukemorales/query-key-factory": "^1.3.4",
     "@svgr/webpack": "^8.1.0",
@@ -46,9 +46,9 @@
     "@types/react-dom": "^19.1.7",
     "@typescript-eslint/eslint-plugin": "^8.13.0",
     "@typescript-eslint/parser": "^8.13.0",
-    "@watcha/eslint-config": "workspace:*",
-    "@watcha/prettier-config": "workspace:*",
-    "@watcha/tsconfig": "workspace:*",
+    "@flickmosaic/eslint-config": "workspace:*",
+    "@flickmosaic/prettier-config": "workspace:*",
+    "@flickmosaic/tsconfig": "workspace:*",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.3.3",

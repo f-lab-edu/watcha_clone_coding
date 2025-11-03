@@ -4,7 +4,7 @@ import React from 'react';
 
 import AlarmIcon from '@/assets/alarm.svg';
 import SearchIcon from '@/assets/search.svg';
-import WatchaIcon from '@/assets/watcha.svg';
+import FlickMosaicIcon from '@/assets/flickmosaic.svg';
 import Button from '@/components/Button';
 import useSearchMovie from '@/hooks/useSearchMovie';
 
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
       <nav className="header-nav">
         <div className="header-nav-content">
           <Link href="/" className="header-logo">
-            <WatchaIcon />
+            <FlickMosaicIcon />
           </Link>
 
           <div className="header-nav-menu">
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
               </li>
               <li className="header-nav-item">
                 <a className="header-nav-link text-base text-xl" href="#">
-                  <span className="header-nav-link-content">왓챠 파티</span>
+                  <span className="header-nav-link-content">파티</span>
                 </a>
               </li>
             </ul>

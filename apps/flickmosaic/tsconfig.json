@@ -1,5 +1,5 @@
 {
-  "extends": "@watcha/tsconfig/react.json",
+  "extends": "@flickmosaic/tsconfig/react.json",
   "compilerOptions": {
     "outDir": "./dist",
     "baseUrl": ".",
@@ -7,7 +7,7 @@
     "declarationMap": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@watcha/carousel": ["../../packages/carousel"]
+      "@flickmosaic/carousel": ["../../packages/carousel"]
     },
     "plugins": [
       {

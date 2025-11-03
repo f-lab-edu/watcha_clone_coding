@@ -1,7 +1,7 @@
 {
-  "name": "@watcha/eslint-config",
+  "name": "@flickmosaic/eslint-config",
   "version": "1.0.0",
-  "description": "Shared ESLint configuration for Watcha project",
+  "description": "Shared ESLint configuration for FlickMosaic project",
   "type": "module",
   "main": "index.js",
   "files": [
