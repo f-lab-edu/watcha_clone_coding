@@ -1,5 +1,5 @@
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { Carousel } from '@flickmosaic/carousel';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
