@@ -3,9 +3,8 @@
 
 # Stage 1: Base image with pnpm
 FROM node:22.13.0-alpine AS base
-ENV COREPACK_ENABLE_STRICT=0
-RUN corepack enable
-RUN corepack prepare pnpm@10.15.1 --activate
+# Corepack 대신 pnpm 직접 설치
+RUN npm install -g pnpm@10.15.1
 RUN apk add --no-cache libc6-compat
 
 # Stage 2: Install dependencies
