@@ -1,6 +1,6 @@
-# Watcha Clone Coding
+# FlickMosaic
 
-왓챠 클론 코딩 프로젝트입니다.
+영화 추천 플랫폼 프로젝트입니다.
 
 ## 환경 설정
 

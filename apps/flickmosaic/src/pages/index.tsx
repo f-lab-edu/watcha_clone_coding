@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { Carousel } from '@watcha/carousel';
+import { Carousel } from '@flickmosaic/carousel';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
@@ -140,7 +140,7 @@ const ListPage = () => {
   return (
     <>
       <Head>
-        <title>WATCHA - 영화 추천</title>
+        <title>FLICKMOSAIC - 영화 추천</title>
       </Head>
       <AppErrorBoundary>
         <React.Suspense fallback={<PageSkeleton />}>

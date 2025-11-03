@@ -1,7 +1,7 @@
 {
-  "name": "@watcha/tsconfig",
+  "name": "@flickmosaic/tsconfig",
   "version": "1.0.0",
-  "description": "Shared TypeScript configurations for Watcha project",
+  "description": "Shared TypeScript configurations for FlickMosaic project",
   "main": "index.js",
   "files": [
     "base.json",

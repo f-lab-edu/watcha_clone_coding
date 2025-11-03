@@ -21,12 +21,12 @@ const SearchResultPageContent = () => {
 
   // 페이지 타이틀 생성
   const getPageTitle = () => {
-    if (query) return `"${query}" 검색 결과 - WATCHA`;
+    if (query) return `"${query}" 검색 결과 - FlickMosaic`;
     if (genreId) {
       const genreName = genresQuery.data.find((g: { name: string; id?: number }) => g.id?.toString() === genreId)?.name;
-      return `${genreName || '장르'} - WATCHA`;
+      return `${genreName || '장르'} - FlickMosaic`;
     }
-    return '검색 결과 - WATCHA';
+    return '검색 결과 - FlickMosaic';
   };
 
   const resultList = (resultData: TransformedMovie[], type: string) => {
@@ -89,7 +89,7 @@ const SearchResultPageContent = () => {
         </Head>
         <div className="empty-result">
           <h3>검색 결과가 없습니다.</h3>
-          <p>검색하신 작품이 현재 왓챠에 없어요.</p>
+          <p>검색하신 작품이 현재 플릭모자이크에 없어요.</p>
           <p>다른 키워드로 검색해보세요.</p>
         </div>
       </>

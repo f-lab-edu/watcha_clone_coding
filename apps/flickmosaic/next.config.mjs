@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   distDir: './dist', // 빌드 출력 디렉터리를 `./dist/`로 변경합니다.
-  transpilePackages: ['@watcha/carousel'], // 트랜스파일링할 패키지 목록
+  transpilePackages: ['@flickmosaic/carousel'], // 트랜스파일링할 패키지 목록
   images: {
     remotePatterns: [
       {
