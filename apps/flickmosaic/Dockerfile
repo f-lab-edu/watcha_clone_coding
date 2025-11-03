@@ -1,4 +1,4 @@
-# apps/watcha_clone_coding/Dockerfile
+# apps/flickmosaic/Dockerfile
 # Multi-stage build for production optimization
 
 # Stage 1: Base image with pnpm
@@ -12,7 +12,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
-COPY apps/watcha_clone_coding/package.json ./apps/watcha_clone_coding/
+COPY apps/flickmosaic/package.json ./apps/flickmosaic/
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile --prefer-offline
@@ -23,7 +23,7 @@ WORKDIR /app
 
 # Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/apps/watcha_clone_coding/node_modules ./apps/watcha_clone_coding/node_modules
+COPY --from=deps /app/apps/flickmosaic/node_modules ./apps/flickmosaic/node_modules
 
 # Copy source code
 COPY . .
@@ -38,7 +38,7 @@ ENV NEXT_PUBLIC_TMDB_BASE_URL=$NEXT_PUBLIC_TMDB_BASE_URL
 ENV NEXT_PUBLIC_TMDB_IMAGE_URL=$NEXT_PUBLIC_TMDB_IMAGE_URL
 
 # Build with turbo
-RUN pnpm turbo run build --filter=watcha_clone_coding
+RUN pnpm turbo run build --filter=flickmosaic
 
 # Stage 4: Production runner
 FROM base AS runner
@@ -53,11 +53,11 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy necessary files from builder
-COPY --from=builder /app/apps/watcha_clone_coding/public ./public
+COPY --from=builder /app/apps/flickmosaic/public ./public
 
 # Copy standalone build
-COPY --from=builder --chown=nextjs:nodejs /app/apps/watcha_clone_coding/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/apps/watcha_clone_coding/.next/static ./apps/watcha_clone_coding/.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/flickmosaic/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/flickmosaic/.next/static ./apps/flickmosaic/.next/static
 
 USER nextjs
 
@@ -70,4 +70,4 @@ ENV HOSTNAME="0.0.0.0"
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
-CMD ["node", "apps/watcha_clone_coding/server.js"]
+CMD ["node", "apps/flickmosaic/server.js"]
