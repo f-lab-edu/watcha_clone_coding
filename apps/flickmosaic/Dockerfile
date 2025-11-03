@@ -3,7 +3,8 @@
 
 # Stage 1: Base image with pnpm
 FROM node:22.13.0-alpine AS base
-RUN corepack enable pnpm
+RUN corepack enable
+RUN corepack prepare pnpm@10.15.1 --activate
 RUN apk add --no-cache libc6-compat
 
 # Stage 2: Install dependencies
