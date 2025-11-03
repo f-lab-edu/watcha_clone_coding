@@ -58,12 +58,12 @@ git push origin main
 배포 완료 후 다음 URL로 접속:
 
 ```
-https://[GitHub사용자명].github.io/watcha_clone_coding/
+https://[GitHub사용자명].github.io/flickmosaic/
 ```
 
 예시:
 
-- `https://orbital0m0.github.io/watcha_clone_coding/`
+- `https://orbital0m0.github.io/flickmosaic/`
 
 > 💡 **팁**: Actions 탭의 워크플로우 상세 페이지에서 정확한 URL을 확인할 수 있습니다.
 
@@ -110,7 +110,7 @@ python -m http.server 8000
 ```typescript
 viteFinal: async (config) => {
   if (process.env.NODE_ENV === 'production') {
-    config.base = '/watcha_clone_coding/'; // 저장소 이름과 일치해야 함
+    config.base = '/flickmosaic/'; // 저장소 이름과 일치해야 함
   }
   return config;
 },
@@ -135,7 +135,7 @@ viteFinal: async (config) => {
 배포된 URL을 팀원들과 공유하세요:
 
 ```
-https://[사용자명].github.io/watcha_clone_coding/
+https://[사용자명].github.io/flickmosaic/
 ```
 
 ---

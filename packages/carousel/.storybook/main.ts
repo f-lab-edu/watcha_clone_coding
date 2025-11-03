@@ -11,7 +11,7 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     // production 환경에서만 베이스 경로 설정
     if (process.env.NODE_ENV === 'production') {
-      config.base = '/watcha_clone_coding/';
+      config.base = '/flickmosaic/';
     }
     return config;
   },
