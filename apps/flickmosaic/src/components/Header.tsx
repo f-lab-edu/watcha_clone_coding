@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import AlarmIcon from '@/assets/alarm.svg';
-import SearchIcon from '@/assets/search.svg';
 import FlickMosaicIcon from '@/assets/flickmosaic.svg';
+import SearchIcon from '@/assets/search.svg';
 import Button from '@/components/Button';
 import useSearchMovie from '@/hooks/useSearchMovie';
 
