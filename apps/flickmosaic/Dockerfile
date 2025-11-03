@@ -1,34 +1,28 @@
 # apps/flickmosaic/Dockerfile
-# Multi-stage build with all packages support
+# Monorepo-friendly multi-stage build
 
 FROM node:22.13.0-alpine AS base
-# Corepack 대신 pnpm 직접 설치
-RUN npm install -g pnpm@10.15.1
+ENV COREPACK_ENABLE_STRICT=0
+RUN corepack enable
+RUN corepack prepare pnpm@10.15.1 --activate
 RUN apk add --no-cache libc6-compat
 
+# Stage 2: Install ALL dependencies (full monorepo)
 FROM base AS deps
 WORKDIR /app
 
-# Copy package files
-COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
-# Copy all packages (supports multiple packages)
-COPY packages/*/package.json ./packages/
-COPY apps/flickmosaic/package.json ./apps/flickmosaic/
+# Copy entire monorepo for dependency installation
+COPY . .
 
 # Install dependencies
-RUN pnpm install --frozen-lockfile --prefer-offline
+RUN pnpm install --frozen-lockfile
 
+# Stage 3: Build application
 FROM base AS builder
 WORKDIR /app
 
-# Copy dependencies from deps stage
-COPY --from=deps /app/node_modules ./node_modules
-# Copy all package node_modules
-COPY --from=deps /app/packages ./packages
-COPY --from=deps /app/apps/flickmosaic/node_modules ./apps/flickmosaic/node_modules
-
-# Copy source code
-COPY . .
+# Copy everything from deps (includes node_modules)
+COPY --from=deps /app ./
 
 # Build arguments for environment variables
 ARG NEXT_PUBLIC_TMDB_API_KEY
@@ -42,6 +36,7 @@ ENV NEXT_PUBLIC_TMDB_IMAGE_URL=$NEXT_PUBLIC_TMDB_IMAGE_URL
 # Build with turbo
 RUN pnpm turbo run build --filter=flickmosaic
 
+# Stage 4: Production runner
 FROM base AS runner
 WORKDIR /app
 
