@@ -55,7 +55,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       props: {
         dehydratedState: dehydrate(queryClient),
       },
-      revalidate: 3600, // 1시간마다 재생성
     };
   } catch (error) {
     console.error('Failed to prefetch movie data:', error);
@@ -65,7 +64,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       props: {
         dehydratedState: dehydrate(queryClient),
       },
-      revalidate: 60,
     };
   }
 };
