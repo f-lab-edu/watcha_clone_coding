@@ -27,16 +27,8 @@
     "vite": "^7.1.7"
   },
   "lint-staged": {
-    "apps/**/*.{ts,tsx}": [
-      "pnpm --F flickmosaic exec eslint --fix",
-      "pnpm --F flickmosaic exec prettier --write"
-    ],
-    "packages/**/*.{ts,tsx}": [
-      "pnpm --F carousel exec eslint --fix",
-      "pnpm --F carousel exec prettier --write"
-    ],
-    "*.{json,md}": [
-      "pnpm exec prettier --write"
+    "**/*.{ts,tsx,js,jsx,json,md,css}": [
+      "prettier --write"
     ]
   }
 }
